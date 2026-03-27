@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>🏛️ 琥珀引擎·档案馆</title>
+ <style>
+ body { font-family: sans-serif; line-height: 1.6; padding: 40px; color: #333; }
+ .nav { background: #24292e; color: white; padding: 15px; border-radius: 8px; margin-bottom: 30px; }
+ .nav a { color: #58a6ff; margin-right: 15px; text-decoration: none; font-weight: bold; }
+ .card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 10px; }
+ .status { color: #28a745; font-weight: bold; }
+ </style>
+</head>
+<body>
+ <div class="nav">
+ <span>🏛️ 琥珀引擎 3.0 档案馆</span> | 
+ <a href="/archive/reports/">📂 历史战报</a> | 
+ <a href="/archive/tasks/">📜 历史任务</a> | 
+ <a href="https://github.com/oceanuf/amber-sentry-logs" target="_blank">🐙 GitHub 源码</a>
+ </div>
+ <h2>🚀 实时监控状态</h2>
+ <div class="card">
+ <p><b>当前任务:</b> <span class="status">Gist_00127 (59支ETF Alpha扫描)</span></p>
+ <p><b>最新成果:</b> <a href="/REPORT_Gist_00127.md">查看 127 号扫描报告</a></p>
+ <p><b>共同记忆:</b> <a href="/SYSTEM_MEMORY.md">读取 SYSTEM_MEMORY.md</a></p>
+ </div>
+</body>
+</html>

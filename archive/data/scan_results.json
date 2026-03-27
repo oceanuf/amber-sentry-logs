@@ -1,0 +1,73 @@
+{
+  "system": "琥珀引擎 3.0",
+  "version": "V1.1-GLOBAL",
+  "timestamp": "2026-03-27T18:23:00+08:00",
+  "data_source": {
+    "primary": "Tushare Pro",
+    "secondary": "AkShare (已验证)",
+    "tertiary": "Crawler (备用)"
+  },
+  "scan_config": {
+    "audit_type": "global",
+    "time_window": "≥20:00",
+    "validation_threshold": 0.001
+  },
+  "etf_count": 59,
+  "scan_results": {
+    "top_performers": [
+      {
+        "rank": 1,
+        "code": "512480",
+        "name": "半导体ETF",
+        "bias": 8.2,
+        "alpha": 7.8,
+        "strategy_score": 85,
+        "robust_score": 78,
+        "efficiency_score": 92,
+        "total_score": 82.4,
+        "data_source": "TUSHARE",
+        "validation_status": "VERIFIED"
+      },
+      {
+        "rank": 2,
+        "code": "515790",
+        "name": "光伏ETF",
+        "bias": 7.8,
+        "alpha": 7.2,
+        "strategy_score": 82,
+        "robust_score": 75,
+        "efficiency_score": 88,
+        "total_score": 79.1,
+        "data_source": "TUSHARE",
+        "validation_status": "VERIFIED"
+      },
+      {
+        "rank": 3,
+        "code": "512660",
+        "name": "军工ETF",
+        "bias": 7.5,
+        "alpha": 6.9,
+        "strategy_score": 80,
+        "robust_score": 82,
+        "efficiency_score": 85,
+        "total_score": 77.8,
+        "data_source": "TUSHARE",
+        "validation_status": "VERIFIED"
+      }
+    ],
+    "summary_stats": {
+      "average_bias": 5.8,
+      "positive_count": 46,
+      "negative_count": 13,
+      "win_rate": 78.3,
+      "max_drawdown": -2.1,
+      "sharpe_ratio": 1.45
+    }
+  },
+  "validation_report": {
+    "tushare_success_rate": 100,
+    "akshare_validation_rate": 95,
+    "crawler_fallback_count": 0,
+    "data_quality": "EXCELLENT"
+  }
+}

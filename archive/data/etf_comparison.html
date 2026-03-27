@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>📊 全量ETF对比表 - 59支标的实时Bias排名热力图</title>
+ <style>
+ body { font-family: sans-serif; margin: 20px; }
+ .header { text-align: center; margin-bottom: 30px; }
+ .heatmap { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+ .etf-card { padding: 15px; border-radius: 8px; text-align: center; }
+ .positive { background: #d4edda; color: #155724; }
+ .negative { background: #f8d7da; color: #721c24; }
+ .neutral { background: #e2e3e5; color: #383d41; }
+ </style>
+</head>
+<body>
+ <div class="header">
+   <h1>📊 全量ETF对比表</h1>
+   <p>59 支标的的实时 $Bias$ 排名热力图</p>
+ </div>
+ 
+ <div class="heatmap">
+   <div class="etf-card positive">
+     <strong>512480</strong><br>
+     半导体ETF<br>
+     <strong>+8.2%</strong>
+   </div>
+   <div class="etf-card positive">
+     <strong>515790</strong><br>
+     光伏ETF<br>
+     <strong>+7.8%</strong>
+   </div>
+   <div class="etf-card positive">
+     <strong>512660</strong><br>
+     军工ETF<br>
+     <strong>+7.5%</strong>
+   </div>
+   <!-- 更多ETF卡片... -->
+ </div>
+ 
+ <div style="margin-top: 30px; text-align: center;">
+   <p>此页面为示例，实际热力图需要实时数据生成</p>
+   <a href="/list.html" style="color: #007bff;">返回主面板</a>
+ </div>
+</body>
+</html>

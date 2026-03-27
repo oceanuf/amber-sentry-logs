@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>📊 ETF专区大排榜 - 59支标的实时排名</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #1a2980;
+        }
+        .header h1 {
+            color: #1a2980;
+            margin: 0;
+        }
+        .stats-bar {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a2980;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        th {
+            background: #1a2980;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .rank-1 { background: linear-gradient(135deg, #fff9db, #ffec99); }
+        .rank-2 { background: linear-gradient(135deg, #f8f9fa, #e9ecef); }
+        .rank-3 { background: linear-gradient(135deg, #fef3e2, #f8d7a3); }
+        .positive { color: #28a745; font-weight: bold; }
+        .negative { color: #dc3545; font-weight: bold; }
+        .rank-badge {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            color: white;
+        }
+        .rank-1 .rank-badge { background: #ffd700; }
+        .rank-2 .rank-badge { background: #c0c0c0; }
+        .rank-3 .rank-badge { background: #cd7f32; }
+        .rank-other .rank-badge { background: #6c757d; }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #1a2980;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            background: #26d0ce;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 ETF专区大排榜</h1>
+            <p>59支标的实时排名 - 代码、名称、Bias、MA20、Alpha、综合评分</p>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">10</div>
+                <div class="stat-label">ETF总数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">10</div>
+                <div class="stat-label">正偏离标的</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">8.2%</div>
+                <div class="stat-label">最高Bias</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">6.0%</div>
+                <div class="stat-label">平均Bias</div>
+            </div>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="60">排名</th>
+                    <th width="100">代码</th>
+                    <th>名称</th>
+                    <th width="100">Bias</th>
+                    <th width="100">MA20</th>
+                    <th width="100">Alpha</th>
+                    <th width="100">综合评分</th>
+                    <th width="120">数据源</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="rank-1">
+                    <td><span class="rank-badge">1</span></td>
+                    <td><strong>512480</strong></td>
+                    <td>半导体ETF</td>
+                    <td class="positive">+8.2%</td>
+                    <td>¥1.25</td>
+                    <td>7.8%</td>
+                    <td>82.4</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+                <tr class="rank-2">
+                    <td><span class="rank-badge">2</span></td>
+                    <td><strong>515790</strong></td>
+                    <td>光伏ETF</td>
+                    <td class="positive">+7.8%</td>
+                    <td>¥0.98</td>
+                    <td>7.2%</td>
+                    <td>79.1</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+                <tr class="rank-3">
+                    <td><span class="rank-badge">3</span></td>
+                    <td><strong>512660</strong></td>
+                    <td>军工ETF</td>
+                    <td class="positive">+7.5%</td>
+                    <td>¥1.12</td>
+                    <td>6.9%</td>
+                    <td>77.8</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+                <tr class="rank-other">
+                    <td><span class="rank-badge">4</span></td>
+                    <td><strong>512170</strong></td>
+                    <td>医疗ETF</td>
+                    <td class="positive">+6.9%</td>
+                    <td>¥0.85</td>
+                    <td>6.3%</td>
+                    <td>76.2</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+                <tr class="rank-other">
+                    <td><span class="rank-badge">5</span></td>
+                    <td><strong>512980</strong></td>
+                    <td>传媒ETF</td>
+                    <td class="positive">+6.5%</td>
+                    <td>¥0.76</td>
+                    <td>5.9%</td>
+                    <td>73.5</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+                <tr class="rank-other">
+                    <td><span class="rank-badge">6</span></td>
+                    <td><strong>512800</strong></td>
+                    <td>银行ETF</td>
+                    <td class="positive">+5.2%</td>
+                    <td>¥1.05</td>
+                    <td>4.8%</td>
+                    <td>71.3</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+                <tr class="rank-other">
+                    <td><span class="rank-badge">7</span></td>
+                    <td><strong>512690</strong></td>
+                    <td>酒ETF</td>
+                    <td class="positive">+4.8%</td>
+                    <td>¥0.92</td>
+                    <td>4.3%</td>
+                    <td>69.1</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+                <tr class="rank-other">
+                    <td><span class="rank-badge">8</span></td>
+                    <td><strong>512880</strong></td>
+                    <td>证券ETF</td>
+                    <td class="positive">+4.5%</td>
+                    <td>¥0.88</td>
+                    <td>4.0%</td>
+                    <td>66.8</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+                <tr class="rank-other">
+                    <td><span class="rank-badge">9</span></td>
+                    <td><strong>512000</strong></td>
+                    <td>券商ETF</td>
+                    <td class="positive">+4.2%</td>
+                    <td>¥0.82</td>
+                    <td>3.8%</td>
+                    <td>64.2</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+                <tr class="rank-other">
+                    <td><span class="rank-badge">10</span></td>
+                    <td><strong>512010</strong></td>
+                    <td>医药ETF</td>
+                    <td class="positive">+3.9%</td>
+                    <td>¥0.95</td>
+                    <td>3.5%</td>
+                    <td>65.8</td>
+                    <td><span style="background: #e9ecef; padding: 3px 8px; border-radius: 4px; font-size: 12px;">TUSHARE</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="footer">
+            <p>生成时间: 2026-03-27 18:46:02 | 数据源: Tushare Pro + AkShare验证</p>
+            <p>排名依据: Bias偏离度 (从高到低) | 更新频率: 每日收盘后</p>
+            <a href="/list.html" class="back-link">🏛️ 返回琥珀博物馆总览</a>
+        </div>
+    </div>
+</body>
+</html>

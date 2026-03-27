@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>📜 策略演练索引 - 历史战报时间线</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #28a745;
+        }
+        .header h1 {
+            color: #28a745;
+            margin: 0;
+        }
+        .stats-bar {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #dee2e6;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #6c757d;
+            border: 3px solid white;
+        }
+        .timeline-item.alpha-detected {
+            border-left: 5px solid #28a745;
+        }
+        .timeline-item.alpha-detected::before {
+            background: #28a745;
+        }
+        .report-date {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+        .report-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .alpha-badge {
+            display: inline-block;
+            background: #d4edda;
+            color: #155724;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .report-desc {
+            color: #6c757d;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .report-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .report-link {
+            color: #1a2980;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .report-link:hover {
+            text-decoration: underline;
+        }
+        .file-size {
+            background: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📜 策略演练索引</h1>
+            <p>按时间倒序排列的所有战报，重点标注带有 [ALPHA_DETECTED] 标签的报告</p>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">1</div>
+                <div class="stat-label">总报告数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Alpha报告</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">2026-03-26</div>
+                <div class="stat-label">最新报告</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">2026-03-26</div>
+                <div class="stat-label">最早报告</div>
+            </div>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item ">
+                <div class="report-date">2026-03-26</div>
+                <div class="report-title">
+                    126号策略回测报告 - 半导体赛道深度分析
+                    
+                </div>
+                <div class="report-desc">**归档位置**: /archive/reports/report_126.md</div>
+                <div class="report-meta">
+                    <a href="/reports/report_126.md" class="report-link">查看完整报告 →</a>
+                    <span class="file-size">2.0 KB</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>生成时间: 2026-03-27 18:46:02 | 报告总数: 1</p>
+            <p>索引规则: 按报告日期倒序排列 | Alpha报告自动高亮标注</p>
+            <a href="/list.html" class="back-link">🏛️ 返回琥珀博物馆总览</a>
+        </div>
+    </div>
+</body>
+</html>
