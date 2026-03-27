@@ -24,14 +24,14 @@
     "min_trade_amount": 10000.0
   },
   "portfolio_summary": {
-    "total_value": 499633.2456526318,
+    "total_value": 499668.03981662804,
     "p_l_ratio": "-0.07%",
-    "p_l_amount": -366.7543473682017,
+    "p_l_amount": -331.9601833719644,
     "position_percent": "20.07%",
     "sentry_alert": "LAB_INITIALIZED",
     "position_count": 1,
     "cash_balance": 399377.1455514364,
-    "update_time": "2026-03-28 07:50:37"
+    "update_time": "2026-03-28 07:57:37"
   },
   "market_snapshot": {
     "top_alpha": [
@@ -41,7 +41,7 @@
     ],
     "avg_bias": "-3.1%",
     "opportunity_count": 2,
-    "scan_time": "2026-03-28 07:50:37",
+    "scan_time": "2026-03-28 07:57:37",
     "data_source": "TUSHARE_VERIFIED"
   },
   "trading_rules": {
