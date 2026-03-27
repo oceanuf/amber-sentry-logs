@@ -24,14 +24,14 @@
     "min_trade_amount": 10000.0
   },
   "portfolio_summary": {
-    "total_value": 499765.81957228715,
-    "p_l_ratio": "-0.05%",
-    "p_l_amount": -234.180427712854,
-    "position_percent": "15.98%",
+    "total_value": 500127.0638543874,
+    "p_l_ratio": "+0.03%",
+    "p_l_amount": 127.06385438737925,
+    "position_percent": "20.14%",
     "sentry_alert": "LAB_INITIALIZED",
     "position_count": 1,
-    "cash_balance": 419904.0,
-    "update_time": "2026-03-27 19:49:35"
+    "cash_balance": 399377.1455514364,
+    "update_time": "2026-03-28 07:42:37"
   },
   "market_snapshot": {
     "top_alpha": [
@@ -41,7 +41,7 @@
     ],
     "avg_bias": "-3.1%",
     "opportunity_count": 2,
-    "scan_time": "2026-03-27 19:49:35",
+    "scan_time": "2026-03-28 07:42:37",
     "data_source": "TUSHARE_VERIFIED"
   },
   "trading_rules": {
@@ -71,7 +71,7 @@
     "alerts_today": 0,
     "data_quality": 98.7,
     "system_uptime": "99.9%",
-    "trades_today": 4,
+    "trades_today": 11,
     "total_profit": 0.0
   },
   "automation_status": {
@@ -80,6 +80,6 @@
     "quant_lab": "INITIALIZING",
     "live_trading": "ACTIVE",
     "github_sync": "READY",
-    "last_trade": "2026-03-27T19:44:41.381921"
+    "last_trade": "2026-03-28T03:59:55.431563"
   }
 }
