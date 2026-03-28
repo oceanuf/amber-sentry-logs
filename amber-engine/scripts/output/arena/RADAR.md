@@ -11,27 +11,27 @@
 
 ## 🎯 高价值目标列表
 
-[Formula 02: 双重动能过滤] → **512480 (半导体ETF)** | Score: 95 | Confidence: 0.89 | Action: 👀 观察中
+[Formula 01: 引力超跌] → **512100 (中证1000ETF)** | Score: 76 | Confidence: 0.87 | Action: 👀 观察中
 
-[Formula 03: 波动率压缩捕捉] → **518880 (华安黄金ETF)** | Score: 80 | Confidence: 0.87 | Action: 👀 观察中
+[Formula 02: 双重动能过滤] → **516160 (新能源ETF)** | Score: 69 | Confidence: 0.81 | Action: 👀 观察中
 
-[Formula 03: 波动率压缩捕捉] → **515050 (5GETF)** | Score: 86 | Confidence: 0.87 | Action: 🎯 候选池
+[Formula 03: 波动率压缩捕捉] → **512010 (医药ETF)** | Score: 85 | Confidence: 0.93 | Action: 👀 观察中
 
-[Formula 04: 股息率价值模型] → **512480 (半导体ETF)** | Score: 86 | Confidence: 0.90 | Action: 👀 观察中
+[Formula 05: RSI周线极值] → **512480 (半导体ETF)** | Score: 69 | Confidence: 0.95 | Action: 👀 观察中
 
-[Formula 05: RSI周线极值] → **159919 (沪深300ETF(深))** | Score: 60 | Confidence: 0.87 | Action: 👀 观察中
+[Formula 05: RSI周线极值] → **516160 (新能源ETF)** | Score: 85 | Confidence: 0.86 | Action: 🎯 候选池
 
-[Formula 07: 三重均线共振] → **518800 (黄金ETF)** | Score: 65 | Confidence: 0.95 | Action: 🎯 候选池
+[Formula 06: Z-Score] → **512170 (医疗ETF)** | Score: 70 | Confidence: 0.95 | Action: 👀 观察中
 
-[Formula 08: 缩量回踩支撑] → **510500 (中证500ETF)** | Score: 62 | Confidence: 0.89 | Action: 👀 观察中
+[Formula 08: 缩量回踩支撑] → **510300 (沪深300ETF)** | Score: 84 | Confidence: 0.93 | Action: 👀 观察中
 
-[Formula 08: 缩量回踩支撑] → **512480 (半导体ETF)** | Score: 61 | Confidence: 0.86 | Action: 👀 观察中
+[Formula 09: 宏观对冲] → **512170 (医疗ETF)** | Score: 62 | Confidence: 0.86 | Action: 🎯 候选池
 
-[Formula 09: 宏观对冲] → **512000 (券商ETF)** | Score: 83 | Confidence: 0.92 | Action: 🎯 候选池
+[Formula 09: 宏观对冲] → **518800 (黄金ETF)** | Score: 85 | Confidence: 0.82 | Action: 👀 观察中
 
-[Formula 10: 能量潮背离] → **518880 (华安黄金ETF)** | Score: 91 | Confidence: 0.94 | Action: 🎯 候选池
+[Formula 10: 能量潮背离] → **512800 (银行ETF)** | Score: 64 | Confidence: 0.95 | Action: 🎯 候选池
 
 
 ---
-*生成时间: 2026-03-28 20:45:01*
+*生成时间: 2026-03-28 21:00:01*
 *策略库版本: V1.0.0 (长周期量化)*

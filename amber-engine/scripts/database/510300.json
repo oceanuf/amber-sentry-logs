@@ -1,9 +1,9 @@
 {
   "ticker": "510300",
   "name": "沪深300ETF",
-  "last_update": "2026-03-28 20:45",
+  "last_update": "2026-03-28 21:00",
   "current_price": 3.888,
-  "change_pct": "+1.40%",
+  "change_pct": "-0.83%",
   "nav_history": [
     {
       "date": "2026-02-27",
@@ -159,12 +159,12 @@
   "indicators": {
     "pe_ratio": "N/A",
     "premium_rate": "+0.03%",
-    "return_30d": "+3.41%",
+    "return_30d": "+1.34%",
     "annual_volatility": "3.0%",
-    "sharpe_ratio": 1.86,
-    "max_drawdown": "11.6%",
-    "beta": 0.75,
-    "alpha": "+0.9"
+    "sharpe_ratio": 1.92,
+    "max_drawdown": "7.8%",
+    "beta": 0.51,
+    "alpha": "+1.8"
   },
   "position_data": {
     "holdings": 0,

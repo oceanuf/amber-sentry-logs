@@ -1,9 +1,9 @@
 {
   "ticker": "518880",
   "name": "华安黄金ETF",
-  "last_update": "2026-03-28 20:45",
-  "current_price": 5.03,
-  "change_pct": "+2.53%",
+  "last_update": "2026-03-28 21:00",
+  "current_price": 5.044,
+  "change_pct": "+1.99%",
   "nav_history": [
     {
       "date": "2026-02-27",
@@ -159,12 +159,12 @@
   "indicators": {
     "pe_ratio": "N/A",
     "premium_rate": "+0.03%",
-    "return_30d": "-2.40%",
+    "return_30d": "-0.83%",
     "annual_volatility": "5.0%",
-    "sharpe_ratio": 1.55,
-    "max_drawdown": "12.4%",
-    "beta": 0.81,
-    "alpha": "-0.6"
+    "sharpe_ratio": 0.8,
+    "max_drawdown": "7.3%",
+    "beta": 0.61,
+    "alpha": "-2.3"
   },
   "position_data": {
     "holdings": 0,
