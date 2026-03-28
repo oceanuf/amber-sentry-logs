@@ -1,90 +1,89 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# 档案馆单体仓库同步法典 V3.1 (修正版) - 安全忽略规则
+# 生效日期: 2026-03-30 (第14周)
+# 基于[2614-001]安全防线协议
 
-# Virtual Environment
-venv/
-env/
-ENV/
+# 1. 环境配置文件 (绝对禁止泄露) - 三不原则第一防线
 .env
-.venv
+.env.*
+*.env
+secrets/
+credentials/
+private_*.json
+config_*.json
+token.json
+secrets.json
+credentials.json
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# 2. Token敏感文件 (ghp_开头) - 三不原则第二防线
+*ghp_*
+*github_pat*
+*access_token*
+*api_key*
 
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# 3. 绝对路径敏感文件 - 三不原则第三防线
+*绝对路径*
+*home/luckyelite*
+*/home/*
 
-# Logs
-*.log
-logs/
-amber-sentry-logs/
-
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Backup files
-*.backup
-*.bak
-
-# Temporary files
-*.tmp
-*.temp
-
-# Data files
+# 4. 数据库文件 (本地开发环境)
 *.db
 *.sqlite
 *.sqlite3
+database/*.db
+_PRIVATE_DATA/
 
-# Amber Engine specific
-output/
-memory/
-schedule/
-data/algo_log/
-portfolio_v1.html.backup.*
-portfolio_v1.json.backup.*
-scripts/__pycache__/
-scripts/*.backup.*
-GIT_SYNC_STATUS.md
-test_arena_cron.sh
-simple_archive_sync.sh
+# 5. 日志文件
+*.log
+**/*.log
+logs/
+amber-sentry-logs/
+pulse_monitor.log
+audit_log.txt
 
-# Archive vaults - we want to keep these
-#!vaults/
-# 🏛️ V2.0档案馆规范 - 敏感数据过滤
-database/*.json
-*.env
-*.key
-*.secret
-credentials.json
-schedule/credentials.json
+# 6. 备份文件
+*.backup
+*.bak
+backup/
+backup_*/
+backup_monorepo_*/
+backup_absolute_paths_*
+
+# 7. 虚拟环境和缓存
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+
+# 8. 临时文件
+*.tmp
+*.temp
+.tmp/
+*.swp
+*.swo
+
+# 9. 系统文件
+.DS_Store
+Thumbs.db
+
+# 10. 本地开发文件 (根据物理拓扑准则)
+portfolio_v1.json
+portfolio_v1.html
+output/arena/  # 演武场输出目录
+output/  # 临时输出目录
+nginx/  # Nginx配置文件 (敏感)
+.openclaw/  # OpenClaw配置 (敏感)
+master-audit/  # Web部署目录 (可能包含敏感配置)
+data/algo_log/  # 算法日志 (临时数据)
+health_reports/  # 健康报告 (已并入docs/reports/)
+lib/  # 库文件 (应并入scripts/lib/或web/)
+templates/  # 模板文件 (应并入web/templates/)
+static/  # 静态资源 (应并入web/static/)
+
+# 11. 根目录杂文件 (应移动到相应目录)
+# 以下文件类型应移动到法典规定的目录:
+# - *.md → docs/reports/ 或 vaults/
+# - *.txt → docs/reports/
+# - *.json → database/ (仅结构定义)
+# - *.sh, *.py → scripts/
+# - *.html, *.php, *.js, *.css → web/
