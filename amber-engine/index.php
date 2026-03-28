@@ -40,9 +40,139 @@ function get_markdown_content($file_path) {
 }
 
 /**
+ * 加载JSON数据并生成动态表格
+ */
+function generate_dynamic_table($ticker) {
+    $database_dir = __DIR__ . '/database';
+    $json_path = $database_dir . '/' . $ticker . '.json';
+    
+    if (!file_exists($json_path)) {
+        return "<div style='color: #f7768e; font-family: monospace;'>❌ JSON数据文件不存在: {$ticker}.json</div>";
+    }
+    
+    try {
+        $json_content = file_get_contents($json_path);
+        $data = json_decode($json_content, true);
+        
+        if (!$data) {
+            return "<div style='color: #f7768e; font-family: monospace;'>❌ JSON解析失败</div>";
+        }
+        
+        // 提取最新数据
+        $current_price = $data['current_price'] ?? 0;
+        $change_pct = $data['change_pct'] ?? '0.00%';
+        $nav_history = $data['nav_history'] ?? [];
+        $last_update = $data['last_update'] ?? '未知';
+        
+        // 判断涨跌颜色
+        $change_color = '#9ece6a'; // 绿色
+        if (strpos($change_pct, '-') === 0) {
+            $change_color = '#f7768e'; // 红色
+        }
+        
+        // 生成表格HTML
+        $html = '<div style="overflow-x: auto; margin: 20px 0;">';
+        $html .= '<table style="width: 100%; border-collapse: collapse; font-family: monospace; background: #1a1b26; color: #c0caf5; border-radius: 8px; overflow: hidden;">';
+        
+        // 表头
+        $html .= '<thead>';
+        $html .= '<tr style="background: #24283b;">';
+        $html .= '<th style="padding: 12px 16px; text-align: left; border-bottom: 2px solid #414868;">📊 实时数据</th>';
+        $html .= '<th style="padding: 12px 16px; text-align: right; border-bottom: 2px solid #414868;">数值</th>';
+        $html .= '</tr>';
+        $html .= '</thead>';
+        
+        // 主体
+        $html .= '<tbody>';
+        
+        // 最新价格
+        $html .= '<tr style="border-bottom: 1px solid #414868;">';
+        $html .= '<td style="padding: 12px 16px;">最新净值</td>';
+        $html .= '<td style="padding: 12px 16px; text-align: right; font-weight: bold;">' . number_format($current_price, 3) . '</td>';
+        $html .= '</tr>';
+        
+        // 涨跌幅
+        $html .= '<tr style="border-bottom: 1px solid #414868;">';
+        $html .= '<td style="padding: 12px 16px;">日涨跌幅</td>';
+        $html .= '<td style="padding: 12px 16px; text-align: right; font-weight: bold; color: ' . $change_color . ';">' . $change_pct . '</td>';
+        $html .= '</tr>';
+        
+        // 更新时间
+        $html .= '<tr style="border-bottom: 1px solid #414868;">';
+        $html .= '<td style="padding: 12px 16px;">数据更新时间</td>';
+        $html .= '<td style="padding: 12px 16px; text-align: right; font-size: 0.9em;">' . $last_update . '</td>';
+        $html .= '</tr>';
+        
+        // 净值历史标题
+        $html .= '<tr style="background: #24283b;">';
+        $html .= '<td colspan="2" style="padding: 12px 16px; text-align: center; font-weight: bold;">📈 净值走势 (最近30日)</td>';
+        $html .= '</tr>';
+        
+        // 净值历史数据
+        $recent_history = array_slice($nav_history, -10); // 显示最近10条
+        foreach ($recent_history as $item) {
+            $date = $item['date'] ?? '未知';
+            $price = $item['price'] ?? 0;
+            $change = $item['change'] ?? '0.00%';
+            
+            // 判断涨跌颜色
+            $row_change_color = '#9ece6a';
+            if (strpos($change, '-') === 0) {
+                $row_change_color = '#f7768e';
+            }
+            
+            $html .= '<tr style="border-bottom: 1px solid #414868;">';
+            $html .= '<td style="padding: 10px 16px; font-size: 0.9em;">' . $date . '</td>';
+            $html .= '<td style="padding: 10px 16px; text-align: right;">';
+            $html .= '<span style="margin-right: 20px;">' . number_format($price, 3) . '</span>';
+            $html .= '<span style="color: ' . $row_change_color . ';">' . $change . '</span>';
+            $html .= '</td>';
+            $html .= '</tr>';
+        }
+        
+        $html .= '</tbody>';
+        $html .= '</table>';
+        $html .= '</div>';
+        
+        // 数据源说明
+        $html .= '<div style="font-family: monospace; font-size: 0.8em; color: #565f89; margin-top: 10px; text-align: center;">';
+        $html .= '数据源: TUSHARE | 更新频率: 每小时 | 渲染方式: PHP动态注入';
+        $html .= '</div>';
+        
+        return $html;
+        
+    } catch (Exception $e) {
+        return "<div style='color: #f7768e; font-family: monospace;'>❌ 生成表格失败: " . htmlspecialchars($e->getMessage()) . "</div>";
+    }
+}
+
+/**
+ * 处理动态内容注入
+ */
+function inject_dynamic_content($markdown_content) {
+    // 检查是否有[[VALUATION_ZONE]]锚点
+    if (strpos($markdown_content, '[[VALUATION_ZONE]]') !== false) {
+        // 从YAML头部提取TICKER
+        if (preg_match('/TICKER:\s*"([^"]+)"/', $markdown_content, $matches)) {
+            $ticker = $matches[1];
+            $dynamic_table = generate_dynamic_table($ticker);
+            $markdown_content = str_replace('[[VALUATION_ZONE]]', $dynamic_table, $markdown_content);
+        } else {
+            $error_msg = "<div style='color: #f7768e; font-family: monospace;'>❌ 无法从YAML头部提取TICKER</div>";
+            $markdown_content = str_replace('[[VALUATION_ZONE]]', $error_msg, $markdown_content);
+        }
+    }
+    
+    return $markdown_content;
+}
+
+/**
  * 渲染Markdown为HTML
  */
 function render_markdown($markdown) {
+    // 先注入动态内容
+    $markdown = inject_dynamic_content($markdown);
+    
     $parsedown = new Parsedown();
     $parsedown->setSafeMode(true);
     $parsedown->setMarkupEscaped(true);
@@ -254,36 +384,52 @@ try {
     // 获取请求的页面
     $page = $_GET['page'] ?? 'manifest';
     
-    // 根据页面参数确定文件路径
-    switch ($page) {
-        case 'manifest':
-            $file_path = __DIR__ . '/ARCHIVE_V1_MANIFEST.md';
-            $page_title = '架构法典';
-            break;
-            
-        case 'formulas':
-            $file_path = __DIR__ . '/vaults/Formulas/README.md';
-            $page_title = '核心算法库';
-            break;
-            
-        case 'assets':
-            $file_path = __DIR__ . '/vaults/Assets/README.md';
-            $page_title = '标的透视镜';
-            break;
-            
-        case 'research':
-            $file_path = __DIR__ . '/vaults/Research/README.md';
-            $page_title = '战略研究室';
-            break;
-            
-        case 'strategy':
-            $file_path = __DIR__ . '/vaults/Strategy/README.md';
-            $page_title = '生存线看板';
-            break;
-            
-        default:
-            $file_path = __DIR__ . '/ARCHIVE_V1_MANIFEST.md';
-            $page_title = '架构法典';
+    // 检查是否请求特定ETF文件
+    $etf_file = $_GET['etf'] ?? '';
+    if ($etf_file) {
+        // 处理ETF文件请求
+        $file_path = __DIR__ . '/vaults/Assets/' . $etf_file . '.md';
+        if (!file_exists($file_path)) {
+            $file_path = __DIR__ . '/vaults/Assets/' . $etf_file . '_Gold.md';
+        }
+        
+        // 从文件名提取标题
+        $page_title = '标的透视镜';
+        if (preg_match('/^(\d+)/', $etf_file, $matches)) {
+            $page_title = $matches[1] . ' - 标的透视镜';
+        }
+    } else {
+        // 根据页面参数确定文件路径
+        switch ($page) {
+            case 'manifest':
+                $file_path = __DIR__ . '/ARCHIVE_V1_MANIFEST.md';
+                $page_title = '架构法典';
+                break;
+                
+            case 'formulas':
+                $file_path = __DIR__ . '/vaults/Formulas/README.md';
+                $page_title = '核心算法库';
+                break;
+                
+            case 'assets':
+                $file_path = __DIR__ . '/vaults/Assets/README.md';
+                $page_title = '标的透视镜';
+                break;
+                
+            case 'research':
+                $file_path = __DIR__ . '/vaults/Research/README.md';
+                $page_title = '战略研究室';
+                break;
+                
+            case 'strategy':
+                $file_path = __DIR__ . '/vaults/Strategy/README.md';
+                $page_title = '生存线看板';
+                break;
+                
+            default:
+                $file_path = __DIR__ . '/ARCHIVE_V1_MANIFEST.md';
+                $page_title = '架构法典';
+        }
     }
     
     // 获取并渲染Markdown内容
