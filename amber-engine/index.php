@@ -387,15 +387,48 @@ try {
     // 检查是否请求特定ETF文件
     $etf_file = $_GET['etf'] ?? '';
     if ($etf_file) {
-        // 处理ETF文件请求
-        $file_path = __DIR__ . '/vaults/Assets/' . $etf_file . '.md';
-        if (!file_exists($file_path)) {
-            $file_path = __DIR__ . '/vaults/Assets/' . $etf_file . '_Gold.md';
+        // 处理ETF文件请求 - 支持多种命名格式
+        $assets_dir = __DIR__ . '/vaults/Assets/';
+        
+        // 尝试多种可能的文件名格式
+        $possible_files = [
+            $assets_dir . $etf_file . '.md',           // 518880.md
+            $assets_dir . $etf_file . '_Gold.md',      // 518880_Gold.md
+            $assets_dir . $etf_file . '_Bank.md',      // 512800_Bank.md
+            $assets_dir . $etf_file . '_Index.md',     // 510300_Index.md
+            $assets_dir . $etf_file . '_ETF.md',       // 其他ETF
+        ];
+        
+        $file_path = '';
+        foreach ($possible_files as $possible_file) {
+            if (file_exists($possible_file)) {
+                $file_path = $possible_file;
+                break;
+            }
+        }
+        
+        // 如果没找到文件，显示错误
+        if (empty($file_path)) {
+            $error_html = "<h3>📭 ETF文件未找到</h3><p>请求的ETF文件 `{$etf_file}` 不存在于档案馆中。</p>";
+            $error_html .= "<p>可用的ETF文件:</p><ul>";
+            
+            // 列出所有可用的ETF文件
+            $etf_files = glob($assets_dir . '*.md');
+            foreach ($etf_files as $etf_file_path) {
+                $filename = basename($etf_file_path, '.md');
+                if ($filename !== 'README') {
+                    $error_html .= "<li><a href='?etf={$filename}'>{$filename}</a></li>";
+                }
+            }
+            $error_html .= "</ul>";
+            
+            echo generate_page('文件未找到', $error_html);
+            exit;
         }
         
         // 从文件名提取标题
         $page_title = '标的透视镜';
-        if (preg_match('/^(\d+)/', $etf_file, $matches)) {
+        if (preg_match('/^(\d+)/', basename($file_path, '.md'), $matches)) {
             $page_title = $matches[1] . ' - 标的透视镜';
         }
     } else {

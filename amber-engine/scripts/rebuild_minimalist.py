@@ -853,7 +853,78 @@ def run_github_sync():
         print(f"⚠️ GitHub同步脚本不存在: {GITHUB_SYNC_SCRIPT}")
         return False
 
-def update_asset_json(ticker="518880"):
+def get_etf_info(ticker):
+    """根据ETF代码获取基本信息"""
+    etf_info = {
+        "518880": {
+            "name": "华安黄金ETF",
+            "asset_class": "Commodity",
+            "strategy_tag": "Gravity-Dip",
+            "risk_level": "Medium",
+            "weight": 0.35,
+            "base_price": 5.012,
+            "volatility": 0.05
+        },
+        "512800": {
+            "name": "银行ETF",
+            "asset_class": "Financial",
+            "strategy_tag": "Bias-RSI",
+            "risk_level": "Low",
+            "weight": 0.65,
+            "base_price": 1.028,
+            "volatility": 0.02
+        },
+        "510300": {
+            "name": "沪深300ETF",
+            "asset_class": "Index",
+            "strategy_tag": "Core-Hold",
+            "risk_level": "Medium",
+            "weight": 0.0,  # 未持仓
+            "base_price": 3.845,
+            "volatility": 0.03
+        }
+    }
+    
+    return etf_info.get(ticker, {
+        "name": f"ETF-{ticker}",
+        "asset_class": "Unknown",
+        "strategy_tag": "Unknown",
+        "risk_level": "Medium",
+        "weight": 0.0,
+        "base_price": 1.0,
+        "volatility": 0.05
+    })
+
+def get_position_data(ticker, portfolio):
+    """从投资组合中获取持仓数据"""
+    if not portfolio or "current_positions" not in portfolio:
+        return {
+            "holdings": 0,
+            "cost_price": 0,
+            "market_value": 0,
+            "floating_pnl": 0,
+            "floating_pnl_pct": "0.00%"
+        }
+    
+    for position in portfolio.get("current_positions", []):
+        if position.get("code") == ticker:
+            return {
+                "holdings": position.get("quantity", 0),
+                "cost_price": position.get("avg_price", 0),
+                "market_value": position.get("position_value", 0),
+                "floating_pnl": position.get("unrealized_pnl", 0),
+                "floating_pnl_pct": f"{position.get('unrealized_pnl_percent', 0):.2f}%"
+            }
+    
+    return {
+        "holdings": 0,
+        "cost_price": 0,
+        "market_value": 0,
+        "floating_pnl": 0,
+        "floating_pnl_pct": "0.00%"
+    }
+
+def update_asset_json(ticker="518880", portfolio=None):
     """更新单个ETF的JSON数据文件 - 基于MOD-02 ETF标标活化工程
     功能: 抓取最新价、涨跌幅及过去30日净值，写入JSON文件
     """
@@ -876,57 +947,61 @@ def update_asset_json(ticker="518880"):
             except Exception as e:
                 print(f"⚠️ 读取现有JSON失败: {e}")
         
+        # 获取ETF基本信息
+        etf_info = get_etf_info(ticker)
+        
         # 获取最新数据 (这里使用模拟数据，实际应调用Tushare/AkShare)
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M')
         
-        # 模拟最新价格数据
-        latest_price = 5.012  # 模拟最新价
-        change_pct = 0.05    # 模拟涨跌幅
+        # 基于基础价格和波动率生成模拟数据
+        base_price = etf_info["base_price"]
+        volatility = etf_info["volatility"]
+        
+        # 模拟最新价格数据 (在基础价格附近波动)
+        latest_price = base_price * (1 + random.uniform(-volatility, volatility))
+        change_pct = random.uniform(-volatility * 100, volatility * 100)
         
         # 模拟30日净值历史
         nav_history = []
         for i in range(30):
             date = (datetime.now() - timedelta(days=29-i)).strftime('%Y-%m-%d')
             # 模拟价格波动
-            price = latest_price * (1 + random.uniform(-0.05, 0.05))
-            change = random.uniform(-0.03, 0.03)
+            price = base_price * (1 + random.uniform(-volatility, volatility))
+            change = random.uniform(-volatility * 100, volatility * 100)
             nav_history.append({
                 "date": date,
                 "price": round(price, 3),
-                "change": f"{change*100:+.2f}%"
+                "change": f"{change:+.2f}%"
             })
+        
+        # 获取持仓数据
+        position_data = get_position_data(ticker, portfolio)
         
         # 构建JSON数据结构
         asset_data = {
             "ticker": ticker,
-            "name": "华安黄金ETF",
+            "name": etf_info["name"],
             "last_update": current_time,
-            "current_price": latest_price,
-            "change_pct": f"{change_pct:.2f}%",
+            "current_price": round(latest_price, 3),
+            "change_pct": f"{change_pct:+.2f}%",
             "nav_history": nav_history,
             "indicators": {
                 "pe_ratio": "N/A",
                 "premium_rate": "+0.03%",
-                "return_30d": "-2.77%",
-                "annual_volatility": "11.4%",
-                "sharpe_ratio": "1.62",
-                "max_drawdown": "10.5%",
-                "beta": "0.33",
-                "alpha": "-1.9"
+                "return_30d": f"{random.uniform(-5, 5):+.2f}%",
+                "annual_volatility": f"{volatility * 100:.1f}%",
+                "sharpe_ratio": round(random.uniform(0.5, 2.0), 2),
+                "max_drawdown": f"{random.uniform(5, 15):.1f}%",
+                "beta": round(random.uniform(0.2, 1.5), 2),
+                "alpha": f"{random.uniform(-3, 3):+.1f}"
             },
-            "position_data": {
-                "holdings": 15000,
-                "cost_price": 4.85,
-                "market_value": 74250,
-                "floating_pnl": 1500,
-                "floating_pnl_pct": "2.06%"
-            },
+            "position_data": position_data,
             "metadata": {
-                "asset_class": "Commodity",
-                "strategy_tag": "Gravity-Dip",
-                "risk_level": "Medium",
-                "weight": 0.35,
-                "status": "Holding",
+                "asset_class": etf_info["asset_class"],
+                "strategy_tag": etf_info["strategy_tag"],
+                "risk_level": etf_info["risk_level"],
+                "weight": etf_info["weight"],
+                "status": "Holding" if position_data["holdings"] > 0 else "Watching",
                 "data_source": "TUSHARE",
                 "data_quality": "verified",
                 "update_frequency": "hourly"
@@ -951,6 +1026,28 @@ def update_asset_json(ticker="518880"):
     except Exception as e:
         print(f"❌ 更新 {ticker} JSON数据失败: {e}")
         return False
+
+def update_all_assets_json(portfolio=None):
+    """批量更新所有ETF的JSON数据 - 基于MOD-02全量标的扩建工程
+    功能: 循环更新518880, 512800, 510300等ETF的JSON数据
+    """
+    print("🚀 开始批量更新ETF JSON数据...")
+    
+    # 需要更新的ETF列表
+    etf_list = ["518880", "512800", "510300"]
+    
+    success_count = 0
+    total_count = len(etf_list)
+    
+    for ticker in etf_list:
+        success = update_asset_json(ticker, portfolio)
+        if success:
+            success_count += 1
+        else:
+            print(f"⚠️ {ticker} 更新失败")
+    
+    print(f"📊 批量更新完成: {success_count}/{total_count} 成功")
+    return success_count == total_count
 
 def update_etf_data():
     """更新ETF数据 - 基于[2613-202号]指令"""
@@ -979,15 +1076,15 @@ def main():
     # 确保本地输出目录存在
     os.makedirs(WEB_DIR, exist_ok=True)
     
+    # 先加载数据
+    algo_log = load_algo_log()
+    portfolio = load_portfolio()
+    
     # 更新ETF数据 (基于[2613-202号]指令)
     etf_update_success = update_etf_data()
     
-    # 更新518880 JSON数据 (基于MOD-02 ETF标标活化工程)
-    asset_update_success = update_asset_json("518880")
-    
-    # 加载数据
-    algo_log = load_algo_log()
-    portfolio = load_portfolio()
+    # 批量更新所有ETF JSON数据 (基于MOD-02全量标的扩建工程)
+    assets_update_success = update_all_assets_json(portfolio)
     
     # 生成PORTFOLIO.md
     print("📋 生成PORTFOLIO.md...")
@@ -1064,7 +1161,7 @@ def main():
     print(f"   • portfolio_dashboard.html (静态看板)")
     print(f"   • portfolio_static.html (静态概览片段)")
     print(f"📊 ETF数据更新: {'✅ 成功' if etf_update_success else '⚠️ 失败'}")
-    print(f"📈 资产JSON更新: {'✅ 成功' if asset_update_success else '⚠️ 失败'}")
+    print(f"📈 全量资产JSON更新: {'✅ 成功' if assets_update_success else '⚠️ 失败'}")
     print(f"🔄 GitHub同步: {'✅ 成功' if sync_success else '⚠️ 失败'}")
     print(f"🌐 访问地址:")
     print(f"   • 演武场: https://gemini.googlemanager.cn:10168/portfolio_dashboard.html")
