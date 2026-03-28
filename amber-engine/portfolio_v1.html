@@ -66,21 +66,76 @@
      <div class="position-card">
        <h3>📊 当前持仓</h3>
        <div id="positionsList">
-         <div style="padding: 15px; background: #f8f9fa; border-radius: 6px; margin-bottom: 10px;">
+         <div style="padding: 15px; background: #f8f9fa; border-radius: 6px; margin-bottom: 10px; position: relative;">
            <div style="display: flex; justify-content: space-between; align-items: center;">
              <div>
                <div style="font-weight: bold;">518880 华安黄金ETF</div>
-               <div style="font-size: 14px; color: #6c757d;">黄金避险配置</div>
+               <div style="font-size: 14px; color: #6c757d;">
+                 黄金避险配置 · 
+                 <span class="strategy-tag" data-strategy-info="引力超跌模型评分: 4.00 ATR<br>宏观对冲锚点偏离: +1.11%<br>综合持有期: 60天<br>预期胜率: 78%" 
+                       style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2px 8px; border-radius: 12px; font-size: 12px; cursor: help; font-weight: bold;">
+                   [Strategy 1+9]
+                 </span>
+               </div>
              </div>
              <div style="text-align: right;">
-               <div style="font-weight: bold;">¥19,998.18</div>
+               <div style="font-weight: bold;">¥99,803.08</div>
                <div style="font-size: 14px; color: #28a745;">+0.15%</div>
              </div>
            </div>
-           <div style="margin-top: 10px; font-size: 14px;">
-             <div>数量: 4,149 股</div>
-             <div>均价: ¥4.82</div>
-             <div>现价: ¥4.82</div>
+           
+           <!-- 持有进度条 -->
+           <div style="margin-top: 15px;">
+             <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px;">
+               <span style="font-weight: 500;">长线持有进度 (60天)</span>
+               <span style="color: #667eea; font-weight: bold;">Day 1 / 60</span>
+             </div>
+             <div style="height: 12px; background: #e9ecef; border-radius: 6px; overflow: hidden; position: relative;">
+               <div style="height: 100%; width: 1.67%; background: linear-gradient(90deg, #28a745, #20c997); border-radius: 6px; transition: width 0.5s ease;">
+                 <div style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); font-size: 10px; color: white; font-weight: bold; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">
+                   1.67%
+                 </div>
+               </div>
+             </div>
+             <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6c757d; margin-top: 5px;">
+               <span>入场: 2026-03-27</span>
+               <span>目标: 2026-05-26</span>
+             </div>
+           </div>
+           
+           <div style="margin-top: 15px; font-size: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+             <div>
+               <div>数量: 20,725 股</div>
+               <div>均价: ¥4.82</div>
+               <div>现价: ¥4.8156</div>
+             </div>
+             <div>
+               <div>持仓占比: <strong style="color: #667eea;">19.96%</strong></div>
+               <div>引力分数: <strong style="color: #e74c3c;">4.00 ATR</strong></div>
+               <div>目标价位: <strong style="color: #28a745;">¥5.39-5.68</strong></div>
+             </div>
+           </div>
+           
+           <!-- 策略浮窗 (默认隐藏) -->
+           <div id="strategyTooltip" style="display: none; position: absolute; top: -150px; left: 50%; transform: translateX(-50%); width: 280px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; border: 1px solid #ddd;">
+             <div style="font-weight: bold; color: #667eea; margin-bottom: 10px;">🎯 策略深度透视</div>
+             <div style="font-size: 13px; line-height: 1.5;">
+               <div><strong>引力超跌模型 (公式1):</strong></div>
+               <div>· 价格: ¥4.8156</div>
+               <div>· MA200: ¥5.7787 (估算)</div>
+               <div>· ATR14: ¥0.2408 (估算)</div>
+               <div>· <strong style="color: #e74c3c;">引力分数: 4.00 ATR (强烈超跌)</strong></div>
+               <div style="margin-top: 8px;"><strong>宏观对冲锚点 (公式9):</strong></div>
+               <div>· 黄金现货: ¥485/g</div>
+               <div>· 隐含实际利率: 1.8%</div>
+               <div>· 宏观锚点: ¥476.27</div>
+               <div>· <strong style="color: #28a745;">当前偏离: +1.11% (合理区间)</strong></div>
+               <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #eee; font-size: 12px; color: #6c757d;">
+                 ⏳ 60天持有期 · 📈 预期胜率78%<br>
+                 🎯 目标涨幅12-18% · ⚡ 4倍ATR橡皮筋效应
+               </div>
+             </div>
+             <div style="position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; background: white; transform: rotate(45deg); border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;"></div>
            </div>
          </div>
        </div>
@@ -220,13 +275,100 @@
      });
  }
  
+ // 策略浮窗功能
+ function initStrategyTooltips() {
+   const strategyTags = document.querySelectorAll('.strategy-tag');
+   
+   strategyTags.forEach(tag => {
+     const tooltip = document.getElementById('strategyTooltip');
+     
+     tag.addEventListener('mouseenter', function(e) {
+       // 获取策略信息
+       const strategyInfo = this.getAttribute('data-strategy-info');
+       
+       // 更新浮窗内容
+       tooltip.innerHTML = `
+         <div style="font-weight: bold; color: #667eea; margin-bottom: 10px;">🎯 策略深度透视</div>
+         <div style="font-size: 13px; line-height: 1.5;">
+           ${strategyInfo.replace(/<br>/g, '</div><div>')}
+           <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #eee; font-size: 12px; color: #6c757d;">
+             ⏳ 60天持有期 · 📈 预期胜率78%<br>
+             🎯 目标涨幅12-18% · ⚡ 4倍ATR橡皮筋效应
+           </div>
+         </div>
+         <div style="position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; background: white; transform: rotate(45deg); border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;"></div>
+       `;
+       
+       // 定位浮窗
+       const rect = this.getBoundingClientRect();
+       tooltip.style.left = `${rect.left + rect.width / 2}px`;
+       tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
+       
+       // 显示浮窗
+       tooltip.style.display = 'block';
+     });
+     
+     tag.addEventListener('mouseleave', function() {
+       // 延迟隐藏以避免闪动
+       setTimeout(() => {
+         if (!tooltip.matches(':hover') && !this.matches(':hover')) {
+           tooltip.style.display = 'none';
+         }
+       }, 100);
+     });
+     
+     // 浮窗本身的鼠标事件
+     tooltip.addEventListener('mouseenter', function() {
+       this.style.display = 'block';
+     });
+     
+     tooltip.addEventListener('mouseleave', function() {
+       this.style.display = 'none';
+     });
+   });
+ }
+ 
+ // 更新持有进度条
+ function updateHoldProgress() {
+   const progressBar = document.querySelector('.positions-grid .position-card:first-child [style*="width: 1.67%"]');
+   if (!progressBar) return;
+   
+   // 计算实际进度 (基于入场时间)
+   const entryDate = new Date('2026-03-27T18:58:34');
+   const now = new Date();
+   const totalDays = 60;
+   
+   const diffTime = Math.abs(now - entryDate);
+   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+   const progressPercent = Math.min((diffDays / totalDays) * 100, 100);
+   
+   // 更新进度条
+   progressBar.style.width = `${progressPercent}%`;
+   progressBar.querySelector('div').textContent = `${progressPercent.toFixed(2)}%`;
+   
+   // 更新天数显示
+   const daySpan = document.querySelector('.positions-grid .position-card:first-child span[style*="color: #667eea"]');
+   if (daySpan) {
+     daySpan.textContent = `Day ${diffDays} / ${totalDays}`;
+   }
+ }
+ 
  // 页面加载时初始化
  document.addEventListener('DOMContentLoaded', function() {
    // 初始数据更新
    updatePortfolioData();
    
+   // 初始化策略浮窗
+   initStrategyTooltips();
+   
+   // 更新持有进度条
+   updateHoldProgress();
+   
    // 每10秒自动更新数据
    setInterval(updatePortfolioData, 10000);
+   
+   // 每分钟更新进度条
+   setInterval(updateHoldProgress, 60000);
  });
  </script>
 </body>

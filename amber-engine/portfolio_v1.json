@@ -2,11 +2,11 @@
   "account_info": {
     "account_id": "QUANT_LAB_001",
     "initial_capital": 500000.0,
-    "available_cash": 439928.0,
-    "position_value": 59965.601958267835,
-    "total_value": 499893.60195826786,
+    "available_cash": 363039.5126554364,
+    "position_value": 136807.64281304486,
+    "total_value": 499847.15546848124,
     "created_at": "2026-03-27 18:52:00",
-    "last_updated": "2026-03-27T19:32:35.419696"
+    "last_updated": "2026-03-28T15:28:09.204195"
   },
   "trading_constraints": {
     "single_etf_limit": 100000.0,
@@ -20,14 +20,29 @@
     {
       "code": "518880",
       "name": "华安黄金ETF",
-      "quantity": 12447,
-      "avg_price": 4.82,
-      "current_price": 4.817675099081533,
-      "position_value": 59965.601958267835,
-      "unrealized_pnl": -28.93804173216631,
-      "unrealized_pnl_percent": -0.04823445888936945,
+      "quantity": 20847,
+      "avg_price": 4.820000000000002,
+      "current_price": 4.8182616036432995,
+      "position_value": 100446.29965115186,
+      "unrealized_pnl": -36.240348848179565,
+      "unrealized_pnl_percent": -0.03606631445441123,
       "entry_time": "2026-03-27T18:58:34.351495",
-      "last_updated": "2026-03-27T19:29:39.380658"
+      "last_updated": "2026-03-28T03:59:55.431576"
+    },
+    {
+      "code": "512800",
+      "name": "银行ETF",
+      "quantity": 35236,
+      "avg_price": 1.03,
+      "current_price": 1.0319373130290894,
+      "position_value": 36361.343161893,
+      "unrealized_pnl": 68.26316189299541,
+      "unrealized_pnl_percent": 0.18808864360091623,
+      "entry_time": "2026-03-28T10:24:14.892364",
+      "last_updated": "2026-03-28T10:24:14.892365",
+      "execution_note": "[187号令执行] 新建仓位 35236 股",
+      "n_day_countdown": 60,
+      "architect_note": "Bias-RSI周线极值 强介入，静待引力回归 (置信度: 0.948)"
     }
   ],
   "pending_orders": [],
@@ -88,10 +103,182 @@
         "signal_strength": "STRONG"
       },
       "status": "EXECUTED"
+    },
+    {
+      "trade_id": "TRADE_20260327_194441_518880",
+      "timestamp": "2026-03-27T19:44:41.381921",
+      "code": "518880",
+      "name": "华安黄金ETF",
+      "action": "BUY",
+      "price": 4.82,
+      "quantity": 4149,
+      "amount": 20000.0,
+      "commission": 4.0,
+      "tax": 20.0,
+      "total_cost": 20024.0,
+      "signal": {
+        "bias": -4.1,
+        "ma20_trend": "UP",
+        "signal_strength": "STRONG"
+      },
+      "status": "EXECUTED"
+    },
+    {
+      "trade_id": "TRADE_20260327_195943_518880",
+      "timestamp": "2026-03-27T19:59:43.383187",
+      "code": "518880",
+      "name": "华安黄金ETF",
+      "action": "BUY",
+      "price": 4.82,
+      "quantity": 4090,
+      "amount": 19716.106531876183,
+      "commission": 3.9432213063752366,
+      "tax": 19.716106531876182,
+      "total_cost": 19739.765859714433,
+      "signal": {
+        "bias": -4.1,
+        "ma20_trend": "UP",
+        "signal_strength": "STRONG"
+      },
+      "status": "EXECUTED"
+    },
+    {
+      "trade_id": "TRADE_20260327_204445_518880",
+      "timestamp": "2026-03-27T20:44:45.386621",
+      "code": "518880",
+      "name": "华安黄金ETF",
+      "action": "BUY",
+      "price": 4.82,
+      "quantity": 39,
+      "amount": 190.0426230262965,
+      "commission": 0.0380085246052593,
+      "tax": 0.1900426230262965,
+      "total_cost": 190.27067417392806,
+      "signal": {
+        "bias": -4.1,
+        "ma20_trend": "UP",
+        "signal_strength": "STRONG"
+      },
+      "status": "EXECUTED"
+    },
+    {
+      "trade_id": "TRADE_20260327_205947_518880",
+      "timestamp": "2026-03-27T20:59:47.387991",
+      "code": "518880",
+      "name": "华安黄金ETF",
+      "action": "BUY",
+      "price": 4.82,
+      "quantity": 33,
+      "amount": 161.04604713416484,
+      "commission": 0.03220920942683297,
+      "tax": 0.16104604713416484,
+      "total_cost": 161.23930239072584,
+      "signal": {
+        "bias": -4.1,
+        "ma20_trend": "UP",
+        "signal_strength": "STRONG"
+      },
+      "status": "EXECUTED"
+    },
+    {
+      "trade_id": "TRADE_20260327_221449_518880",
+      "timestamp": "2026-03-27T22:14:49.418786",
+      "code": "518880",
+      "name": "华安黄金ETF",
+      "action": "BUY",
+      "price": 4.82,
+      "quantity": 57,
+      "amount": 276.9459407453687,
+      "commission": 0.055389188149073745,
+      "tax": 0.2769459407453687,
+      "total_cost": 277.27827587426316,
+      "signal": {
+        "bias": -4.1,
+        "ma20_trend": "UP",
+        "signal_strength": "STRONG"
+      },
+      "status": "EXECUTED"
+    },
+    {
+      "trade_id": "TRADE_20260328_011451_518880",
+      "timestamp": "2026-03-28T01:14:51.425438",
+      "code": "518880",
+      "name": "华安黄金ETF",
+      "action": "BUY",
+      "price": 4.82,
+      "quantity": 1,
+      "amount": 6.3380211952026,
+      "commission": 0.00126760423904052,
+      "tax": 0.006338021195202601,
+      "total_cost": 6.345626820636843,
+      "signal": {
+        "bias": -4.1,
+        "ma20_trend": "UP",
+        "signal_strength": "STRONG"
+      },
+      "status": "EXECUTED"
+    },
+    {
+      "trade_id": "TRADE_20260328_014453_518880",
+      "timestamp": "2026-03-28T01:44:53.427043",
+      "code": "518880",
+      "name": "华安黄金ETF",
+      "action": "BUY",
+      "price": 4.82,
+      "quantity": 5,
+      "amount": 25.709296052038553,
+      "commission": 0.005141859210407711,
+      "tax": 0.025709296052038554,
+      "total_cost": 25.740147207301,
+      "signal": {
+        "bias": -4.1,
+        "ma20_trend": "UP",
+        "signal_strength": "STRONG"
+      },
+      "status": "EXECUTED"
+    },
+    {
+      "trade_id": "TRADE_20260328_035955_518880",
+      "timestamp": "2026-03-28T03:59:55.431563",
+      "code": "518880",
+      "name": "华安黄金ETF",
+      "action": "BUY",
+      "price": 4.82,
+      "quantity": 26,
+      "amount": 126.06328643856978,
+      "commission": 0.025212657287713956,
+      "tax": 0.1260632864385698,
+      "total_cost": 126.21456238229605,
+      "signal": {
+        "bias": -4.1,
+        "ma20_trend": "UP",
+        "signal_strength": "STRONG"
+      },
+      "status": "EXECUTED"
+    },
+    {
+      "trade_id": "TRADE_20260328_1024_512800",
+      "timestamp": "2026-03-28T10:24:14.892353",
+      "code": "512800",
+      "name": "银行ETF",
+      "action": "BUY",
+      "price": 1.03,
+      "quantity": 35236,
+      "amount": 36294.08,
+      "commission": 7.26,
+      "tax": 36.29,
+      "total_cost": 36337.63,
+      "signal": {
+        "strategy": "RSI周线极值",
+        "confidence": 0.948,
+        "signal_strength": "STRONG",
+        "execution_reason": "[187号令执行] 捕获银行ETF强RSI信号，仓位增至27.5%"
+      },
+      "status": "EXECUTED"
     }
   ],
   "performance_metrics": {
-    "total_trades": 3,
+    "total_trades": 12,
     "winning_trades": 0,
     "losing_trades": 0,
     "total_profit": 0.0,
