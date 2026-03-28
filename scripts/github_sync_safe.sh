@@ -95,7 +95,7 @@ else
 fi
 
 # ==================== 远程仓库配置 ====================
-REMOTE_URL="https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git"
+REMOTE_URL="https://github.com/${GITHUB_REPO}.git"
 log_message "🌐 配置远程仓库: ${GITHUB_REPO}"
 
 if ! git remote | grep -q origin; then
@@ -113,7 +113,7 @@ fi
 
 # ==================== 拉取最新更改 ====================
 log_message "📥 拉取最新更改..."
-if git pull origin main --rebase --autostash 2>/dev/null; then
+if git -c http.extraHeader="Authorization: token $GITHUB_TOKEN" pull origin main --rebase --autostash 2>/dev/null; then
     log_message "✅ 拉取成功"
 else
     log_message "⚠️  拉取失败或无需拉取，继续推送"
