@@ -223,9 +223,10 @@ function generate_page($title, $content_html) {
     
     <nav class="archive-nav">
         <a href="?page=manifest" class="nav-link">📜 架构法典</a>
-        <a href="?page=vaults" class="nav-link">🗄️ 档案馆藏</a>
-        <a href="?page=formulas" class="nav-link">🧮 量化公式</a>
-        <a href="?page=reports" class="nav-link">📊 审计报告</a>
+        <a href="?page=formulas" class="nav-link">🧮 核心算法库</a>
+        <a href="?page=assets" class="nav-link">🔍 标的透视镜</a>
+        <a href="?page=research" class="nav-link">📚 战略研究室</a>
+        <a href="?page=strategy" class="nav-link">⚡ 生存线看板</a>
     </nav>
     
     <main class="archive-content">
@@ -260,19 +261,24 @@ try {
             $page_title = '架构法典';
             break;
             
-        case 'vaults':
-            $file_path = __DIR__ . '/vaults/manifest/README.md';
-            $page_title = '档案馆藏';
-            break;
-            
         case 'formulas':
-            $file_path = __DIR__ . '/vaults/formulas/README.md';
-            $page_title = '量化公式';
+            $file_path = __DIR__ . '/vaults/Formulas/README.md';
+            $page_title = '核心算法库';
             break;
             
-        case 'reports':
-            $file_path = __DIR__ . '/vaults/reports/README.md';
-            $page_title = '审计报告';
+        case 'assets':
+            $file_path = __DIR__ . '/vaults/Assets/README.md';
+            $page_title = '标的透视镜';
+            break;
+            
+        case 'research':
+            $file_path = __DIR__ . '/vaults/Research/README.md';
+            $page_title = '战略研究室';
+            break;
+            
+        case 'strategy':
+            $file_path = __DIR__ . '/vaults/Strategy/README.md';
+            $page_title = '生存线看板';
             break;
             
         default:
