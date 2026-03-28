@@ -1,7 +1,7 @@
 # 🧠 SYSTEM_MEMORY.md - 琥珀引擎共同记忆核心架构
 
-**最后更新时间**: 2026-03-28 08:19 GMT+8
-**版本**: V1.1.1
+**最后更新时间**: 2026-03-28 09:25 GMT+8
+**版本**: V1.1.2
 **维护者**: 工程师 Cheese (Cheese Intelligence Team)
 **规范依据**: [2613-182号] GitHub同步标准化规范 V1.0.0
 **大扫除完成**: ✅ 2026-03-28 08:18 (2小时内完成)
@@ -156,6 +156,16 @@ amber-sentry-logs/
   - 创建操作手册 `skills/github-sync-skill.md`
   - 设置标准目录权限和结构
   - 保存正式规范文件 `2613-182_GITHUB_SYNC_SPEC.md`
+
+- **[09:20] [2613-184号]档案馆重构完成**: 工程师Cheese完成档案馆Nginx配置重构
+  - 重构Nginx配置，分离静态文件服务与重定向逻辑
+  - 重构整个档案馆，默认首页index.html
+  - 实现MD文件浏览器直接读取 (text/plain; charset=utf-8)
+  - 创建测试首页 `index.html`，包含test.md验证链接
+  - 解决Nginx server_name冲突，设置default_server
+  - 验证访问: `https://gemini.googlemanager.cn:10168/` (首页)  
+  - 验证访问: `https://gemini.googlemanager.cn:10168/test.md` (MD直接读取)
+  - 保留原始档案馆列表 `list.html`，兼容历史访问
 
 - **[07:56] GitHub同步规范草案创建**: 工程师Cheese起草[2613-182号]规范
   - 创建《GitHub同步规范》草案V0.1.0
