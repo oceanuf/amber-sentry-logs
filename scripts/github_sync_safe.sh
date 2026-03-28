@@ -22,6 +22,15 @@ if [[ "$(whoami)" != "luckyelite" ]]; then
 fi
 echo "✅ 用户权限验证通过: $(whoami)"
 
+# ==================== 加载永久身份锚定 ====================
+echo "🔐 加载 GitHub 身份永久锚定..."
+if [ -f ~/.amber_env ]; then
+    source ~/.amber_env
+    echo "✅ 身份锚定加载完成"
+else
+    echo "⚠️  ~/.amber_env 文件未找到，使用现有环境变量"
+fi
+
 # ==================== 环境变量验证 ====================
 # 3.2 环境变量验证
 REQUIRED_ENV_VARS=("GITHUB_TOKEN" "GITHUB_REPO")
