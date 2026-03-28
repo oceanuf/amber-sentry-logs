@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSL证书安装 - 琥珀引擎</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+</head>
+<body>
+    <header>
+        <h1>琥珀引擎SSL证书安装</h1>
+        <p>解决 https://finance.cheese.ai 访问安全警告</p>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h2>🔐 问题描述</h2>
+            <p>访问 <code>https://finance.cheese.ai</code> 时出现"您的连接不是私密连接"警告。</p>
+            
+            <h2>🎯 解决方案</h2>
+            
+            <div class="finance-card">
+                <h3>方法1：一键安装（推荐）</h3>
+                <ol>
+                    <li>下载：<a href="/static/cert/install-certificates.bat">install-certificates.bat</a></li>
+                    <li>右键点击 → 以管理员身份运行</li>
+                    <li>按照提示完成安装</li>
+                    <li>重启所有浏览器窗口</li>
+                </ol>
+                <a href="/static/cert/install-certificates.bat" class="btn">下载一键安装工具</a>
+            </div>
+            
+            <div class="finance-card">
+                <h3>方法2：手动安装</h3>
+                <h4>步骤1：安装根CA证书</h4>
+                <ol>
+                    <li>下载：<a href="/static/cert/amber-root-ca.crt">根CA证书</a></li>
+                    <li>双击证书文件</li>
+                    <li>点击"安装证书"</li>
+                    <li>选择"本地计算机" → 下一步</li>
+                    <li>选择"将所有的证书都放入下列存储"</li>
+                    <li>点击"浏览" → 选择"受信任的根证书颁发机构"</li>
+                    <li>完成安装</li>
+                </ol>
+                
+                <h4>步骤2：安装服务器证书</h4>
+                <ol>
+                    <li>下载：<a href="/static/cert/amber-server.crt">服务器证书</a></li>
+                    <li>双击证书文件</li>
+                    <li>点击"安装证书"</li>
+                    <li>选择"本地计算机" → 下一步</li>
+                    <li>选择"将所有的证书都放入下列存储"</li>
+                    <li>点击"浏览" → 选择"中间证书颁发机构"</li>
+                    <li>完成安装</li>
+                </ol>
+            </div>
+            
+            <div class="finance-card">
+                <h3>方法3：完整证书链安装</h3>
+                <p>包含所有必要证书的完整包：</p>
+                <a href="/static/cert/amber-fullchain.crt" class="btn">下载完整证书链</a>
+                <a href="/static/cert/README.txt" class="btn">查看详细安装说明</a>
+            </div>
+            
+            <h2>🔄 安装后步骤</h2>
+            <ol>
+                <li><strong>清除浏览器缓存</strong>：
+                    <ul>
+                        <li>Chrome: 访问 <code>chrome://net-internals/#hsts</code> → 清除HSTS</li>
+                        <li>Edge: 访问 <code>edge://net-internals/#hsts</code> → 清除HSTS</li>
+                        <li>Firefox: 设置 → 隐私与安全 → 清除数据</li>
+                    </ul>
+                </li>
+                <li><strong>重启浏览器</strong>：完全关闭所有浏览器窗口后重新打开</li>
+                <li><strong>验证安装</strong>：
+                    <pre>certutil -store Root | findstr "Cheese Intelligence"</pre>
+                </li>
+            </ol>
+            
+            <h2>⚠️ 故障排除</h2>
+            <div class="alert">
+                <h4>如果仍有警告：</h4>
+                <ol>
+                    <li><strong>重启电脑</strong>：确保系统完全加载新证书</li>
+                    <li><strong>检查系统时间</strong>：确保电脑时间正确</li>
+                    <li><strong>尝试不同浏览器</strong>：Chrome/Edge/Firefox</li>
+                    <li><strong>清除SSL状态</strong>：
+                        <pre>certutil -urlcache * delete</pre>
+                    </li>
+                </ol>
+            </div>
+            
+            <h2>🔗 快速测试</h2>
+            <p>安装完成后，测试以下链接：</p>
+            <ul>
+                <li><a href="https://finance.cheese.ai">主站首页</a></li>
+                <li><a href="https://finance.cheese.ai/etf/510300.html">ETF示例</a></li>
+                <li><a href="https://finance.cheese.ai/stock/601318.html">股票示例</a></li>
+            </ul>
+            
+            <div class="text-center mt-5">
+                <a href="/" class="btn">返回首页</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2026 Cheese Intelligence Team | 技术支持: engineering@cheese.ai</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青铜法典 · 静态标的列表</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h1 { color: #1a237e; text-align: center; }
+        .stats { display: flex; justify-content: center; gap: 20px; margin: 20px 0; flex-wrap: wrap; }
+        .stat { background: #1a237e; color: white; padding: 15px; border-radius: 8px; text-align: center; min-width: 120px; }
+        .stat-value { font-size: 2rem; font-weight: bold; }
+        .stat-label { font-size: 0.9rem; opacity: 0.9; }
+        .sector { margin: 30px 0; }
+        .sector-title { background: #e3f2fd; padding: 15px; border-radius: 8px; color: #1a237e; font-size: 1.3rem; margin-bottom: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: white; }
+        .card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #1a237e; }
+        .code { font-size: 1.5rem; font-weight: bold; color: #1a237e; margin-bottom: 5px; }
+        .name { color: #333; margin-bottom: 10px; }
+        .link { display: block; text-align: center; background: #1a237e; color: white; padding: 10px; border-radius: 5px; text-decoration: none; margin-top: 10px; }
+        .link:hover { background: #283593; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧀 青铜法典 · 静态标的列表</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">
+            基于 [2613-095] 号生产指令 · 完全静态版本 · 无JavaScript依赖
+        </p>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">59</div>
+                <div class="stat-label">标的数量</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">10</div>
+                <div class="stat-label">核心赛道</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">10168</div>
+                <div class="stat-label">访问端口</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="#sectors" style="background: #3949ab; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">↓ 查看所有标的</a>
+        </div>
+        
+        <div id="sectors">
+            <div class="sector">
+                <div class="sector-title">内需基石 · 10 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">512880</div>
+                        <div class="name">国泰证券ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 5.0 · 战略稀缺: 9.0 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/512880.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512000</div>
+                        <div class="name">华宝券商ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.0 · 战略稀缺: 8.5 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/512000.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512690</div>
+                        <div class="name">鹏华酒ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.5 · 战略稀缺: 8.0 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/512690.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512800</div>
+                        <div class="name">华宝银行ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.5 · 战略稀缺: 9.0 · 财务稳健: 9.0
+                        </div>
+                        <a href="bronze_details/512800.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159869</div>
+                        <div class="name">华夏游戏ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.0 · 战略稀缺: 8.0 · 财务稳健: 7.5
+                        </div>
+                        <a href="bronze_details/159869.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159928</div>
+                        <div class="name">汇添富消费ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.0 · 战略稀缺: 9.0 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/159928.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512900</div>
+                        <div class="name">南方证券ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 5.5 · 战略稀缺: 8.5 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/512900.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159732</div>
+                        <div class="name">消费电子ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.0 · 战略稀缺: 7.5 · 财务稳健: 7.5
+                        </div>
+                        <a href="bronze_details/159732.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159766</div>
+                        <div class="name">旅游ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.5 · 战略稀缺: 7.0 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/159766.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512980</div>
+                        <div class="name">广发传媒ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.0 · 战略稀缺: 7.5 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/512980.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sector">
+                <div class="sector-title">前沿技术 · 7 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">513100</div>
+                        <div class="name">国泰纳指100ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 9.5 · 战略稀缺: 8.0 · 财务稳健: 3.0
+                        </div>
+                        <a href="bronze_details/513100.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159941</div>
+                        <div class="name">广发纳指ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.5 · 战略稀缺: 8.0 · 财务稳健: 3.5
+                        </div>
+                        <a href="bronze_details/159941.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159807</div>
+                        <div class="name">易方达中概互联ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.0 · 战略稀缺: 8.0 · 财务稳健: 6.5
+                        </div>
+                        <a href="bronze_details/159807.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512770</div>
+                        <div class="name">华宝港股通互联网ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 5.0 · 战略稀缺: 7.5 · 财务稳健: 7.0
+                        </div>
+                        <a href="bronze_details/512770.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">513050</div>
+                        <div class="name">易方达中概互联ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.5 · 战略稀缺: 8.5 · 财务稳健: 6.0
+                        </div>
+                        <a href="bronze_details/513050.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">513600</div>
+                        <div class="name">南方恒生科技ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 5.5 · 战略稀缺: 8.0 · 财务稳健: 6.5
+                        </div>
+                        <a href="bronze_details/513600.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">513660</div>
+                        <div class="name">华夏恒生互联网ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 5.0 · 战略稀缺: 8.5 · 财务稳健: 6.0
+                        </div>
+                        <a href="bronze_details/513660.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sector">
+                <div class="sector-title">安全韧性 · 6 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">518880</div>
+                        <div class="name">华安黄金ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 5.5 · 战略稀缺: 9.0 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/518880.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512660</div>
+                        <div class="name">国泰军工ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.0 · 战略稀缺: 7.0 · 财务稳健: 7.0
+                        </div>
+                        <a href="bronze_details/512660.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">518800</div>
+                        <div class="name">国泰黄金ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 5.0 · 战略稀缺: 8.5 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/518800.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512670</div>
+                        <div class="name">国防ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.0 · 战略稀缺: 7.5 · 财务稳健: 7.5
+                        </div>
+                        <a href="bronze_details/512670.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512710</div>
+                        <div class="name">富国军工龙头ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.5 · 战略稀缺: 8.0 · 财务稳健: 7.0
+                        </div>
+                        <a href="bronze_details/512710.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512960</div>
+                        <div class="name">景顺长城军工ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.0 · 战略稀缺: 7.5 · 财务稳健: 7.0
+                        </div>
+                        <a href="bronze_details/512960.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sector">
+                <div class="sector-title">战略宽基 · 12 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">510300</div>
+                        <div class="name">华泰柏瑞沪深300ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 9.0 · 战略稀缺: 10.0 · 财务稳健: 10.0
+                        </div>
+                        <a href="bronze_details/510300.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159915</div>
+                        <div class="name">易方达创业板ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.0 · 战略稀缺: 9.5 · 财务稳健: 9.0
+                        </div>
+                        <a href="bronze_details/159915.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">510050</div>
+                        <div class="name">华夏上证50ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.5 · 战略稀缺: 10.0 · 财务稳健: 9.5
+                        </div>
+                        <a href="bronze_details/510050.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">510500</div>
+                        <div class="name">南方中证500ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.0 · 战略稀缺: 9.5 · 财务稳健: 9.0
+                        </div>
+                        <a href="bronze_details/510500.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512990</div>
+                        <div class="name">华夏MSCI中国A50ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.5 · 战略稀缺: 9.5 · 财务稳健: 9.0
+                        </div>
+                        <a href="bronze_details/512990.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">513500</div>
+                        <div class="name">博时标普500ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.0 · 战略稀缺: 8.5 · 财务稳健: 4.0
+                        </div>
+                        <a href="bronze_details/513500.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159901</div>
+                        <div class="name">深100ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.0 · 战略稀缺: 9.0 · 财务稳健: 9.0
+                        </div>
+                        <a href="bronze_details/159901.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159902</div>
+                        <div class="name">中小板ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.5 · 战略稀缺: 8.5 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/159902.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159903</div>
+                        <div class="name">深成ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.0 · 战略稀缺: 8.0 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/159903.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159919</div>
+                        <div class="name">沪深300ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.5 · 战略稀缺: 9.5 · 财务稳健: 9.0
+                        </div>
+                        <a href="bronze_details/159919.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159949</div>
+                        <div class="name">创业板50ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.0 · 战略稀缺: 9.0 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/159949.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512100</div>
+                        <div class="name">南方中证1000ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.5 · 战略稀缺: 8.5 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/512100.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sector">
+                <div class="sector-title">数智基建 · 4 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">515050</div>
+                        <div class="name">华夏5G通信ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.5 · 战略稀缺: 8.0 · 财务稳健: 7.5
+                        </div>
+                        <a href="bronze_details/515050.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">517800</div>
+                        <div class="name">嘉实软件ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.5 · 战略稀缺: 8.0 · 财务稳健: 7.0
+                        </div>
+                        <a href="bronze_details/517800.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512330</div>
+                        <div class="name">南方信息创新ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.0 · 战略稀缺: 8.0 · 财务稳健: 7.0
+                        </div>
+                        <a href="bronze_details/512330.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">515880</div>
+                        <div class="name">国泰通信ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.5 · 战略稀缺: 8.0 · 财务稳健: 7.5
+                        </div>
+                        <a href="bronze_details/515880.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sector">
+                <div class="sector-title">现代物流 · 1 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">159870</div>
+                        <div class="name">物流ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.5 · 战略稀缺: 7.0 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/159870.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sector">
+                <div class="sector-title">生物安全 · 4 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">512170</div>
+                        <div class="name">华宝医疗ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 2.0 · 战略稀缺: 9.0 · 财务稳健: 9.0
+                        </div>
+                        <a href="bronze_details/512170.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512010</div>
+                        <div class="name">易方达医药ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 5.5 · 战略稀缺: 8.5 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/512010.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512290</div>
+                        <div class="name">国泰生物医药ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.5 · 战略稀缺: 8.5 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/512290.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512600</div>
+                        <div class="name">嘉实医药健康ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.5 · 战略稀缺: 8.0 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/512600.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sector">
+                <div class="sector-title">科技自立 · 6 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">512480</div>
+                        <div class="name">国联安半导体ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 10.0 · 战略稀缺: 7.0 · 财务稳健: 4.0
+                        </div>
+                        <a href="bronze_details/512480.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">515000</div>
+                        <div class="name">华宝科技ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.0 · 战略稀缺: 8.5 · 财务稳健: 7.5
+                        </div>
+                        <a href="bronze_details/515000.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159801</div>
+                        <div class="name">广发芯片ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 9.5 · 战略稀缺: 8.5 · 财务稳健: 6.0
+                        </div>
+                        <a href="bronze_details/159801.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159995</div>
+                        <div class="name">国泰半导体ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 9.0 · 战略稀缺: 9.0 · 财务稳健: 5.0
+                        </div>
+                        <a href="bronze_details/159995.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512760</div>
+                        <div class="name">国泰半导体芯片ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 9.5 · 战略稀缺: 9.0 · 财务稳健: 5.5
+                        </div>
+                        <a href="bronze_details/512760.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">588000</div>
+                        <div class="name">科创50ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 9.0 · 战略稀缺: 9.5 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/588000.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sector">
+                <div class="sector-title">绿色能源 · 5 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">516160</div>
+                        <div class="name">南方新能源ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.0 · 战略稀缺: 7.5 · 财务稳健: 7.0
+                        </div>
+                        <a href="bronze_details/516160.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">515030</div>
+                        <div class="name">华夏新汽车ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.5 · 战略稀缺: 8.0 · 财务稳健: 7.0
+                        </div>
+                        <a href="bronze_details/515030.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">515790</div>
+                        <div class="name">华泰柏瑞光伏ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 9.0 · 战略稀缺: 8.5 · 财务稳健: 7.5
+                        </div>
+                        <a href="bronze_details/515790.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512580</div>
+                        <div class="name">华安环保ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 5.5 · 战略稀缺: 7.0 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/512580.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">515700</div>
+                        <div class="name">平安新能车ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 8.5 · 战略稀缺: 8.5 · 财务稳健: 7.0
+                        </div>
+                        <a href="bronze_details/515700.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sector">
+                <div class="sector-title">自主可控 · 4 支标的</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="code">516780</div>
+                        <div class="name">平安稀土ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.0 · 战略稀缺: 7.5 · 财务稳健: 8.0
+                        </div>
+                        <a href="bronze_details/516780.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512400</div>
+                        <div class="name">南方有色金属ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.0 · 战略稀缺: 7.5 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/512400.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">512950</div>
+                        <div class="name">央企改革ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 7.5 · 战略稀缺: 8.5 · 财务稳健: 9.0
+                        </div>
+                        <a href="bronze_details/512950.html" class="link">查看详情 →</a>
+                    </div>
+                    <div class="card">
+                        <div class="code">159825</div>
+                        <div class="name">农业ETF</div>
+                        <div style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">
+                            逻辑穿透: 6.0 · 战略稀缺: 6.5 · 财务稳健: 8.5
+                        </div>
+                        <a href="bronze_details/159825.html" class="link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>生产指令</strong>: [2613-095] 全量生产指令灌注</p>
+            <p><strong>生成时间</strong>: 2026-03-27 08:49:52 · <strong>执行人</strong>: 工程师 Cheese</p>
+            <p><strong>访问地址</strong>: https://gemini.googlemanager.cn:10168/bronze_details/bronze_static_final.html</p>
+            <p><strong>版本说明</strong>: 完全静态HTML · 无JavaScript · 确保100%可访问</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}琥珀引擎 - Cheese Intelligence{% endblock %}</title>
+    <meta name="description" content="{% block description %}财经品牌独立站 - 数据库驱动 + 静态化生成的专业媒体架构{% endblock %}">
+    
+    <!-- 琥珀引擎 V2.2 视觉系统 -->
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    
+    <!-- 页面特定CSS -->
+    {% block extra_css %}{% endblock %}
+    
+    <!-- 页面特定JS头部 -->
+    {% block extra_head_js %}{% endblock %}
+    
+    <!-- 页面特定Meta -->
+    {% block extra_meta %}{% endblock %}
+</head>
+<body>
+    <!-- 站点头部 -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <span class="brand-icon">🧀</span>
+                        <span class="brand-text">
+                            <span class="brand-name">琥珀引擎</span>
+                            <span class="brand-tagline">财经品牌独立站</span>
+                        </span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="/" class="nav-link">首页</a></li>
+                        <li class="nav-item"><a href="/stocks.html" class="nav-link">股票研报</a></li>
+                        <li class="nav-item"><a href="/categories.html" class="nav-link">分类浏览</a></li>
+                        <li class="nav-item"><a href="/tags.html" class="nav-link">标签云</a></li>
+                        <li class="nav-item"><a href="/archives.html" class="nav-link">文章归档</a></li>
+                        <li class="nav-item"><a href="/about.html" class="nav-link">关于我们</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="搜索股票或文章...">
+                        <button class="search-button">🔍</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        {% block content %}
+        <!-- 页面主要内容将在这里插入 -->
+        {% endblock %}
+    </main>
+
+    <!-- 站点页脚 -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">琥珀引擎</h3>
+                    <p class="footer-description">
+                        财经品牌独立站 - 数据库驱动 + 静态化生成的专业媒体架构
+                    </p>
+                    <p class="footer-copyright">
+                        © 2026 Cheese Intelligence Team. 保留所有权利。
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/stocks.html">股票研报</a></li>
+                        <li><a href="/categories.html">分类浏览</a></li>
+                        <li><a href="/tags.html">标签云</a></li>
+                        <li><a href="/archives.html">文章归档</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">联系我们</h3>
+                    <ul class="footer-links">
+                        <li>邮箱: contact@cheese.ai</li>
+                        <li>网站: <a href="https://cheese.ai">cheese.ai</a></li>
+                        <li>GitHub: <a href="https://github.com/cheese-intelligence">cheese-intelligence</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">重要声明</h3>
+                    <p class="footer-disclaimer">
+                        本网站内容仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-update">
+                    最后更新: {% block last_updated %}{{ last_updated }}{% endblock %}
+                </p>
+                <p class="footer-version">
+                    琥珀引擎 v1.0 | 晨报视觉 V2.2
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 全局JavaScript -->
+    <script src="/static/js/amber-engine.min.js"></script>
+    
+    <!-- 页面特定JavaScript -->
+    {% block extra_js %}{% endblock %}
+    
+    <!-- 内联脚本 -->
+    {% block inline_js %}{% endblock %}
+</body>
+</html>

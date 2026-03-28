@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琥珀引擎 - 端口5656验证</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 40px; text-align: center; }
+        .success { color: #2ECC71; font-size: 24px; margin: 20px 0; }
+        .info { background: #E3F2FD; padding: 20px; border-radius: 8px; margin: 20px auto; max-width: 600px; text-align: left; }
+        .port-badge { background: #FFB347; color: white; padding: 10px 20px; border-radius: 20px; font-size: 28px; font-weight: bold; display: inline-block; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🔧 琥珀引擎 - 端口5656配置验证</h1>
+    
+    <div class="success">✅ 端口配置更新完成</div>
+    
+    <div class="port-badge">:5656</div>
+    
+    <div class="info">
+        <h3>📋 端口变更信息</h3>
+        <p><strong>旧端口:</strong> 10123 (已关闭)</p>
+        <p><strong>新端口:</strong> 5656 (已启用)</p>
+        <p><strong>变更原因:</strong> 避免OpenWRT干扰，直接转发到本地5656端口</p>
+        <p><strong>配置时间:</strong> 2026-03-19 14:31 CST</p>
+        <p><strong>证书状态:</strong> 专属SSL证书已部署</p>
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <a href="/" style="background: #2C3E50; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px;">
+            🚀 访问琥珀引擎首页 (端口5656)
+        </a>
+    </div>
+    
+    <div style="margin-top: 30px; font-size: 14px; color: #7F8C8D;">
+        <p>配置验证: 工程师Cheese | 时间: 2026-03-19 14:31 CST</p>
+        <p>网络配置: 主编Haiyang | 端口转发: 10123 → 5656</p>
+    </div>
+    
+    <script>
+        // 记录端口变更信息
+        const portInfo = {
+            oldPort: 10123,
+            newPort: 5656,
+            timestamp: new Date().toISOString(),
+            reason: "Avoid OpenWRT interference"
+        };
+        
+        console.log('🔧 端口5656验证页面加载完成');
+        console.log('📊 端口变更信息:', portInfo);
+        
+        // 添加端口标记
+        localStorage.setItem('amber_port_5656', 'enabled');
+        localStorage.setItem('amber_port_change_time', new Date().toISOString());
+    </script>
+</body>
+</html>

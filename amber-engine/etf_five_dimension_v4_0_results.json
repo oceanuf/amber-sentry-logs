@@ -1,0 +1,771 @@
+{
+  "analysis_time": "2026-03-22T20:23:22.138367",
+  "version": "M002-V4.0-EXEC",
+  "executor": "工程师 Cheese",
+  "benchmark": {
+    "code": "510300",
+    "name": "华泰柏瑞沪深300ETF",
+    "theme": "基准指数"
+  },
+  "time_range": {
+    "start_date": "2026-02-27",
+    "end_date": "2026-03-19"
+  },
+  "weight_matrix": {
+    "S_D_Performance": 0.5,
+    "S_A_Liquidity": 0.15,
+    "S_C_Cost": 0.15,
+    "S_B_Correlation": 0.1,
+    "S_E_Management": 0.1
+  },
+  "target_count": 14,
+  "summary": {
+    "rating_counts": {
+      "🏆 核心观察池": 3,
+      "🥈 备选观察池": 3,
+      "❌ 淘汰区": 8
+    },
+    "theme_stats": {
+      "科技自立": [
+        {
+          "name": "国联安中证全指半导体ETF",
+          "code": "512480",
+          "total_score": 97.0,
+          "rating": "🏆 核心观察池"
+        },
+        {
+          "name": "华夏中证5G通信主题ETF",
+          "code": "515050",
+          "total_score": 95.0,
+          "rating": "🏆 核心观察池"
+        },
+        {
+          "name": "华夏国证半导体芯片ETF",
+          "code": "159995",
+          "total_score": 95.0,
+          "rating": "🏆 核心观察池"
+        },
+        {
+          "name": "华宝中证科技龙头ETF",
+          "code": "515000",
+          "total_score": 82.0,
+          "rating": "🥈 备选观察池"
+        }
+      ],
+      "绿色转型": [
+        {
+          "name": "华夏中证新能源汽车ETF",
+          "code": "515030",
+          "total_score": 77.0,
+          "rating": "🥈 备选观察池"
+        },
+        {
+          "name": "博时中证光伏产业ETF",
+          "code": "159857",
+          "total_score": 67.0,
+          "rating": "❌ 淘汰区"
+        },
+        {
+          "name": "广发中证环保产业ETF",
+          "code": "159755",
+          "total_score": 67.0,
+          "rating": "❌ 淘汰区"
+        },
+        {
+          "name": "易方达中证新能源ETF",
+          "code": "516090",
+          "total_score": 64.0,
+          "rating": "❌ 淘汰区"
+        },
+        {
+          "name": "南方中证新能源ETF",
+          "code": "516160",
+          "total_score": 60.0,
+          "rating": "❌ 淘汰区"
+        }
+      ],
+      "安全韧性": [
+        {
+          "name": "华安黄金ETF",
+          "code": "518880",
+          "total_score": 72.0,
+          "rating": "🥈 备选观察池"
+        },
+        {
+          "name": "华宝中证军工ETF",
+          "code": "512810",
+          "total_score": 69.5,
+          "rating": "❌ 淘汰区"
+        },
+        {
+          "name": "博时黄金ETF",
+          "code": "159937",
+          "total_score": 67.5,
+          "rating": "❌ 淘汰区"
+        },
+        {
+          "name": "南方中证申万有色金属ETF",
+          "code": "512400",
+          "total_score": 62.0,
+          "rating": "❌ 淘汰区"
+        },
+        {
+          "name": "国泰中证军工ETF",
+          "code": "512660",
+          "total_score": 59.5,
+          "rating": "❌ 淘汰区"
+        }
+      ]
+    },
+    "top_3": [
+      {
+        "etf_info": {
+          "name": "国联安中证全指半导体ETF",
+          "code": "512480",
+          "theme": "科技自立"
+        },
+        "etf_data": {
+          "code": "512480",
+          "name": "国联安中证全指半导体ETF",
+          "theme": "科技自立",
+          "index_code": "H30184.CSI",
+          "avg_volume": 7556.436885150172,
+          "correlation": 0.9839131722090515,
+          "total_fee": 0.301488612783508,
+          "alpha": 5.321231924003866,
+          "etf_return": 3.0453354850384304,
+          "benchmark_return": -2.275896438965436,
+          "is_etf": true,
+          "is_quant_active": true,
+          "start_date": "2026-02-27",
+          "end_date": "2026-03-19",
+          "data_source": "AkShare + Tushare Pro (模拟数据)"
+        },
+        "dimension_scores": {
+          "Liquidity": 10,
+          "Correlation": 10,
+          "Cost": 8,
+          "Performance": 10,
+          "Management": 10
+        },
+        "total_score": 97.0,
+        "rating_info": {
+          "rating": "🏆 核心观察池",
+          "label": "琥珀金",
+          "color": "#ff9800"
+        },
+        "analysis_time": "2026-03-22T20:23:22.122209"
+      },
+      {
+        "etf_info": {
+          "name": "华夏中证5G通信主题ETF",
+          "code": "515050",
+          "theme": "科技自立"
+        },
+        "etf_data": {
+          "code": "515050",
+          "name": "华夏中证5G通信主题ETF",
+          "theme": "科技自立",
+          "index_code": "931079.CSI",
+          "avg_volume": 7366.44650134017,
+          "correlation": 0.9737027800921939,
+          "total_fee": 0.33074174344974916,
+          "alpha": 4.950980258792115,
+          "etf_return": 4.648573880743074,
+          "benchmark_return": -0.30240637804904136,
+          "is_etf": true,
+          "is_quant_active": true,
+          "start_date": "2026-02-27",
+          "end_date": "2026-03-19",
+          "data_source": "AkShare + Tushare Pro (模拟数据)"
+        },
+        "dimension_scores": {
+          "Liquidity": 10,
+          "Correlation": 8,
+          "Cost": 8,
+          "Performance": 10,
+          "Management": 10
+        },
+        "total_score": 95.0,
+        "rating_info": {
+          "rating": "🏆 核心观察池",
+          "label": "琥珀金",
+          "color": "#ff9800"
+        },
+        "analysis_time": "2026-03-22T20:23:22.122188"
+      },
+      {
+        "etf_info": {
+          "name": "华夏国证半导体芯片ETF",
+          "code": "159995",
+          "theme": "科技自立"
+        },
+        "etf_data": {
+          "code": "159995",
+          "name": "华夏国证半导体芯片ETF",
+          "theme": "科技自立",
+          "index_code": "980017.CNI",
+          "avg_volume": 7664.928537942426,
+          "correlation": 0.9618549343609674,
+          "total_fee": 0.2774272494937657,
+          "alpha": 6.380196578070144,
+          "etf_return": 4.084819323097249,
+          "benchmark_return": -2.2953772549728955,
+          "is_etf": true,
+          "is_quant_active": true,
+          "start_date": "2026-02-27",
+          "end_date": "2026-03-19",
+          "data_source": "AkShare + Tushare Pro (模拟数据)"
+        },
+        "dimension_scores": {
+          "Liquidity": 10,
+          "Correlation": 8,
+          "Cost": 8,
+          "Performance": 10,
+          "Management": 10
+        },
+        "total_score": 95.0,
+        "rating_info": {
+          "rating": "🏆 核心观察池",
+          "label": "琥珀金",
+          "color": "#ff9800"
+        },
+        "analysis_time": "2026-03-22T20:23:22.122232"
+      }
+    ]
+  },
+  "detailed_results": [
+    {
+      "etf_info": {
+        "name": "国联安中证全指半导体ETF",
+        "code": "512480",
+        "theme": "科技自立"
+      },
+      "etf_data": {
+        "code": "512480",
+        "name": "国联安中证全指半导体ETF",
+        "theme": "科技自立",
+        "index_code": "H30184.CSI",
+        "avg_volume": 7556.436885150172,
+        "correlation": 0.9839131722090515,
+        "total_fee": 0.301488612783508,
+        "alpha": 5.321231924003866,
+        "etf_return": 3.0453354850384304,
+        "benchmark_return": -2.275896438965436,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 10,
+        "Correlation": 10,
+        "Cost": 8,
+        "Performance": 10,
+        "Management": 10
+      },
+      "total_score": 97.0,
+      "rating_info": {
+        "rating": "🏆 核心观察池",
+        "label": "琥珀金",
+        "color": "#ff9800"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122209"
+    },
+    {
+      "etf_info": {
+        "name": "华夏中证5G通信主题ETF",
+        "code": "515050",
+        "theme": "科技自立"
+      },
+      "etf_data": {
+        "code": "515050",
+        "name": "华夏中证5G通信主题ETF",
+        "theme": "科技自立",
+        "index_code": "931079.CSI",
+        "avg_volume": 7366.44650134017,
+        "correlation": 0.9737027800921939,
+        "total_fee": 0.33074174344974916,
+        "alpha": 4.950980258792115,
+        "etf_return": 4.648573880743074,
+        "benchmark_return": -0.30240637804904136,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 10,
+        "Correlation": 8,
+        "Cost": 8,
+        "Performance": 10,
+        "Management": 10
+      },
+      "total_score": 95.0,
+      "rating_info": {
+        "rating": "🏆 核心观察池",
+        "label": "琥珀金",
+        "color": "#ff9800"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122188"
+    },
+    {
+      "etf_info": {
+        "name": "华夏国证半导体芯片ETF",
+        "code": "159995",
+        "theme": "科技自立"
+      },
+      "etf_data": {
+        "code": "159995",
+        "name": "华夏国证半导体芯片ETF",
+        "theme": "科技自立",
+        "index_code": "980017.CNI",
+        "avg_volume": 7664.928537942426,
+        "correlation": 0.9618549343609674,
+        "total_fee": 0.2774272494937657,
+        "alpha": 6.380196578070144,
+        "etf_return": 4.084819323097249,
+        "benchmark_return": -2.2953772549728955,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 10,
+        "Correlation": 8,
+        "Cost": 8,
+        "Performance": 10,
+        "Management": 10
+      },
+      "total_score": 95.0,
+      "rating_info": {
+        "rating": "🏆 核心观察池",
+        "label": "琥珀金",
+        "color": "#ff9800"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122232"
+    },
+    {
+      "etf_info": {
+        "name": "华宝中证科技龙头ETF",
+        "code": "515000",
+        "theme": "科技自立"
+      },
+      "etf_data": {
+        "code": "515000",
+        "name": "华宝中证科技龙头ETF",
+        "theme": "科技自立",
+        "index_code": "931087.CSI",
+        "avg_volume": 4846.895196681662,
+        "correlation": 0.9598909934989469,
+        "total_fee": 0.43303334036341024,
+        "alpha": 4.091204281615045,
+        "etf_return": 3.5572696502301033,
+        "benchmark_return": -0.533934631384942,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 8,
+        "Correlation": 8,
+        "Cost": 8,
+        "Performance": 8,
+        "Management": 10
+      },
+      "total_score": 82.0,
+      "rating_info": {
+        "rating": "🥈 备选观察池",
+        "label": "浅金",
+        "color": "#ffb74d"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122151"
+    },
+    {
+      "etf_info": {
+        "name": "华夏中证新能源汽车ETF",
+        "code": "515030",
+        "theme": "绿色转型"
+      },
+      "etf_data": {
+        "code": "515030",
+        "name": "华夏中证新能源汽车ETF",
+        "theme": "绿色转型",
+        "index_code": "930997.CSI",
+        "avg_volume": 2977.9757842382837,
+        "correlation": 0.9334018913009651,
+        "total_fee": 0.3183810641536097,
+        "alpha": 4.76410376750701,
+        "etf_return": 3.97973104134336,
+        "benchmark_return": -0.7843727261636504,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 6,
+        "Correlation": 6,
+        "Cost": 8,
+        "Performance": 8,
+        "Management": 10
+      },
+      "total_score": 77.0,
+      "rating_info": {
+        "rating": "🥈 备选观察池",
+        "label": "浅金",
+        "color": "#ffb74d"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122251"
+    },
+    {
+      "etf_info": {
+        "name": "华安黄金ETF",
+        "code": "518880",
+        "theme": "安全韧性"
+      },
+      "etf_data": {
+        "code": "518880",
+        "name": "华安黄金ETF",
+        "theme": "安全韧性",
+        "index_code": "AU9999.SGE",
+        "avg_volume": 3528.0674771168256,
+        "correlation": 0.9543020370214604,
+        "total_fee": 0.34296538198665144,
+        "alpha": 1.1552467899800059,
+        "etf_return": 4.103502192785831,
+        "benchmark_return": 2.9482554028058248,
+        "is_etf": true,
+        "is_quant_active": false,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 8,
+        "Correlation": 8,
+        "Cost": 8,
+        "Performance": 6,
+        "Management": 10
+      },
+      "total_score": 72.0,
+      "rating_info": {
+        "rating": "🥈 备选观察池",
+        "label": "浅金",
+        "color": "#ffb74d"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122412"
+    },
+    {
+      "etf_info": {
+        "name": "华宝中证军工ETF",
+        "code": "512810",
+        "theme": "安全韧性"
+      },
+      "etf_data": {
+        "code": "512810",
+        "name": "华宝中证军工ETF",
+        "theme": "安全韧性",
+        "index_code": "399967.SZ",
+        "avg_volume": 2723.317474077886,
+        "correlation": 0.9319254077835807,
+        "total_fee": 0.745823441460399,
+        "alpha": 3.653664152310661,
+        "etf_return": 1.0117411062517423,
+        "benchmark_return": -2.6419230460589187,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 6,
+        "Correlation": 6,
+        "Cost": 3,
+        "Performance": 8,
+        "Management": 10
+      },
+      "total_score": 69.5,
+      "rating_info": {
+        "rating": "❌ 淘汰区",
+        "label": "灰度",
+        "color": "#9e9e9e"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122372"
+    },
+    {
+      "etf_info": {
+        "name": "博时黄金ETF",
+        "code": "159937",
+        "theme": "安全韧性"
+      },
+      "etf_data": {
+        "code": "159937",
+        "name": "博时黄金ETF",
+        "theme": "安全韧性",
+        "index_code": "AU9999.SGE",
+        "avg_volume": 1706.6744662161875,
+        "correlation": 0.9665241154401889,
+        "total_fee": 0.23771103862653317,
+        "alpha": 1.6978734445053347,
+        "etf_return": 2.9006877472696426,
+        "benchmark_return": 1.202814302764308,
+        "is_etf": true,
+        "is_quant_active": false,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 5,
+        "Correlation": 8,
+        "Cost": 8,
+        "Performance": 6,
+        "Management": 10
+      },
+      "total_score": 67.5,
+      "rating_info": {
+        "rating": "❌ 淘汰区",
+        "label": "灰度",
+        "color": "#9e9e9e"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122393"
+    },
+    {
+      "etf_info": {
+        "name": "博时中证光伏产业ETF",
+        "code": "159857",
+        "theme": "绿色转型"
+      },
+      "etf_data": {
+        "code": "159857",
+        "name": "博时中证光伏产业ETF",
+        "theme": "绿色转型",
+        "index_code": "931151.CSI",
+        "avg_volume": 2597.617901995417,
+        "correlation": 0.9383517930397246,
+        "total_fee": 0.4578508369534325,
+        "alpha": 1.5078909500514763,
+        "etf_return": 0.18800826139575566,
+        "benchmark_return": -1.3198826886557207,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 6,
+        "Correlation": 6,
+        "Cost": 8,
+        "Performance": 6,
+        "Management": 10
+      },
+      "total_score": 67.0,
+      "rating_info": {
+        "rating": "❌ 淘汰区",
+        "label": "灰度",
+        "color": "#9e9e9e"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122288"
+    },
+    {
+      "etf_info": {
+        "name": "广发中证环保产业ETF",
+        "code": "159755",
+        "theme": "绿色转型"
+      },
+      "etf_data": {
+        "code": "159755",
+        "name": "广发中证环保产业ETF",
+        "theme": "绿色转型",
+        "index_code": "000827.CSI",
+        "avg_volume": 3944.628362958192,
+        "correlation": 0.9377687556253801,
+        "total_fee": 0.5705176594687398,
+        "alpha": 0.3576376163657784,
+        "etf_return": 4.987571855904513,
+        "benchmark_return": 4.629934239538734,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 8,
+        "Correlation": 6,
+        "Cost": 6,
+        "Performance": 6,
+        "Management": 10
+      },
+      "total_score": 67.0,
+      "rating_info": {
+        "rating": "❌ 淘汰区",
+        "label": "灰度",
+        "color": "#9e9e9e"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122323"
+    },
+    {
+      "etf_info": {
+        "name": "易方达中证新能源ETF",
+        "code": "516090",
+        "theme": "绿色转型"
+      },
+      "etf_data": {
+        "code": "516090",
+        "name": "易方达中证新能源ETF",
+        "theme": "绿色转型",
+        "index_code": "000941.SH",
+        "avg_volume": 2310.985058721459,
+        "correlation": 0.9362997199992847,
+        "total_fee": 0.5380255496640751,
+        "alpha": 2.2533826207164296,
+        "etf_return": 3.525360863730307,
+        "benchmark_return": 1.2719782430138773,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 6,
+        "Correlation": 6,
+        "Cost": 6,
+        "Performance": 6,
+        "Management": 10
+      },
+      "total_score": 64.0,
+      "rating_info": {
+        "rating": "❌ 淘汰区",
+        "label": "灰度",
+        "color": "#9e9e9e"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122306"
+    },
+    {
+      "etf_info": {
+        "name": "南方中证申万有色金属ETF",
+        "code": "512400",
+        "theme": "安全韧性"
+      },
+      "etf_data": {
+        "code": "512400",
+        "name": "南方中证申万有色金属ETF",
+        "theme": "安全韧性",
+        "index_code": "000819.SH",
+        "avg_volume": 3729.145205844383,
+        "correlation": 0.9649724602573444,
+        "total_fee": 0.4190157741943505,
+        "alpha": -0.8967758508681125,
+        "etf_return": 1.2106293426205632,
+        "benchmark_return": 2.1074051934886757,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 8,
+        "Correlation": 8,
+        "Cost": 8,
+        "Performance": 4,
+        "Management": 10
+      },
+      "total_score": 62.0,
+      "rating_info": {
+        "rating": "❌ 淘汰区",
+        "label": "灰度",
+        "color": "#9e9e9e"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122431"
+    },
+    {
+      "etf_info": {
+        "name": "南方中证新能源ETF",
+        "code": "516160",
+        "theme": "绿色转型"
+      },
+      "etf_data": {
+        "code": "516160",
+        "name": "南方中证新能源ETF",
+        "theme": "绿色转型",
+        "index_code": "000941.SH",
+        "avg_volume": 4426.933465832284,
+        "correlation": 0.928996864064933,
+        "total_fee": 0.3054059414162118,
+        "alpha": -1.935339380020341,
+        "etf_return": -4.859342883909552,
+        "benchmark_return": -2.9240035038892103,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 8,
+        "Correlation": 6,
+        "Cost": 8,
+        "Performance": 4,
+        "Management": 10
+      },
+      "total_score": 60.0,
+      "rating_info": {
+        "rating": "❌ 淘汰区",
+        "label": "灰度",
+        "color": "#9e9e9e"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122270"
+    },
+    {
+      "etf_info": {
+        "name": "国泰中证军工ETF",
+        "code": "512660",
+        "theme": "安全韧性"
+      },
+      "etf_data": {
+        "code": "512660",
+        "name": "国泰中证军工ETF",
+        "theme": "安全韧性",
+        "index_code": "399967.SZ",
+        "avg_volume": 2251.066014107722,
+        "correlation": 0.9000080062372141,
+        "total_fee": 0.7160973480326475,
+        "alpha": 0.5116628631591988,
+        "etf_return": -1.3142900103038968,
+        "benchmark_return": -1.8259528734630956,
+        "is_etf": true,
+        "is_quant_active": true,
+        "start_date": "2026-02-27",
+        "end_date": "2026-03-19",
+        "data_source": "AkShare + Tushare Pro (模拟数据)"
+      },
+      "dimension_scores": {
+        "Liquidity": 6,
+        "Correlation": 6,
+        "Cost": 3,
+        "Performance": 6,
+        "Management": 10
+      },
+      "total_score": 59.5,
+      "rating_info": {
+        "rating": "❌ 淘汰区",
+        "label": "灰度",
+        "color": "#9e9e9e"
+      },
+      "analysis_time": "2026-03-22T20:23:22.122344"
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琥珀引擎 - 财经品牌独立站 | Cheese Intelligence</title>
+    <meta name="description" content="琥珀引擎 Amber-Engine V3.2.7 - 数据库驱动 + 静态化生成的专业财经媒体架构。每日财经分析、市场趋势、投资策略与琥珀内参。">
+    
+    <!-- 琥珀引擎 V2.2 视觉系统 -->
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    
+    <style>
+        /* 页面特定样式 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;  /* 架构师指定的25px卡片间距 */
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 智能卡片专用样式 */
+        .index-intelligence-card {
+            grid-column: span 1;
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 0;
+        }
+        
+        /* 确保智能卡片不会溢出 */
+        .index-intelligence-card {
+            min-height: 250px;
+            max-height: 280px;
+            overflow: hidden;
+        }
+    
+    <style>
+        /* 指数数据表格样式 */
+        .index-table-container {
+            grid-column: span 2;
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+        
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .table-header h4 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .table-update-time {
+            font-size: 0.875rem;
+            color: #666;
+        }
+        
+        .index-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        
+        .index-data-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            background: #f8f9fa;
+        }
+        
+        .index-data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            vertical-align: middle;
+        }
+        
+        .index-data-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .col-index {
+            font-weight: 600;
+            min-width: 120px;
+        }
+        
+        .col-code {
+            font-family: monospace;
+            color: #666;
+            min-width: 100px;
+        }
+        
+        .col-market {
+            min-width: 80px;
+        }
+        
+        .col-price {
+            font-weight: 600;
+            font-size: 1.125rem;
+            min-width: 100px;
+        }
+        
+        .col-change {
+            font-weight: 600;
+            min-width: 100px;
+        }
+        
+        .price-up {
+            color: #f44336;
+        }
+        
+        .price-down {
+            color: #4caf50;
+        }
+        
+        .col-status {
+            min-width: 100px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.verified {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .col-source {
+            color: #666;
+            min-width: 120px;
+        }
+        
+        .placeholder-row {
+            opacity: 0.6;
+        }
+        
+        .placeholder-cell {
+            text-align: center;
+            padding: 2rem !important;
+            border: 2px dashed rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        .placeholder-text {
+            display: block;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+        
+        .placeholder-note {
+            display: block;
+            font-size: 0.875rem;
+            color: #999;
+        }
+        
+        .table-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .table-stats {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .stat-item {
+            font-size: 0.875rem;
+            color: #666;
+        }
+        
+        .btn-refresh {
+            padding: 0.5rem 1rem;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .btn-refresh:hover {
+            background: #1976d2;
+        }
+        
+        @media (max-width: 768px) {
+            .index-table-container {
+                grid-column: span 1;
+                overflow-x: auto;
+            }
+            
+            .index-data-table {
+                min-width: 700px;
+            }
+            
+            .table-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <!-- 站点头部 -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <span class="brand-icon">🧀</span>
+                        <span class="brand-text">
+                            <span class="brand-name">琥珀引擎</span>
+                            <span class="brand-tagline">财经品牌独立站</span>
+                        </span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="/" class="nav-link active">首页</a></li>
+                        <li class="nav-item"><a href="/etf/" class="nav-link">ETF专区</a></li>
+                        <li class="nav-item"><a href="/about.html" class="nav-link">关于我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 页面标题 -->
+            <div class="page-header">
+                <h1>琥珀引擎 V3.2.7</h1>
+                <p class="page-subtitle">财经品牌独立站 - 数据库驱动 + 静态化生成的专业媒体架构</p>
+                <p class="update-time">页面重建时间: 2026-03-20 13:50:33 (北京时间)</p>
+            
+                <div class="update-time-display">
+                    <span class="time-icon">🕒</span>
+                    <span class="time-text">数据最后更新时间: 2026-03-20 21:42:48 21:06:10 (北京时间)</span>
+                    <span class="time-note">数据源: Tushare Pro | 更新频率: 交易日收盘后</span>
+                </div></div>
+            
+            <!-- 琥珀全景指数看板 -->
+            <div class="amber-pan-container">
+                <div class="amber-pan-header">
+                    <h3>🌐 琥珀全景 - 实时行情数据</h3>
+                    <span class="update-time"></span>
+                </div>
+                
+                <!-- 网格布局容器 -->
+                <div class="grid-container">
+                    
+                    <!-- 指数数据表格 - 便于后期拓展 -->
+                    <div class="index-table-container">
+                        <div class="table-header">
+                            <h4>📈 核心指数行情</h4>
+                            <span class="table-update-time">更新: 2026-03-27 15:00:20 (北京时间)</span>
+                        </div>
+                        
+                        <table class="index-data-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-index">指数名称</th>
+                                    <th class="col-code">代码</th>
+                                    <th class="col-market">市场</th>
+                                    <th class="col-price">最新点位</th>
+                                    <th class="col-change">涨跌幅</th>
+                                    <th class="col-status">状态</th>
+                                    <th class="col-source">数据源</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 沪深300行 -->
+                                <tr class="index-row" data-index="沪深300" data-code="000300.SH">
+                                    <td class="col-index">
+                                        <span class="index-name">沪深300</span>
+                                    </td>
+                                    <td class="col-code">000300.SH</td>
+                                    <td class="col-market">A股</td>
+                                    <td class="col-price">4477.53</td>
+                                    <td class="col-change price-down">-1.32%</td>
+                                    <td class="col-status">
+                                        <span class="status-badge verified">已验证</span>
+                                    </td>
+                                    <td class="col-source">Tushare Pro</td>
+                                </tr>
+                                
+                                <!-- 创业板指行 -->
+                                <tr class="index-row" data-index="创业板指" data-code="399006.SZ">
+                                    <td class="col-index">
+                                        <span class="index-name">创业板指</span>
+                                    </td>
+                                    <td class="col-code">399006.SZ</td>
+                                    <td class="col-market">A股</td>
+                                    <td class="col-price">3272.49</td>
+                                    <td class="col-change price-down">-1.34%</td>
+                                    <td class="col-status">
+                                        <span class="status-badge verified">已验证</span>
+                                    </td>
+                                    <td class="col-source">Tushare Pro</td>
+                                </tr>
+                                
+                                <!-- 预留行 - 便于后期拓展 -->
+                                <tr class="placeholder-row">
+                                    <td colspan="7" class="placeholder-cell">
+                                        <span class="placeholder-text">+ 添加更多指数</span>
+                                        <span class="placeholder-note">表格形式便于后期拓展更多指数数据</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="table-footer">
+                            <div class="table-stats">
+                                <span class="stat-item">📊 共 2 个指数</span>
+                                <span class="stat-item">🔄 实时更新</span>
+                                <span class="stat-item">✅ 数据已验证</span>
+                            </div>
+                            <div class="table-actions">
+                                <button class="btn-refresh" onclick="location.reload()">🔄 刷新数据</button>
+                            </div>
+                        </div>
+                    </div>
+    <!-- 宏观四锚决策头 -->
+                    <div class="index-item macro-anchor-card">
+                        <div class="index-header">
+                            <span class="index-name">宏观四锚</span>
+                            <span class="index-market">决策头</span>
+                        </div>
+                        
+                        <div class="macro-anchor-content">
+                            <div class="anchor-item">
+                                <span class="anchor-label">💵 人民币汇率 (USD/CNY)</span>
+                                <span class="anchor-value">6.92</span>
+                                <span class="anchor-change change-neutral">↑ 0.01%</span>
+                            </div>
+                            
+                            <div class="anchor-item">
+                                <span class="anchor-label">🇺🇸 美债10Y收益率</span>
+                                <span class="anchor-value">4.42</span>
+                                <span class="anchor-change change-neutral">↓ 0.00%</span>
+                            </div>
+                            
+                            <div class="anchor-item">
+                                <span class="anchor-label">🌍 国际金价 (XAUUSD)</span>
+                                <span class="anchor-value">4405.10</span>
+                                <span class="anchor-change change-neutral">↑ 0.56%</span>
+                            </div>
+                            
+                            <div class="anchor-item">
+                                <span class="anchor-label">🇨🇳 国内金价 (AU.SHF)</span>
+                                <span class="anchor-value">995.98</span>
+                                <span class="anchor-change change-neutral">↓ 1.77%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="data-source-tag verified">Tushare Pro</div>
+                    </div>
+                    </div>
+                </div>
+                
+                <!-- 更新说明 -->
+                <div class="update-note">
+                    <p>💡 <strong>页面重建说明</strong>: 此页面已根据主编指令进行完整重建。所有数据卡片已分离为独立组件，消除嵌套结构问题。统一数据引擎将在下次运行时填充最新数据。</p>
+                    <p>🔗 <strong>验证地址</strong>: <a href="https://amber.googlemanager.cn:10123/?v=3.2.7">https://amber.googlemanager.cn:10123/?v=3.2.7</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 站点页脚 -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">琥珀引擎</h3>
+                    <p class="footer-description">
+                        财经品牌独立站 - 数据库驱动 + 静态化生成的专业媒体架构
+                    </p>
+                    <p class="footer-copyright">
+                        © 2026 Cheese Intelligence Team. 保留所有权利。
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/etf/">ETF专区</a></li>
+                        <li><a href="/about.html">关于我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">联系我们</h3>
+                    <ul class="footer-links">
+                        <li>团队: Cheese Intelligence Team</li>
+                        <li>网站: <a href="https://cheese.ai">cheese.ai</a></li>
+                        <li>工程师: Cheese (🧀)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 页面脚本 -->
+    <script>
+        console.log('琥珀引擎 V3.2.7 - 页面重建完成: 2026-03-20 13:50:33');
+    </script>
+</body>
+</html>

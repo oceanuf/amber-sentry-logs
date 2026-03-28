@@ -1,0 +1,13 @@
+{
+  "code": "512000",
+  "name": "券商ETF",
+  "bias": 4.2,
+  "ma20": 0.82,
+  "alpha": 3.8,
+  "strategy_score": 62,
+  "robust_score": 70,
+  "efficiency_score": 65,
+  "total_score": 64.2,
+  "data_source": "TUSHARE",
+  "update_time": "2026-03-27T18:46:02.613082"
+}

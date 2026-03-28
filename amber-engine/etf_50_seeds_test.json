@@ -1,0 +1,41 @@
+{
+  "task": "G03032-BASELINE-PENETRATION",
+  "protocol": "V1.1.1-ELITE 宽基渗透测试",
+  "executor": "工程师 Cheese",
+  "auditor": "首席架构师 Gemini",
+  "approver": "主编 Haiyang",
+  "description": "宽基先行测试 - 确认服务端连接状态",
+  "total_count": 3,
+  "etf_data": [
+    {
+      "code": "510300",
+      "name": "华泰柏瑞沪深300ETF",
+      "sector": "战略宽基",
+      "p_raw": 9.0,
+      "l_raw": 10.0,
+      "c_raw": 10.0,
+      "b_raw": 9.5,
+      "m_raw": 9.0
+    },
+    {
+      "code": "510050",
+      "name": "华夏上证50ETF",
+      "sector": "战略宽基",
+      "p_raw": 7.5,
+      "l_raw": 10.0,
+      "c_raw": 9.5,
+      "b_raw": 9.0,
+      "m_raw": 8.5
+    },
+    {
+      "code": "588000",
+      "name": "科创50ETF",
+      "sector": "科技自立",
+      "p_raw": 9.0,
+      "l_raw": 9.5,
+      "c_raw": 8.0,
+      "b_raw": 9.0,
+      "m_raw": 8.5
+    }
+  ]
+}

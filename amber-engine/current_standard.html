@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星辰引力 (STAR-GRAVITY) V1.1-GLOBAL - 琥珀引擎算法宪法</title>
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- D3.js for visualization -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #283593;
+            --accent-color: #3949ab;
+            --danger-color: #d32f2f;
+            --warning-color: #ff9800;
+            --success-color: #388e3c;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --bg-light: #f5f5f5;
+            --bg-white: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: stars 20s linear infinite;
+        }
+        
+        @keyframes stars {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .version {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Algorithm Pillars */
+        .pillars-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title::before {
+            content: '📊';
+            font-size: 1.8rem;
+        }
+        
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .pillar-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 6px solid var(--accent-color);
+        }
+        
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .pillar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .pillar-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .pillar-weight {
+            background: var(--accent-color);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .pillar-core {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 3px solid var(--border-color);
+        }
+        
+        .factor-list {
+            list-style: none;
+        }
+        
+        .factor-item {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .factor-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .factor-score {
+            background: var(--success-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        
+        .factor-detail {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        /* JSON Tree Visualization */
+        .json-section {
+            margin-bottom: 40px;
+        }
+        
+        .json-tree {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+        
+        .json-key {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .json-string {
+            color: var(--success-color);
+        }
+        
+        .json-number {
+            color: var(--warning-color);
+        }
+        
+        .json-boolean {
+            color: var(--accent-color);
+        }
+        
+        .json-null {
+            color: var(--danger-color);
+        }
+        
+        /* Mathematical Formulas */
+        .formulas-section {
+            margin-bottom: 40px;
+        }
+        
+        .formula-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        
+        .formula-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .formula-title::before {
+            content: 'Σ';
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .formula-content {
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+        
+        .formula-explanation {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Redline Warnings */
+        .redline-section {
+            margin-bottom: 40px;
+        }
+        
+        .redline-card {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--danger-color);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { border-color: var(--danger-color); }
+            50% { border-color: #ff6b6b; }
+            100% { border-color: var(--danger-color); }
+        }
+        
+        .redline-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .redline-header::before {
+            content: '⚠️';
+            font-size: 2rem;
+        }
+        
+        .redline-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--danger-color);
+        }
+        
+        .redline-list {
+            list-style: none;
+        }
+        
+        .redline-item {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 5px solid var(--danger-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .redline-item::before {
+            content: '✗';
+            color: var(--danger-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Radar Chart */
+        .radar-section {
+            margin-bottom: 40px;
+        }
+        
+        .radar-container {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #radar-chart {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #bbdefb;
+        }
+        
+        .footer-item {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-label {
+            color: #90caf9;
+        }
+        
+        .footer-value {
+            font-weight: 600;
+        }
+        
+        .audit-id {
+            font-family: 'Consolas', monospace;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+            
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .radar-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>星辰引力 (STAR-GRAVITY)</h1>
+            <div class="subtitle">琥珀引擎全球资产审计算法宪法</div>
+            <div class="version">V1.1-GLOBAL</div>
+        </header>
+
+        <!-- Algorithm Pillars -->
+        <section class="pillars-section">
+            <h2 class="section-title">算法四大柱石</h2>
+            <div class="pillars-grid">
+                <!-- Pillar 1: Logical Penetration -->
+                <div class="pillar-card">
+                    <div class="pillar-header">
+                        <div class="pillar-name">逻辑穿透力</div>
+                        <div class="pillar-weight">权重: 50%</div>
+                    </div>
+                    <div class="pillar-core">核心：剔除市场情绪噪声，直达资产净值</div>
+                    <ul class="factor-list">
+                        <li class="factor-item">
+                            <div class="factor-name">
+                                <span>30日物理净值收益率 (NAV Delta)</span>
+                                <span class="factor-score">40分</span>
+                            </div>
+                            <div class="factor-detail">
+                                $$Score = \frac{Current\_NAV - T29\_NAV}{T29\_NAV} \times 1000$$
+                                严禁使用场内收盘价，必须使用基金公司每日公布的单位净值（NAV）
+                            </div>
+                        </li>
+                        <li class="factor-item">
+                            <div class="factor-name">
+                                <span>全球锚点相对强度 (Alpha Anchor)</span>
+                                <span class="factor-score">10分</span>
+                            </div>
+                            <div class="factor-detail">
+                                对比标普 500 (513500) 与 沪深 300 (510300) 的超额部分
+                                双及格线机制：若 $Alpha < 0$，该项直接判定为负值
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 2: Risk & Friction -->
+                <div class="pillar-card">
+                    <div class="pillar-header">
+                        <div class="pillar-name">风险抵御与套利摩擦</div>
+                        <div class="pillar-weight">权重: 25%</div>
+                    </div>
+                    <div class="pillar-core">核心：跨境交易最昂贵的代价是"无知"与"高溢价"</div>
+                    <ul class="factor-list">
+                        <li class="factor-item">
+                            <div class="factor-name">
+                                <span>溢价率平滑处分 (Premium Penalty)</span>
+                                <span class="factor-score">15分</span>
+                            </div>
+                            <div class="factor-detail">
+                                $Premium < 1.5\%$: 满分<br>
+                                $1.5\% \le Premium < 3\%$: 扣除 5 分<br>
+                                $3\% \le Premium < 5\%$: 扣除 10 分<br>
+                                $Premium \ge 5\%$: 维度的逻辑熔断 (Hard Break)
+                            </div>
+                        </li>
+                        <li class="factor-item">
+                            <div class="factor-name">
+                                <span>汇率波动贡献度 (FX Impact)</span>
+                                <span class="factor-score">10分</span>
+                            </div>
+                            <div class="factor-detail">
+                                评估收益中美元/本币升值的占比
+                                若 80% 的收益来自汇率变动而非资产上涨，系统将标注"汇率虚火"预警
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 3: Strategic Vitality -->
+                <div class="pillar-card">
+                    <div class="pillar-header">
+                        <div class="pillar-name">战略稀缺性与生命力</div>
+                        <div class="pillar-weight">权重: 15%</div>
+                    </div>
+                    <div class="pillar-core">核心：识别"十五五"布局下的全球资产稀缺性</div>
+                    <ul class="factor-list">
+                        <li class="factor-item">
+                            <div class="factor-name">
+                                <span>产业链转移红利 (Supply-Chain Bonus)</span>
+                                <span class="factor-score">10分</span>
+                            </div>
+                            <div class="factor-detail">
+                                针对印度、东南亚科技、墨西哥等关键制造外迁地给予逻辑加分
+                            </div>
+                        </li>
+                        <li class="factor-item">
+                            <div class="factor-name">
+                                <span>地缘避险属性 (Geopolitical Hedge)</span>
+                                <span class="factor-score">5分</span>
+                            </div>
+                            <div class="factor-detail">
+                                黄金、沙特等具备主权财富对冲属性的标的加分
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 4: Execution Efficiency -->
+                <div class="pillar-card">
+                    <div class="pillar-header">
+                        <div class="pillar-name">执行效率</div>
+                        <div class="pillar-weight">权重: 10%</div>
+                    </div>
+                    <div class="pillar-core">核心：确保"看得见，也买得到"</div>
+                    <ul class="factor-list">
+                        <li class="factor-item">
+                            <div class="factor-name">
+                                <span>流动性深度 (Liquidity)</span>
+                                <span class="factor-score">5分</span>
+                            </div>
+                            <div class="factor-detail">
+                                日均成交额 > 5000万 为及格，低于 1000万 阶梯扣分
+                            </div>
+                        </li>
+                        <li class="factor-item">
+                            <div class="factor-name">
+                                <span>跟踪误差 (Tracking Error)</span>
+                                <span class="factor-score">5分</span>
+                            </div>
+                            <div class="factor-detail">
+                                评估基金经理对原指数的拟合能力
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- JSON Tree Visualization -->
+        <section class="json-section">
+            <h2 class="section-title">算法元数据树状图</h2>
+            <div class="json-tree">
+                <pre>{
+  "<span class="json-key">algorithm</span>": "<span class="json-string">STAR-GRAVITY V1.1-GLOBAL</span>",
+  "<span class="json-key">version</span>": "<span class="json-string">1.1.0</span>",
+  "<span class="json-key">global_anchor</span>": {
+    "<span class="json-key">snp500</span>": "<span class="json-string">513500</span>",
+    "<span class="json-key">csi300</span>": "<span class="json-string">510300</span>",
+    "<span class="json-key">description</span>": "<span class="json-string">确立全球资产的'及格引力'，低于此线即为'逻辑坍塌'</span>"
+  },
+  "<span class="json-key">dimensions</span>": [
+    {
+      "<span class="json-key">name</span>": "<span class="json-string">logical_penetration</span>",
+      "<span class="json-key">weight</span>: <span class="json-number">0.50</span>,
+      "<span class="json-key">core_logic</span>": "<span class="json-string">剔除市场情绪噪声，直达资产净值</span>",
+      "<span class="json-key">factors</span>": [
+        {
+          "<span class="json-key">name</span>": "<span class="json-string">nav_30d_growth</span>",
+          "<span class="json-key">weight</span>": <span class="json-number">0.80</span>,
+          "<span class="json-key">max_score</span>": <span class="json-number">40</span>,
+          "<span class="json-key">formula</span>": "<span class="json-string">(Current_NAV - T29_NAV) / T29_NAV * 1000</span>"
+        },
+        {
+          "<span class="json-key">name</span>": "<span class="json-string">alpha_vs_global</span>",
+          "<span class="json-key">weight</span>": <span class="json-number">0.20</span>,
+          "<span class="json-key">max_score</span>": <span class="json-number">10</span>,
+          "<span class="json-key">condition</span>": "<span class="json-string">alpha < 0 → negative_score</span>"
+        }
+      ]
+    },
+    {
+      "<span class="json-key">name</span>": "<span class="json-string">risk_friction</span>",
+      "<span class="json-key">weight</span>: <span class="json-number">0.25</span>,
+      "<span class="json-key">core_logic</span>": "<span class="json-string">跨境交易最昂贵的代价是'无知'与'高溢价'</span>",
+      "<span class="json-key">redline</span>": {
+        "<span class="json-key">premium_threshold</span>": <span class="json-number">0.05</span>,
+        "<span class="json-key">action</span>": "<span class="json-string">hard_break_dimension_zero</span>"
+      }
+    },
+    {
+      "<span class="json-key">name</span>": "<span class="json-string">strategic_vitality</span>",
+      "<span class="json-key">weight</span>: <span class="json-number">0.15</span>,
+      "<span class="json-key">core_logic</span>": "<span class="json-string">识别'十五五'布局下的全球资产稀缺性</span>",
+      "<span class="json-key">manual_weighting</span>: <span class="json-boolean">true</span>
+    },
+    {
+      "<span class="json-key">name</span>": "<span class="json-string">execution_efficiency</span>",
+      "<span class="json-key">weight</span>: <span class="json-number">0.10</span>,
+      "<span class="json-key">core_logic</span>": "<span class="json-string">确保'看得见，也买得到'</span>"
+    }
+  ],
+  "<span class="json-key">scoring_system</span>": {
+    "<span class="json-key">total_score</span>": <span class="json-number">100</span>,
+    "<span class="json-key">passing_score</span>": <span class="json-number">60</span>,
+    "<span class="json-key">excellent_threshold</span>": <span class="json-number">85</span>
+  }
+}</pre>
+            </div>
+        </section>
+
+        <!-- Mathematical Formulas -->
+        <section class="formulas-section">
+            <h2 class="section-title">核心数学公式</h2>
+            
+            <div class="formula-card">
+                <div class="formula-title">总评分公式</div>
+                <div class="formula-content">
+                    $$Score_{Total} = \sum_{i=1}^{4} (Dimension_i \times Weight_i) - Penalty_{Premium}$$
+                </div>
+                <div class="formula-explanation">
+                    总评分 = 四大维度加权求和 - 溢价率惩罚项。其中溢价率惩罚项采用阶梯式扣除机制。
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <div class="formula-title">逻辑穿透力计算公式</div>
+                <div class="formula-content">
+                    $$L = (NAV_{30D} \times 0.8) + (Alpha_{Global} \times 0.2)$$
+                    $$NAV_{30D} = \frac{Current\_NAV - T29\_NAV}{T29\_NAV} \times 1000$$
+                    $$Alpha_{Global} = \begin{cases} 
+                    Score_{ETF} - Score_{S\&P500} & \text{if } Score_{ETF} \ge Score_{S\&P500} \\
+                    Negative\_Value & \text{if } Score_{ETF} < Score_{S\&P500}
+                    \end{cases}$$
+                </div>
+                <div class="formula-explanation">
+                    逻辑穿透力由30日净值增长（80%）和全球锚点相对强度（20%）组成。采用双及格线机制，跑输全球锚点即判定为负值。
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <div class="formula-title">风险抵御力惩罚函数</div>
+                <div class="formula-content">
+                    $$Penalty(P) = \begin{cases}
+                    0 & \text{if } P < 0.015 \\
+                    5 & \text{if } 0.015 \le P < 0.03 \\
+                    10 & \text{if } 0.03 \le P < 0.05 \\
+                    Dimension\_Zero & \text{if } P \ge 0.05
+                    \end{cases}$$
+                </div>
+                <div class="formula-explanation">
+                    溢价率惩罚采用阶梯函数。当溢价率超过5%时，触发逻辑熔断，该维度总分清零。
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <div class="formula-title">汇率虚火预警条件</div>
+                <div class="formula-content">
+                    $$FX\_Warning = \begin{cases}
+                    true & \text{if } \frac{FX\_Contribution}{Total\_Return} > 0.8 \\
+                    false & \text{otherwise}
+                    \end{cases}$$
+                </div>
+                <div class="formula-explanation">
+                    当收益中80%以上来自汇率变动而非资产本身增值时，系统触发"汇率虚火"预警。
+                </div>
+            </div>
+        </section>
+
+        <!-- Redline Warnings -->
+        <section class="redline-section">
+            <h2 class="section-title">审计红线与熔断机制</h2>
+            <div class="redline-card">
+                <div class="redline-header">
+                    <div class="redline-title">一票否决权 (Veto Power)</div>
+                </div>
+                <ul class="redline-list">
+                    <li class="redline-item">
+                        <div>
+                            <strong>溢价率 > 5%</strong> - 触发逻辑熔断，该维度总分清零，页面显示"审计处分：强制下榜"
+                        </div>
+                    </li>
+                    <li class="redline-item">
+                        <div>
+                            <strong>全球锚点相对强度为负</strong> - 跑输标普500或沪深300，该项直接判定为负值
+                        </div>
+                    </li>
+                    <li class="redline-item">
+                        <div>
+                            <strong>汇率虚火预警</strong> - 收益80%以上来自汇率变动，系统标注风险提示
+                        </div>
+                    </li>
+                    <li class="redline-item">
+                        <div>
+                            <strong>流动性枯竭</strong> - 日均成交额低于1000万，执行阶梯扣分直至零分
+                        </div>
+                    </li>
+                    <li class="redline-item">
+                        <div>
+                            <strong>数据完整性缺失</strong> - NAV数据缺失超过3个交易日，暂停审计资格
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Radar Chart -->
+        <section class="radar-section">
+            <h2 class="section-title">维度权重雷达图</h2>
+            <div class="radar-container">
+                <div id="radar-chart"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>算法信息</h3>
+                    <div class="footer-item">
+                        <span class="footer-label">算法名称:</span>
+                        <span class="footer-value">星辰引力 (STAR-GRAVITY)</span>
+                    </div>
+                    <div class="footer-item">
+                        <span class="footer-label">版本号:</span>
+                        <span class="footer-value">V1.1-GLOBAL</span>
+                    </div>
+                    <div class="footer-item">
+                        <span class="footer-label">生效日期:</span>
+                        <span class="footer-value">2026-03-23</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>审计信息</h3>
+                    <div class="footer-item">
+                        <span class="footer-label">审计ID:</span>
+                        <span class="footer-value">G03033-CODE-GEN</span>
+                    </div>
+                    <div class="footer-item">
+                        <span class="footer-label">最后更新:</span>
+                        <span class="footer-value" id="last-updated">2026-03-23 21:55:00 GMT+8</span>
+                    </div>
+                    <div class="footer-item">
+                        <span class="footer-label">下次审计:</span>
+                        <span class="footer-value">2026-03-24 21:30:00</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>团队信息</h3>
+                    <div class="footer-item">
+                        <span class="footer-label">主编:</span>
+                        <span class="footer-value">Haiyang</span>
+                    </div>
+                    <div class="footer-item">
+                        <span class="footer-label">架构师:</span>
+                        <span class="footer-value">Gemini</span>
+                    </div>
+                    <div class="footer-item">
+                        <span class="footer-label">工程师:</span>
+                        <span class="footer-value">Cheese</span>
+                    </div>
+                    <div class="audit-id">AUDIT_ID: STAR-GRAVITY-V1.1-20260323-2155</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Radar Chart Configuration
+        const radarData = [
+            { dimension: "逻辑穿透力", weight: 50, fullMark: 50 },
+            { dimension: "风险抵御力", weight: 25, fullMark: 25 },
+            { dimension: "战略稀缺性", weight: 15, fullMark: 15 },
+            { dimension: "执行效率", weight: 10, fullMark: 10 }
+        ];
+
+        const width = 500;
+        const height = 500;
+        const margin = { top: 80, right: 80, bottom: 80, left: 80 };
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
+
+        const svg = d3.select("#radar-chart")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", `translate(${margin.left + innerWidth / 2}, ${margin.top + innerHeight / 2})`);
+
+        // Scales
+        const angleScale = d3.scaleLinear()
+            .domain([0, radarData.length])
+            .range([0, Math.PI * 2]);
+
+        const radiusScale = d3.scaleLinear()
+            .domain([0, 50])
+            .range([0, Math.min(innerWidth, innerHeight) / 2]);
+
+        // Draw circles
+        const levels = [10, 20, 30, 40, 50];
+        levels.forEach(level => {
+            svg.append("circle")
+                .attr("r", radiusScale(level))
+                .attr("fill", "none")
+                .attr("stroke", "#e0e0e0")
+                .attr("stroke-width", 1);
+        });
+
+        // Draw axes
+        const axes = svg.selectAll(".axis")
+            .data(radarData)
+            .enter()
+            .append("g")
+            .attr("class", "axis");
+
+        axes.append("line")
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", (d, i) => radiusScale(50) * Math.cos(angleScale(i) - Math.PI / 2))
+            .attr("y2", (d, i) => radiusScale(50) * Math.sin(angleScale(i) - Math.PI / 2))
+            .attr("stroke", "#b0bec5")
+            .attr("stroke-width", 1);
+
+        // Add dimension labels
+        axes.append("text")
+            .attr("class", "dimension-label")
+            .attr("x", (d, i) => (radiusScale(55) * Math.cos(angleScale(i) - Math.PI / 2)))
+            .attr("y", (d, i) => (radiusScale(55) * Math.sin(angleScale(i) - Math.PI / 2)))
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "middle")
+            .style("font-size", "14px")
+            .style("font-weight", "600")
+            .style("fill", "#1a237e")
+            .text(d => d.dimension);
+
+        // Add weight labels
+        axes.append("text")
+            .attr("class", "weight-label")
+            .attr("x", (d, i) => (radiusScale(45) * Math.cos(angleScale(i) - Math.PI / 2)))
+            .attr("y", (d, i) => (radiusScale(45) * Math.sin(angleScale(i) - Math.PI / 2)))
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "middle")
+            .style("font-size", "16px")
+            .style("font-weight", "800")
+            .style("fill", "#3949ab")
+            .text(d => `${d.weight}%`);
+
+        // Draw radar polygon
+        const radarLine = d3.lineRadial()
+            .radius(d => radiusScale(d.weight))
+            .angle((d, i) => angleScale(i))
+            .curve(d3.curveLinearClosed);
+
+        svg.append("path")
+            .datum(radarData)
+            .attr("d", radarLine)
+            .attr("fill", "rgba(57, 73, 171, 0.3)")
+            .attr("stroke", "#3949ab")
+            .attr("stroke-width", 3)
+            .attr("stroke-dasharray", "5,5");
+
+        // Add data points
+        svg.selectAll(".data-point")
+            .data(radarData)
+            .enter()
+            .append("circle")
+            .attr("cx", (d, i) => radiusScale(d.weight) * Math.cos(angleScale(i) - Math.PI / 2))
+            .attr("cy", (d, i) => radiusScale(d.weight) * Math.sin(angleScale(i) - Math.PI / 2))
+            .attr("r", 6)
+            .attr("fill", "#3949ab")
+            .attr("stroke", "#ffffff")
+            .attr("stroke-width", 2);
+
+        // Update last updated time
+        function updateTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'Asia/Shanghai',
+                hour12: false
+            };
+            const formatter = new Intl.DateTimeFormat('zh-CN', options);
+            document.getElementById('last-updated').textContent = formatter.format(now) + ' GMT+8';
+        }
+
+        // Initial time update
+        updateTime();
+        
+        // Update time every minute
+        setInterval(updateTime, 60000);
+
+        // MathJax configuration
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+</body>
+</html>

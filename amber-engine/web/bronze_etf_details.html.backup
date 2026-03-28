@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青铜法典 · 50支标的详情总览</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-bottom: 6px solid #3949ab;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .header .instruction {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px 30px;
+            border-radius: 15px;
+            min-width: 200px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #1a237e;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3949ab;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title::before {
+            content: "📊";
+            font-size: 1.8rem;
+        }
+        
+        .etf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .etf-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .etf-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #3949ab;
+        }
+        
+        .etf-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1a237e, #3949ab);
+        }
+        
+        .etf-code {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .etf-code::before {
+            content: "🧀";
+            font-size: 1.5rem;
+        }
+        
+        .etf-name {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .etf-sector {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1a237e;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .etf-link {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: #3949ab;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+        
+        .etf-link:hover {
+            background: #283593;
+        }
+        
+        .search-box {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 18px 25px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            outline: none;
+            transition: border 0.3s;
+        }
+        
+        .search-input:focus {
+            border-color: #3949ab;
+            box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .footer {
+            background: #f5f5f5;
+            padding: 30px 40px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .footer strong {
+            color: #1a237e;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .etf-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                gap: 20px;
+            }
+            
+            .stat-item {
+                min-width: 150px;
+                padding: 15px 20px;
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
+        }
+        
+        /* 筛选器样式 */
+        .filter-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background: #3949ab;
+            color: white;
+        }
+        
+        .filter-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .filter-btn.active:hover {
+            background: #283593;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+            font-size: 1.2rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧀 青铜法典 · 标的详情总览</h1>
+            <div class="subtitle">基于 [2613-095] 号生产指令 · 50支标的静态化全量产出</div>
+            <div class="instruction">
+                本页面展示50支ETF标的的详细分析页面。点击任意卡片可查看该标的的净值趋势、数据存证等完整信息。
+                所有数据基于Tushare Pro接口，按照[2613-094]号逻辑布局渲染。
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">50</div>
+                    <div class="stat-label">标的数量</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">30</div>
+                    <div class="stat-label">交易日数据</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">10</div>
+                    <div class="stat-label">核心赛道</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">10168</div>
+                    <div class="stat-label">访问端口</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section-title">🔍 标的筛选与搜索</div>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="输入标的代码或名称进行搜索...">
+                <div class="search-icon">🔍</div>
+            </div>
+            
+            <div class="filter-container" id="filterContainer">
+                <button class="filter-btn active" data-filter="all">全部标的</button>
+                <!-- 筛选按钮将由JavaScript动态生成 -->
+            </div>
+            
+            <div class="section-title">📈 标的列表</div>
+            
+            <div class="etf-grid" id="etfGrid">
+                <!-- ETF卡片将由JavaScript动态生成 -->
+            </div>
+            
+            <div class="no-results" id="noResults">
+                <p>🔍 未找到匹配的标的</p>
+                <p>请尝试其他搜索关键词或筛选条件</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>生产指令</strong>: [2613-095] 全量生产指令灌注 · 50支标的静态化全量产出</p>
+            <p><strong>原型布局</strong>: [2613-094] 号逻辑布局（身份区、趋势区、存证表）</p>
+            <p><strong>数据源</strong>: Tushare Pro fund_nav接口 · 单位净值(unit_nav)字段</p>
+            <p><strong>生成时间</strong>: 2026-03-27 07:30:53 · <strong>执行人</strong>: 工程师 Cheese</p>
+            <p><strong>访问地址</strong>: https://localhost:10168/web/bronze_etf_details.html</p>
+        </div>
+    </div>
+    
+    <script>
+        // 等待DOM完全加载
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('青铜法典页面加载完成，开始初始化...');
+            
+            // ETF数据
+            const etfData = const etfData = [{"b_raw": 9.0, "c_raw": 4.0, "code": "512480", "l_raw": 7.0, "m_raw": 8.0, "name": "\u56fd\u8054\u5b89\u534a\u5bfc\u4f53ETF", "p_raw": 10.0, "sector": "\u79d1\u6280\u81ea\u7acb"}, {"b_raw": 8.0, "c_raw": 8.5, "code": "518880", "l_raw": 9.0, "m_raw": 7.5, "name": "\u534e\u5b89\u9ec4\u91d1ETF", "p_raw": 5.5, "sector": "\u5b89\u5168\u97e7\u6027"}, {"b_raw": 9.5, "c_raw": 10.0, "code": "510300", "l_raw": 10.0, "m_raw": 9.0, "name": "\u534e\u6cf0\u67cf\u745e\u6caa\u6df1300ETF", "p_raw": 9.0, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 7.5, "c_raw": 7.0, "code": "516160", "l_raw": 7.5, "m_raw": 7.0, "name": "\u5357\u65b9\u65b0\u80fd\u6e90ETF", "p_raw": 7.0, "sector": "\u7eff\u8272\u80fd\u6e90"}, {"b_raw": 8.0, "c_raw": 9.0, "code": "512170", "l_raw": 9.0, "m_raw": 7.0, "name": "\u534e\u5b9d\u533b\u7597ETF", "p_raw": 2.0, "sector": "\u751f\u7269\u5b89\u5168"}, {"b_raw": 8.5, "c_raw": 3.0, "code": "513100", "l_raw": 8.0, "m_raw": 8.5, "name": "\u56fd\u6cf0\u7eb3\u6307100ETF", "p_raw": 9.5, "sector": "\u524d\u6cbf\u6280\u672f"}, {"b_raw": 8.5, "c_raw": 9.0, "code": "159915", "l_raw": 9.5, "m_raw": 8.0, "name": "\u6613\u65b9\u8fbe\u521b\u4e1a\u677fETF", "p_raw": 8.0, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 9.0, "c_raw": 9.5, "code": "510050", "l_raw": 10.0, "m_raw": 8.5, "name": "\u534e\u590f\u4e0a\u8bc150ETF", "p_raw": 7.5, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 7.0, "c_raw": 7.5, "code": "515050", "l_raw": 8.0, "m_raw": 6.5, "name": "\u534e\u590f5G\u901a\u4fe1ETF", "p_raw": 6.5, "sector": "\u6570\u667a\u57fa\u5efa"}, {"b_raw": 6.5, "c_raw": 7.0, "code": "512660", "l_raw": 7.0, "m_raw": 6.0, "name": "\u56fd\u6cf0\u519b\u5de5ETF", "p_raw": 6.0, "sector": "\u5b89\u5168\u97e7\u6027"}, {"b_raw": 7.5, "c_raw": 8.0, "code": "512010", "l_raw": 8.5, "m_raw": 7.0, "name": "\u6613\u65b9\u8fbe\u533b\u836fETF", "p_raw": 5.5, "sector": "\u751f\u7269\u5b89\u5168"}, {"b_raw": 7.0, "c_raw": 8.5, "code": "512880", "l_raw": 9.0, "m_raw": 6.5, "name": "\u56fd\u6cf0\u8bc1\u5238ETF", "p_raw": 5.0, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 8.5, "c_raw": 9.0, "code": "510500", "l_raw": 9.5, "m_raw": 8.0, "name": "\u5357\u65b9\u4e2d\u8bc1500ETF", "p_raw": 7.0, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 8.0, "c_raw": 3.5, "code": "159941", "l_raw": 8.0, "m_raw": 8.0, "name": "\u5e7f\u53d1\u7eb3\u6307ETF", "p_raw": 8.5, "sector": "\u524d\u6cbf\u6280\u672f"}, {"b_raw": 7.5, "c_raw": 8.0, "code": "512000", "l_raw": 8.5, "m_raw": 7.0, "name": "\u534e\u5b9d\u5238\u5546ETF", "p_raw": 6.0, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 8.0, "c_raw": 8.5, "code": "512690", "l_raw": 8.0, "m_raw": 7.5, "name": "\u9e4f\u534e\u9152ETF", "p_raw": 7.5, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 8.5, "c_raw": 9.0, "code": "512800", "l_raw": 9.0, "m_raw": 8.0, "name": "\u534e\u5b9d\u94f6\u884cETF", "p_raw": 6.5, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 8.0, "c_raw": 7.5, "code": "515000", "l_raw": 8.5, "m_raw": 7.5, "name": "\u534e\u5b9d\u79d1\u6280ETF", "p_raw": 8.0, "sector": "\u79d1\u6280\u81ea\u7acb"}, {"b_raw": 7.5, "c_raw": 7.0, "code": "515030", "l_raw": 8.0, "m_raw": 7.0, "name": "\u534e\u590f\u65b0\u6c7d\u8f66ETF", "p_raw": 8.5, "sector": "\u7eff\u8272\u80fd\u6e90"}, {"b_raw": 8.0, "c_raw": 7.5, "code": "515790", "l_raw": 8.5, "m_raw": 7.5, "name": "\u534e\u6cf0\u67cf\u745e\u5149\u4f0fETF", "p_raw": 9.0, "sector": "\u7eff\u8272\u80fd\u6e90"}, {"b_raw": 7.0, "c_raw": 8.0, "code": "516780", "l_raw": 7.5, "m_raw": 6.5, "name": "\u5e73\u5b89\u7a00\u571fETF", "p_raw": 7.0, "sector": "\u81ea\u4e3b\u53ef\u63a7"}, {"b_raw": 8.5, "c_raw": 7.0, "code": "517800", "l_raw": 8.0, "m_raw": 8.0, "name": "\u5609\u5b9e\u8f6f\u4ef6ETF", "p_raw": 8.5, "sector": "\u6570\u667a\u57fa\u5efa"}, {"b_raw": 8.0, "c_raw": 8.5, "code": "518800", "l_raw": 8.5, "m_raw": 7.5, "name": "\u56fd\u6cf0\u9ec4\u91d1ETF", "p_raw": 5.0, "sector": "\u5b89\u5168\u97e7\u6027"}, {"b_raw": 9.0, "c_raw": 6.0, "code": "159801", "l_raw": 8.5, "m_raw": 8.5, "name": "\u5e7f\u53d1\u82af\u7247ETF", "p_raw": 9.5, "sector": "\u79d1\u6280\u81ea\u7acb"}, {"b_raw": 7.5, "c_raw": 6.5, "code": "159807", "l_raw": 8.0, "m_raw": 7.0, "name": "\u6613\u65b9\u8fbe\u4e2d\u6982\u4e92\u8054ETF", "p_raw": 6.0, "sector": "\u524d\u6cbf\u6280\u672f"}, {"b_raw": 7.0, "c_raw": 7.5, "code": "159869", "l_raw": 8.0, "m_raw": 6.5, "name": "\u534e\u590f\u6e38\u620fETF", "p_raw": 7.0, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 8.0, "c_raw": 8.5, "code": "159928", "l_raw": 9.0, "m_raw": 7.5, "name": "\u6c47\u6dfb\u5bcc\u6d88\u8d39ETF", "p_raw": 8.0, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 9.5, "c_raw": 5.0, "code": "159995", "l_raw": 9.0, "m_raw": 9.0, "name": "\u56fd\u6cf0\u534a\u5bfc\u4f53ETF", "p_raw": 9.0, "sector": "\u79d1\u6280\u81ea\u7acb"}, {"b_raw": 7.5, "c_raw": 8.0, "code": "512290", "l_raw": 8.5, "m_raw": 7.0, "name": "\u56fd\u6cf0\u751f\u7269\u533b\u836fETF", "p_raw": 6.5, "sector": "\u751f\u7269\u5b89\u5168"}, {"b_raw": 8.0, "c_raw": 7.0, "code": "512330", "l_raw": 8.0, "m_raw": 7.5, "name": "\u5357\u65b9\u4fe1\u606f\u521b\u65b0ETF", "p_raw": 8.0, "sector": "\u6570\u667a\u57fa\u5efa"}, {"b_raw": 7.0, "c_raw": 8.5, "code": "512400", "l_raw": 7.5, "m_raw": 6.5, "name": "\u5357\u65b9\u6709\u8272\u91d1\u5c5eETF", "p_raw": 6.0, "sector": "\u81ea\u4e3b\u53ef\u63a7"}, {"b_raw": 6.5, "c_raw": 8.0, "code": "512580", "l_raw": 7.0, "m_raw": 6.0, "name": "\u534e\u5b89\u73af\u4fddETF", "p_raw": 5.5, "sector": "\u7eff\u8272\u80fd\u6e90"}, {"b_raw": 7.0, "c_raw": 7.5, "code": "512670", "l_raw": 7.5, "m_raw": 6.5, "name": "\u56fd\u9632ETF", "p_raw": 7.0, "sector": "\u5b89\u5168\u97e7\u6027"}, {"b_raw": 7.5, "c_raw": 7.0, "code": "512710", "l_raw": 8.0, "m_raw": 7.0, "name": "\u5bcc\u56fd\u519b\u5de5\u9f99\u5934ETF", "p_raw": 7.5, "sector": "\u5b89\u5168\u97e7\u6027"}, {"b_raw": 9.5, "c_raw": 5.5, "code": "512760", "l_raw": 9.0, "m_raw": 9.0, "name": "\u56fd\u6cf0\u534a\u5bfc\u4f53\u82af\u7247ETF", "p_raw": 9.5, "sector": "\u79d1\u6280\u81ea\u7acb"}, {"b_raw": 6.5, "c_raw": 7.0, "code": "512770", "l_raw": 7.5, "m_raw": 6.0, "name": "\u534e\u5b9d\u6e2f\u80a1\u901a\u4e92\u8054\u7f51ETF", "p_raw": 5.0, "sector": "\u524d\u6cbf\u6280\u672f"}, {"b_raw": 7.5, "c_raw": 8.0, "code": "512900", "l_raw": 8.5, "m_raw": 7.0, "name": "\u5357\u65b9\u8bc1\u5238ETF", "p_raw": 5.5, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 8.0, "c_raw": 9.0, "code": "512950", "l_raw": 8.5, "m_raw": 7.5, "name": "\u592e\u4f01\u6539\u9769ETF", "p_raw": 7.5, "sector": "\u81ea\u4e3b\u53ef\u63a7"}, {"b_raw": 7.5, "c_raw": 7.0, "code": "512960", "l_raw": 7.5, "m_raw": 7.0, "name": "\u666f\u987a\u957f\u57ce\u519b\u5de5ETF", "p_raw": 7.0, "sector": "\u5b89\u5168\u97e7\u6027"}, {"b_raw": 9.0, "c_raw": 9.0, "code": "512990", "l_raw": 9.5, "m_raw": 8.5, "name": "\u534e\u590fMSCI\u4e2d\u56fdA50ETF", "p_raw": 8.5, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 8.0, "c_raw": 6.0, "code": "513050", "l_raw": 8.5, "m_raw": 7.5, "name": "\u6613\u65b9\u8fbe\u4e2d\u6982\u4e92\u8054ETF", "p_raw": 6.5, "sector": "\u524d\u6cbf\u6280\u672f"}, {"b_raw": 8.0, "c_raw": 4.0, "code": "513500", "l_raw": 8.5, "m_raw": 8.0, "name": "\u535a\u65f6\u6807\u666e500ETF", "p_raw": 8.0, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 7.5, "c_raw": 6.5, "code": "513600", "l_raw": 8.0, "m_raw": 7.0, "name": "\u5357\u65b9\u6052\u751f\u79d1\u6280ETF", "p_raw": 5.5, "sector": "\u524d\u6cbf\u6280\u672f"}, {"b_raw": 7.0, "c_raw": 6.0, "code": "513660", "l_raw": 8.5, "m_raw": 6.5, "name": "\u534e\u590f\u6052\u751f\u4e92\u8054\u7f51ETF", "p_raw": 5.0, "sector": "\u524d\u6cbf\u6280\u672f"}, {"b_raw": 8.0, "c_raw": 7.0, "code": "515700", "l_raw": 8.5, "m_raw": 7.5, "name": "\u5e73\u5b89\u65b0\u80fd\u8f66ETF", "p_raw": 8.5, "sector": "\u7eff\u8272\u80fd\u6e90"}, {"b_raw": 7.5, "c_raw": 7.5, "code": "515880", "l_raw": 8.0, "m_raw": 7.0, "name": "\u56fd\u6cf0\u901a\u4fe1ETF", "p_raw": 7.5, "sector": "\u6570\u667a\u57fa\u5efa"}, {"b_raw": 9.0, "c_raw": 8.0, "code": "588000", "l_raw": 9.5, "m_raw": 8.5, "name": "\u79d1\u521b50ETF", "p_raw": 9.0, "sector": "\u79d1\u6280\u81ea\u7acb"}, {"b_raw": 7.0, "c_raw": 7.5, "code": "159732", "l_raw": 7.5, "m_raw": 6.5, "name": "\u6d88\u8d39\u7535\u5b50ETF", "p_raw": 7.0, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 6.5, "c_raw": 8.0, "code": "159766", "l_raw": 7.0, "m_raw": 6.0, "name": "\u65c5\u6e38ETF", "p_raw": 6.5, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 6.0, "c_raw": 8.5, "code": "159825", "l_raw": 6.5, "m_raw": 5.5, "name": "\u519c\u4e1aETF", "p_raw": 6.0, "sector": "\u81ea\u4e3b\u53ef\u63a7"}, {"b_raw": 6.5, "c_raw": 8.0, "code": "159870", "l_raw": 7.0, "m_raw": 6.0, "name": "\u7269\u6d41ETF", "p_raw": 6.5, "sector": "\u73b0\u4ee3\u7269\u6d41"}, {"b_raw": 8.5, "c_raw": 9.0, "code": "159901", "l_raw": 9.0, "m_raw": 8.0, "name": "\u6df1100ETF", "p_raw": 8.0, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 8.0, "c_raw": 8.5, "code": "159902", "l_raw": 8.5, "m_raw": 7.5, "name": "\u4e2d\u5c0f\u677fETF", "p_raw": 7.5, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 7.5, "c_raw": 8.0, "code": "159903", "l_raw": 8.0, "m_raw": 7.0, "name": "\u6df1\u6210ETF", "p_raw": 7.0, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 8.5, "c_raw": 9.0, "code": "159919", "l_raw": 9.5, "m_raw": 8.0, "name": "\u6caa\u6df1300ETF", "p_raw": 8.5, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 8.0, "c_raw": 8.5, "code": "159949", "l_raw": 9.0, "m_raw": 7.5, "name": "\u521b\u4e1a\u677f50ETF", "p_raw": 8.0, "sector": "\u6218\u7565\u5bbd\u57fa"}, {"b_raw": 7.0, "c_raw": 8.5, "code": "512600", "l_raw": 8.0, "m_raw": 6.5, "name": "\u5609\u5b9e\u533b\u836f\u5065\u5eb7ETF", "p_raw": 6.5, "sector": "\u751f\u7269\u5b89\u5168"}, {"b_raw": 6.5, "c_raw": 8.0, "code": "512980", "l_raw": 7.5, "m_raw": 6.0, "name": "\u5e7f\u53d1\u4f20\u5a92ETF", "p_raw": 6.0, "sector": "\u5185\u9700\u57fa\u77f3"}, {"b_raw": 8.0, "c_raw": 8.0, "code": "512100", "l_raw": 8.5, "m_raw": 7.5, "name": "\u5357\u65b9\u4e2d\u8bc11000ETF", "p_raw": 7.5, "sector": "\u6218\u7565\u5bbd\u57fa"}];
+            
+            // 获取所有赛道
+            const sectors = [...new Set(etfData.map(etf => etf.sector))];
+            console.log(`发现 ${etfData.length} 支标的，${sectors.length} 个赛道`);
+            
+            // 初始化筛选器
+            const filterContainer = document.getElementById('filterContainer');
+            if (!filterContainer) {
+                console.error('找不到filterContainer元素');
+                return;
+            }
+            
+            sectors.forEach(sector => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.textContent = sector;
+                btn.dataset.filter = sector;
+                btn.addEventListener('click', () => filterETFs(sector));
+                filterContainer.appendChild(btn);
+            });
+            
+            // 渲染ETF卡片
+            function renderETFs(filter = 'all') {
+                const etfGrid = document.getElementById('etfGrid');
+                const noResults = document.getElementById('noResults');
+                
+                if (!etfGrid) {
+                    console.error('找不到etfGrid元素');
+                    return;
+                }
+                
+                etfGrid.innerHTML = '';
+                
+                const filtered = etfData.filter(etf => 
+                    filter === 'all' || etf.sector === filter
+                );
+                
+                console.log(`筛选结果: ${filtered.length} 支标的`);
+                
+                if (filtered.length === 0) {
+                    if (noResults) noResults.style.display = 'block';
+                    return;
+                }
+                
+                if (noResults) noResults.style.display = 'none';
+                
+                filtered.forEach(etf => {
+                    const card = document.createElement('div');
+                    card.className = 'etf-card';
+                    // 修复链接路径：使用bronze_details/而不是details/
+                    card.innerHTML = `
+                        <div class="etf-code">${etf.code}</div>
+                        <div class="etf-name">${etf.name}</div>
+                        <div class="etf-sector">${etf.sector}</div>
+                        <a href="bronze_details/${etf.code}.html" class="etf-link">查看详情 →</a>
+                    `;
+                    etfGrid.appendChild(card);
+                });
+            }
+            
+            // 筛选ETF
+            function filterETFs(filter) {
+                console.log(`筛选赛道: ${filter}`);
+                
+                // 更新按钮状态
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                const activeBtn = document.querySelector(`[data-filter="${filter}"]`);
+                if (activeBtn) activeBtn.classList.add('active');
+                
+                // 渲染筛选结果
+                renderETFs(filter);
+            }
+            
+            // 搜索功能
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const etfGrid = document.getElementById('etfGrid');
+                    const noResults = document.getElementById('noResults');
+                    
+                    if (!searchTerm) {
+                        const activeFilter = document.querySelector('.filter-btn.active');
+                        if (activeFilter) {
+                            renderETFs(activeFilter.dataset.filter);
+                        } else {
+                            renderETFs('all');
+                        }
+                        return;
+                    }
+                    
+                    if (etfGrid) etfGrid.innerHTML = '';
+                    const filtered = etfData.filter(etf => 
+                        etf.code.toLowerCase().includes(searchTerm) || 
+                        etf.name.toLowerCase().includes(searchTerm) ||
+                        etf.sector.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    console.log(`搜索"${searchTerm}": 找到 ${filtered.length} 个结果`);
+                    
+                    if (filtered.length === 0) {
+                        if (noResults) noResults.style.display = 'block';
+                        return;
+                    }
+                    
+                    if (noResults) noResults.style.display = 'none';
+                    filtered.forEach(etf => {
+                        const card = document.createElement('div');
+                        card.className = 'etf-card';
+                        card.innerHTML = `
+                            <div class="etf-code">${etf.code}</div>
+                            <div class="etf-name">${etf.name}</div>
+                            <div class="etf-sector">${etf.sector}</div>
+                            <a href="bronze_details/${etf.code}.html" class="etf-link">查看详情 →</a>
+                        `;
+                        if (etfGrid) etfGrid.appendChild(card);
+                    });
+                });
+            }
+            
+            // 初始渲染
+            renderETFs('all');
+            console.log('初始渲染完成');
+            
+            // 添加键盘快捷键
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'k') {
+                    e.preventDefault();
+                    if (searchInput) searchInput.focus();
+                }
+            });
+        });
+        
+        // 错误处理
+        window.addEventListener('error', function(e) {
+            console.error('页面JavaScript错误:', e.message, 'at', e.filename, ':', e.lineno);
+        });
+    </script>
+</body>
+</html>

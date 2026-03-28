@@ -1,0 +1,62 @@
+{
+  "沪深300": {
+    "code": "000300",
+    "market": "A股",
+    "weight": 0.3,
+    "price": 3866.02,
+    "change": 0.41601313763730685,
+    "update_time": "2026-03-18 18:33:12",
+    "data_source": "公开API",
+    "status": "verified"
+  },
+  "创业板指": {
+    "code": "399006",
+    "market": "A股",
+    "weight": 0.2,
+    "price": 2152.03,
+    "change": 0.0945778092452908,
+    "update_time": "2026-03-18 18:33:12",
+    "data_source": "公开API",
+    "status": "verified"
+  },
+  "恒生指数": {
+    "code": "HSI",
+    "market": "港股",
+    "weight": 0.15,
+    "price": 18492.13,
+    "change": -0.04252862361281662,
+    "update_time": "2026-03-18 18:33:12",
+    "data_source": "公开API",
+    "status": "verified"
+  },
+  "恒生科技": {
+    "code": "HSTECH",
+    "market": "港股",
+    "weight": 0.15,
+    "price": 4237.18,
+    "change": -0.3016726418535681,
+    "update_time": "2026-03-18 18:33:12",
+    "data_source": "公开API",
+    "status": "verified"
+  },
+  "纳斯达克": {
+    "code": "NDX",
+    "market": "美股",
+    "weight": 0.1,
+    "price": 18449.13,
+    "change": -0.2749815260662788,
+    "update_time": "2026-03-18 18:33:12",
+    "data_source": "公开API",
+    "status": "verified"
+  },
+  "标普500": {
+    "code": "SPX",
+    "market": "美股",
+    "weight": 0.1,
+    "price": 5249.16,
+    "change": -0.015959961322945304,
+    "update_time": "2026-03-18 18:33:12",
+    "data_source": "公开API",
+    "status": "verified"
+  }
+}

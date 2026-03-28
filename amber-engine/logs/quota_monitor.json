@@ -1,0 +1,15 @@
+{
+  "daily_requests": [
+    {
+      "date": "2026-03-18",
+      "time": "19:49:04",
+      "endpoint": "quota_check",
+      "estimated_remaining": 5000
+    }
+  ],
+  "monthly_requests": 0,
+  "last_reset": "2026-03-18",
+  "estimated_remaining": 5000,
+  "alerts_sent": [],
+  "last_check": "2026-03-18 19:49:04"
+}

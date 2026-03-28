@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主编私人作战室 - 登录</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 5rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .login-logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .password-input:focus {
+            border-color: #0d47a1;
+            outline: none;
+        }
+        
+        .login-button {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #0d47a1 0%, #1a237e 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .login-button:hover {
+            opacity: 0.9;
+        }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .password-hint {
+            font-size: 0.875rem;
+            color: #666;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="login-logo">🔐</div>
+            <h1>主编私人作战室</h1>
+            <p>50.4万持仓专项雷达</p>
+        </div>
+        
+        <form id="login-form">
+            <input type="password" 
+                   class="password-input" 
+                   id="password" 
+                   placeholder="请输入访问密码" 
+                   required
+                   autocomplete="current-password">
+            
+            <button type="submit" class="login-button">进入作战室</button>
+            
+            <div class="error-message" id="error-message">
+                密码错误，请重新输入
+            </div>
+            
+            <div class="password-hint">
+                提示: 密码为团队名称 + AI
+            </div>
+        </form>
+        
+        <div class="back-link">
+            <a href="/" class="source-tag">返回首页</a>
+        </div>
+    </div>
+    
+    <script>
+        // 访问密码: CheeseAI
+        const CORRECT_PASSWORD = "CheeseAI";
+        
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('error-message');
+            
+            if (password === CORRECT_PASSWORD) {
+                // 密码正确，设置访问令牌
+                const token = btoa(Date.now() + ':' + password);
+                localStorage.setItem('wealth_dashboard_token', token);
+                localStorage.setItem('wealth_dashboard_expiry', Date.now() + 3600000); // 1小时有效期
+                
+                // 跳转到仪表板
+                window.location.href = 'dashboard.html';
+            } else {
+                // 密码错误
+                errorElement.style.display = 'block';
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+                
+                // 3秒后隐藏错误信息
+                setTimeout(() => {
+                    errorElement.style.display = 'none';
+                }, 3000);
+            }
+        });
+        
+        // 检查是否已有有效令牌
+        window.addEventListener('load', function() {
+            const token = localStorage.getItem('wealth_dashboard_token');
+            const expiry = localStorage.getItem('wealth_dashboard_expiry');
+            
+            if (token && expiry && Date.now() < parseInt(expiry)) {
+                // 有有效令牌，直接跳转
+                window.location.href = 'dashboard.html';
+            }
+        });
+        
+        // 回车键提交
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('login-form').dispatchEvent(new Event('submit'));
+            }
+        });
+    </script>
+</body>
+</html>

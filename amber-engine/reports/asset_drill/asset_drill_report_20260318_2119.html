@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琥珀引擎 V2.8 - 资产穿透报告</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        .drill-report {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .drill-header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a237e;
+            margin: 0.5rem 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .holdings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .holdings-table th {
+            background: #f5f5f5;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .holdings-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .holdings-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .percentage-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        
+        .percentage-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #2196f3);
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .drill-report {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="drill-report">
+        <div class="drill-header">
+            <h1>🛡️ 琥珀引擎 V2.8 - 资产穿透报告</h1>
+            <p>穿透时间: 2026-03-18 21:19:25</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">总资产</div>
+                <div class="stat-value">390,000</div>
+                <div class="stat-detail">元</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">穿透基金</div>
+                <div class="stat-value">8</div>
+                <div class="stat-detail">只</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">底层股票</div>
+                <div class="stat-value">71</div>
+                <div class="stat-detail">只</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">穿透深度</div>
+                <div class="stat-value">4</div>
+                <div class="stat-detail">个季度</div>
+            </div>
+        </div>
+        
+        <h2>🏆 前10大重仓股</h2>
+        <table class="holdings-table">
+            <thead>
+                <tr>
+                    <th>排名</th>
+                    <th>股票代码</th>
+                    <th>股票名称</th>
+                    <th>持仓总额</th>
+                    <th>占比</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>300750.SZ</strong></td>
+                    <td>宁德时代</td>
+                    <td>35,426 元</td>
+                    <td>
+                        9.08%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 9.08%"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>300308.SZ</strong></td>
+                    <td>300308.SZ</td>
+                    <td>23,881 元</td>
+                    <td>
+                        6.12%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 6.12%"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>300059.SZ</strong></td>
+                    <td>东方财富</td>
+                    <td>22,127 元</td>
+                    <td>
+                        5.67%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 5.67%"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>300502.SZ</strong></td>
+                    <td>300502.SZ</td>
+                    <td>16,615 元</td>
+                    <td>
+                        4.26%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 4.26%"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>688981.SH</strong></td>
+                    <td>688981.SH</td>
+                    <td>16,329 元</td>
+                    <td>
+                        4.19%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 4.19%"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>600030.SH</strong></td>
+                    <td>600030.SH</td>
+                    <td>15,487 元</td>
+                    <td>
+                        3.97%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 3.97%"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><strong>600519.SH</strong></td>
+                    <td>贵州茅台</td>
+                    <td>14,806 元</td>
+                    <td>
+                        3.80%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 3.8%"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><strong>688256.SH</strong></td>
+                    <td>688256.SH</td>
+                    <td>14,075 元</td>
+                    <td>
+                        3.61%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 3.61%"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><strong>688041.SH</strong></td>
+                    <td>688041.SH</td>
+                    <td>13,930 元</td>
+                    <td>
+                        3.57%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 3.57%"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><strong>600036.SH</strong></td>
+                    <td>招商银行</td>
+                    <td>13,439 元</td>
+                    <td>
+                        3.45%
+                        <div class="percentage-bar">
+                            <div class="percentage-fill" style="width: 3.45%"></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="report-footer">
+            <p>💡 数据来源: Tushare Pro Verified | 琥珀引擎资产穿透系统</p>
+            <p>📅 报告生成: 2026-03-18 21:19:25</p>
+            <p>🔗 访问地址: https://finance.cheese.ai/my-wealth/drill</p>
+        </div>
+    </div>
+</body>
+</html>

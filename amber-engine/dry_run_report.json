@@ -1,0 +1,16 @@
+{
+  "test_time": "2026-03-24 14:57:33",
+  "total_etfs": 19,
+  "successful_real_time": 15,
+  "real_time_rate": 78.94736842105263,
+  "source_distribution": {
+    "[SOURCE: REAL_TIME_API]": 15,
+    "[SOURCE: CACHED_DATA]": 2,
+    "[SOURCE: SIMULATED_DATA]": 0,
+    "[SOURCE: FALLBACK_CACHE]": 0,
+    "[SOURCE: LEGACY_BACKUP]": 1,
+    "[SOURCE: EMERGENCY_SIM]": 1
+  },
+  "fault_fence_status": "ACTIVE",
+  "prediction": "首航准备就绪"
+}

@@ -1,0 +1,13 @@
+{
+  "code": "512010",
+  "name": "医药ETF",
+  "bias": 3.9,
+  "ma20": 0.95,
+  "alpha": 3.5,
+  "strategy_score": 60,
+  "robust_score": 85,
+  "efficiency_score": 72,
+  "total_score": 65.8,
+  "data_source": "TUSHARE",
+  "update_time": "2026-03-27T18:46:02.622008"
+}

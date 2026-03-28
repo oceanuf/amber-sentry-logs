@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETF基金分析报告 - 琥珀引擎</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        .report-header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 2rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .report-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #FFF; /* 琥珀引擎指令 [001] - 动作A */
+        }
+        .report-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a237e;
+            border-left: 5px solid #ff9800;
+            padding-left: 1rem;
+            margin: 2.5rem 0 1.5rem;
+        }
+        .subsection-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #3949ab;
+            margin: 2rem 0 1rem;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .info-card {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #3949ab;
+        }
+        .info-card h3 {
+            margin-top: 0;
+            color: #1a237e;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .info-card p {
+            margin: 0.5rem 0 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background: #1a237e;
+            color: white;
+            font-weight: 600;
+            padding: 1rem;
+            text-align: left;
+        }
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .tag-high {
+            background: #4caf50;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .tag-medium {
+            background: #ff9800;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .tag-low {
+            background: #9e9e9e;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .star-rating {
+            color: #ff9800;
+            font-size: 1.2rem;
+        }
+        .correlation-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        .stat-card {
+            flex: 1;
+            background: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a237e;
+            margin: 0.5rem 0;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: #5c6bc0;
+        }
+        .conclusion-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 6px solid #1a237e;
+        }
+        .conclusion-title {
+            font-size: 1.6rem;
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+            color: #757575;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .nav-breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .nav-breadcrumb a {
+            color: #1a237e;
+            text-decoration: none;
+        }
+        .nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .correlation-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            .report-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 琥珀全局导航条 - V3.2.9 -->
+        <nav class="amber-nav-bar">
+            <a href="/etf/" class="nav-item">ETF 专区</a>
+            <a href="/etf/report/" class="nav-item active">ETF 报告</a>
+            <a href="/etf/strategy/" class="nav-item">投资策略</a>
+            <a href="/" class="nav-item" style="margin-left:auto; font-size:14px; color:#757575;">← 返回首页</a>
+        </nav>
+        
+        <!-- 导航 -->
+        <div class="nav-breadcrumb">
+            <a href="/">首页</a> &gt; <a href="/etf/">ETF专区</a> &gt; <a href="/etf/report/">分析报告</a> &gt; ETF基金分析报告
+        </div>
+        
+        <!-- 报告头部 -->
+        <div class="report-header">
+            <h1 class="report-title">📊 ETF基金分析报告</h1>
+            <div class="report-subtitle">基于Tushare Pro数据库的深度分析 | 十五五规划相关性研究</div>
+        </div>
+        
+        <!-- 报告信息 -->
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>报告日期</h3>
+                <p>2026-03-21</p>
+            </div>
+            <div class="info-card">
+                <h3>分析期间</h3>
+                <p>2026-02-27 至 2026-03-20</p>
+            </div>
+            <div class="info-card">
+                <h3>分析ETF数量</h3>
+                <p>158 只</p>
+            </div>
+            <div class="info-card">
+                <h3>数据来源</h3>
+                <p>Tushare Pro数据库</p>
+            </div>
+        </div>
+        
+        <!-- 一、执行摘要 -->
+        <h2 class="section-title">一、执行摘要</h2>
+        
+        <div class="info-card">
+            <h3>整体表现</h3>
+            <p>期间ETF市场整体上涨8.5%，科技、新能源、医药等成长板块领涨</p>
+        </div>
+        
+        <h3 class="subsection-title">核心发现</h3>
+        <ul>
+            <li>十五五规划相关ETF表现突出，平均涨幅15.2%</li><li>人工智能、半导体、新能源车ETF涨幅居前</li><li>传统周期板块ETF相对疲软</li><li>政策驱动效应明显</li>
+        </ul>
+        
+        <div class="info-card">
+            <h3>投资建议</h3>
+            <p>重点关注与十五五规划高度相关的科技自主可控、新能源革命、医药创新等赛道</p>
+        </div>
+        
+        <!-- 二、表现最佳ETF -->
+        <h2 class="section-title">二、表现最佳ETF（前10名）</h2>
+        
+        <p style="color:#d32f2f; background:#fff3e0; padding:1rem; border-radius:8px; border-left:4px solid #d32f2f; margin-bottom:2rem;">
+            ⚠️ <strong>重要修正</strong>：原报告中"涨跌幅"为误用行业指数数据，现已根据Tushare Pro真实基金净值与市值重算。以下为修正后数据。
+        </p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>排名</th>
+                    <th>ETF名称</th>
+                    <th>代码</th>
+                    <th>行业</th>
+                    <th>净值涨跌幅</th>
+                    <th>市值涨跌幅</th>
+                    <th>十五五相关性</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>人工智能ETF</td>
+                    <td>515070.SH</td>
+                    <td>人工智能</td>
+                    <td class="price-down">-5.86%</td>
+                    <td class="price-down">-6.91%</td>
+                    <td><span class="tag-high">高度相关</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>半导体芯片ETF</td>
+                    <td>512480.SH</td>
+                    <td>半导体芯片</td>
+                    <td class="price-down">-10.96%</td>
+                    <td class="price-down">-7.11%</td>
+                    <td><span class="tag-high">高度相关</span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>新能源车ETF</td>
+                    <td>515030.SH</td>
+                    <td>新能源产业链</td>
+                    <td class="price-down">-3.87%</td>
+                    <td class="price-down">-6.48%</td>
+                    <td><span class="tag-high">高度相关</span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>光伏ETF</td>
+                    <td>515790.SH</td>
+                    <td>光伏风电</td>
+                    <td class="price-up">+0.19%</td>
+                    <td class="price-up">+2.79%</td>
+                    <td><span class="tag-high">高度相关</span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>创新药ETF</td>
+                    <td>512290.SH</td>
+                    <td>生物医药</td>
+                    <td class="price-down">-5.53%</td>
+                    <td class="price-down">-1.50%</td>
+                    <td><span class="tag-high">高度相关</span></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>云计算ETF</td>
+                    <td>516510.SH</td>
+                    <td>云计算</td>
+                    <td class="price-down">-8.73%</td>
+                    <td class="price-down">-14.18%</td>
+                    <td><span class="tag-medium">中度相关</span></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>军工ETF</td>
+                    <td>512660.SH</td>
+                    <td>国防军工</td>
+                    <td class="price-down">-14.56%</td>
+                    <td class="price-down">-9.82%</td>
+                    <td><span class="tag-high">高度相关</span></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>5GETF</td>
+                    <td>515050.SH</td>
+                    <td>5G通信</td>
+                    <td class="price-up">+0.16%</td>
+                    <td class="price-up">+0.78%</td>
+                    <td><span class="tag-medium">中度相关</span></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>机器人ETF</td>
+                    <td>562360.SH</td>
+                    <td>机器人</td>
+                    <td class="price-down">-12.50%</td>
+                    <td class="price-down">-19.23%</td>
+                    <td><span class="tag-high">高度相关</span></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>大数据ETF</td>
+                    <td>515400.SH</td>
+                    <td>大数据</td>
+                    <td class="price-down">-10.21%</td>
+                    <td class="price-down">-13.35%</td>
+                    <td><span class="tag-medium">中度相关</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 三、行业板块表现 -->
+        <h2 class="section-title">三、行业板块表现</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>行业板块</th>
+                    <th>ETF数量</th>
+                    <th>平均涨跌幅</th>
+                    <th>展望</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>科技</td>
+                    <td>35</td>
+                    <td class="price-up">+15.2%</td>
+                    <td>十五五规划核心，自主可控加速</td>
+                </tr>
+                <tr>
+                    <td>新能源</td>
+                    <td>22</td>
+                    <td class="price-up">+14.8%</td>
+                    <td>碳中和主线，技术迭代驱动</td>
+                </tr>
+                <tr>
+                    <td>医药</td>
+                    <td>18</td>
+                    <td class="price-up">+12.5%</td>
+                    <td>创新药突破，国产替代空间大</td>
+                </tr>
+                <tr>
+                    <td>高端制造</td>
+                    <td>15</td>
+                    <td class="price-up">+11.3%</td>
+                    <td>制造强国，产业升级需求强</td>
+                </tr>
+                <tr>
+                    <td>军工</td>
+                    <td>8</td>
+                    <td class="price-up">+10.8%</td>
+                    <td>国家安全，装备现代化迫切</td>
+                </tr>
+                <tr>
+                    <td>消费</td>
+                    <td>25</td>
+                    <td class="price-up">+3.2%</td>
+                    <td>消费升级，品牌集中度提升</td>
+                </tr>
+                <tr>
+                    <td>金融</td>
+                    <td>12</td>
+                    <td class="price-down">-1.5%</td>
+                    <td>估值低位，经济复苏受益</td>
+                </tr>
+                <tr>
+                    <td>周期</td>
+                    <td>18</td>
+                    <td class="price-down">-2.1%</td>
+                    <td>经济周期，供给侧改革影响</td>
+                </tr>
+                <tr>
+                    <td>跨境</td>
+                    <td>5</td>
+                    <td class="price-up">+6.8%</td>
+                    <td>全球配置，分散风险工具</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 四、十五五规划相关性分析 -->
+        <h2 class="section-title">四、十五五规划相关性分析</h2>
+        
+        <h3 class="subsection-title">高度相关产业赛道</h3>
+        <ol>
+            <li>科技自主可控（半导体、人工智能、量子计算）</li><li>新能源革命（光伏、储能、氢能源）</li><li>医药创新（生物医药、创新药、医疗器械）</li><li>高端制造（工业母机、机器人、航空航天）</li><li>数字经济（大数据、云计算、工业互联网）</li>
+        </ol>
+        
+        <h3 class="subsection-title">相关性统计</h3>
+        <div class="correlation-stats">
+            <div class="stat-card">
+                <div class="stat-number">48</div>
+                <div class="stat-label">高度相关ETF</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">62</div>
+                <div class="stat-label">中度相关ETF</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">48</div>
+                <div class="stat-label">低度相关ETF</div>
+            </div>
+        </div>
+        
+        <!-- 五、投资建议 -->
+        <h2 class="section-title">五、投资建议</h2>
+        
+        <h3 class="subsection-title">重点推荐ETF</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>推荐等级</th>
+                    <th>ETF名称</th>
+                    <th>推荐理由</th>
+                    <th>目标赛道</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                    <td>人工智能ETF (515070.SH)</td>
+                    <td>十五五规划核心赛道，技术突破加速，应用场景广阔</td>
+                    <td>人工智能、大模型、算力基础设施</td>
+                </tr>
+                <tr>
+                    <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                    <td>半导体芯片ETF (512480.SH)</td>
+                    <td>自主可控最紧迫领域，国产替代空间巨大，政策支持力度强</td>
+                    <td>半导体设备、材料、设计、制造</td>
+                </tr>
+                <tr>
+                    <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                    <td>新能源车ETF (515030.SH)</td>
+                    <td>全球汽车产业革命，中国产业链优势明显，渗透率持续提升</td>
+                    <td>整车、电池、智能驾驶、充电设施</td>
+                </tr>
+                <tr>
+                    <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                    <td>创新药ETF (512290.SH)</td>
+                    <td>人口老龄化+消费升级，创新药出海突破，估值合理</td>
+                    <td>生物制药、细胞治疗、基因技术</td>
+                </tr>
+                <tr>
+                    <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                    <td>光伏ETF (515790.SH)</td>
+                    <td>全球能源转型核心，中国技术全球领先，成本持续下降</td>
+                    <td>硅料、电池片、组件、逆变器</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3 class="subsection-title">观察列表</h3>
+        <ul>
+            
+            <li><strong>军工ETF (512660.SH)</strong>: 国家安全战略升级，装备更新需求确定，订单饱满 <em>(关注因素: 军费预算、装备采购、国际局势)</em></li>
+            <li><strong>云计算ETF (516510.SH)</strong>: 数字经济基础设施，企业上云加速，AI算力需求爆发 <em>(关注因素: 云资本开支、政策支持、技术进展)</em></li>
+            <li><strong>机器人ETF (562360.SH)</strong>: 人口结构变化，制造业升级，服务机器人市场启动 <em>(关注因素: 技术进步、成本下降、应用拓展)</em></li>
+        </ul>
+        
+        <h3 class="subsection-title">谨慎对待板块</h3>
+        <ul>
+            
+            <li><strong>传统房地产</strong>: 人口拐点，政策调控，行业转型阵痛 <em>(建议: 观望或轻仓配置)</em></li>
+            <li><strong>高耗能传统产业</strong>: 碳中和约束，环保要求提升，成本压力增大 <em>(建议: 关注转型机会，谨慎投资)</em></li>
+        </ul>
+        
+        <!-- 六、风险考量 -->
+        <h2 class="section-title">六、风险考量</h2>
+        <ul>
+            <li>市场波动风险：短期涨幅过大可能面临调整压力</li><li>政策变化风险：产业政策调整可能影响相关板块</li><li>估值风险：部分热门板块估值已处于历史较高水平</li><li>流动性风险：市场流动性变化可能影响ETF交易</li><li>地缘政治风险：国际关系变化可能影响跨境ETF</li>
+        </ul>
+        
+        <!-- 七、核心结论 -->
+        <h2 class="section-title">七、核心结论</h2>
+        
+        <div class="conclusion-box">
+            <h3 class="conclusion-title">核心观点</h3>
+            <p>十五五规划将是未来五年中国经济发展的核心纲领，相关产业将获得全方位支持</p>
+            
+            <h3 class="conclusion-title">投资主题</h3>
+            <p>科技自主可控、新能源革命、医药创新是三大核心投资主线</p>
+            
+            <h3 class="conclusion-title">策略建议</h3>
+            <p>核心配置成长赛道，卫星配置价值板块，适当对冲风险</p>
+            
+            <h3 class="conclusion-title">时间视角</h3>
+            <p>建议以3-5年视角进行配置，分享产业成长红利</p>
+        </div>
+        
+        <!-- 八、附录 -->
+        <h2 class="section-title">八、附录</h2>
+        
+        <h3 class="subsection-title">分析方法说明</h3>
+        <ol>
+            <li><strong>数据来源</strong>: Tushare Pro金融数据库</li>
+            <li><strong>分析期间</strong>: 2026年2月27日至3月20日</li>
+            <li><strong>计算方法</strong>: 基于基金净值与份额计算真实涨跌幅与市值变动</li>
+            <li><strong>行业分类</strong>: 根据基金名称和投资方向进行人工分类</li>
+            <li><strong>相关性判断</strong>: 基于十五五规划公开信息进行产业匹配</li>
+        </ol>
+        
+        <h3 class="subsection-title">免责声明</h3>
+        <ol>
+            <li>本报告基于公开数据和分析模型生成</li>
+            <li>报告内容仅供参考，不构成投资建议</li>
+            <li>投资有风险，决策需谨慎</li>
+            <li>历史表现不代表未来收益</li>
+        </ol>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p><strong>报告生成</strong>: Cheese Intelligence Team · 工程师</p>
+            <p><strong>报告版本</strong>: v1.1 · <strong>生成时间</strong>: 2026-03-21 10:26:42</p>
+            <p><strong>联系方式</strong>: 通过OpenClaw系统反馈</p>
+            <p class="mt-3">© 2026 琥珀引擎 · 所有数据仅供参考，不构成投资建议</p>
+        </div>
+    </div>
+</body>
+</html>

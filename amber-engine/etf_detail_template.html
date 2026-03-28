@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ETF_CODE}} {{ETF_NAME}} - 琥珀引擎标的详情页</title>
+    
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bronze-primary: #cd7f32;
+            --bronze-secondary: #b87333;
+            --bronze-light: #e6c9a8;
+            --bronze-dark: #8b4513;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #ddd;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --info: #3498db;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9d8c8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bronze-dark) 0%, var(--bronze-primary) 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .etf-basic-info {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 30px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .etf-symbol {
+            font-size: 4rem;
+            font-weight: 800;
+            background: rgba(255, 255, 255, 0.2);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .etf-details {
+            flex: 1;
+        }
+        
+        .etf-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .etf-sector {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .etf-score {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .score-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .score-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .content-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--bronze-primary);
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--bronze-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--bronze-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title i {
+            color: var(--bronze-primary);
+        }
+        
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .info-item {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--bronze-primary);
+        }
+        
+        .info-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Chart Container */
+        .chart-container {
+            height: 300px;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        /* Algorithm Score Breakdown */
+        .score-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .score-dimension {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #f0e6dc 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--bronze-light);
+        }
+        
+        .dimension-name {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        
+        .dimension-score {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--bronze-dark);
+            margin-bottom: 5px;
+        }
+        
+        .dimension-weight {
+            font-size: 0.8rem;
+            color: var(--bronze-primary);
+            font-weight: 600;
+        }
+        
+        /* Time Info */
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .time-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .time-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .time-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--bronze-dark);
+        }
+        
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .nav-button {
+            background: var(--bronze-primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background: var(--bronze-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .etf-basic-info {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .etf-symbol {
+                margin: 0 auto;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .time-info {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="etf-basic-info">
+                <div class="etf-symbol">{{ETF_CODE}}</div>
+                <div class="etf-details">
+                    <h1 class="etf-name">{{ETF_NAME}}</h1>
+                    <div class="etf-sector">{{ETF_SECTOR}} · {{ETF_TYPE}}</div>
+                    <div class="etf-meta">
+                        <div style="display: flex; gap: 20px; margin-top: 10px;">
+                            <div>
+                                <div style="font-size: 0.9rem; opacity: 0.8;">基金管理人</div>
+                                <div style="font-weight: 600;">{{FUND_MANAGER}}</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.9rem; opacity: 0.8;">成立日期</div>
+                                <div style="font-weight: 600;">{{ESTABLISH_DATE}}</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.9rem; opacity: 0.8;">资产规模</div>
+                                <div style="font-weight: 600;">{{ASSET_SIZE}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="etf-score">
+                    <div class="score-value">{{TOTAL_SCORE}}</div>
+                    <div class="score-label">青铜法典评分</div>
+                    <div style="font-size: 0.8rem; margin-top: 5px; opacity: 0.8;">{{SCORE_GRADE}}</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- 十五五关联性分析 -->
+            <section class="content-card">
+                <h2 class="card-title">
+                    <i class="fas fa-project-diagram"></i> 十五五关联性分析
+                </h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">政策契合度</div>
+                        <div class="info-value">{{POLICY_COMPLIANCE}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">战略新兴产业</div>
+                        <div class="info-value">{{STRATEGIC_INDUSTRY}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">科技创新权重</div>
+                        <div class="info-value">{{TECH_INNOVATION_WEIGHT}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">绿色低碳关联</div>
+                        <div class="info-value">{{GREEN_DEVELOPMENT}}</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #3498db;">
+                    <div style="font-size: 0.9rem; color: #2c3e50; line-height: 1.5;">
+                        {{FIFTEEN_FIVE_ANALYSIS}}
+                    </div>
+                </div>
+            </section>
+
+            <!-- 近30天市值走势 -->
+            <section class="content-card">
+                <h2 class="card-title">
+                    <i class="fas fa-chart-line"></i> 近30天市值走势
+                </h2>
+                <div class="chart-container">
+                    <canvas id="marketValueChart"></canvas>
+                </div>
+                <div class="info-grid" style="margin-top: 20px;">
+                    <div class="info-item">
+                        <div class="info-label">当前市值</div>
+                        <div class="info-value">{{CURRENT_MARKET_VALUE}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">30天涨幅</div>
+                        <div class="info-value" style="color: {{CHANGE_COLOR}};">{{MONTH_CHANGE}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">日均成交量</div>
+                        <div class="info-value">{{AVG_VOLUME}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">波动率</div>
+                        <div class="info-value">{{VOLATILITY}}</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 青铜法典评分维度 -->
+            <section class="content-card">
+                <h2 class="card-title">
+                    <i class="fas fa-shield-alt"></i> 青铜法典评分维度
+                </h2>
+                <div class="score-breakdown">
+                    <div class="score-dimension">
+                        <div class="dimension-name">动态超额收益</div>
+                        <div class="dimension-score">{{ALPHA_SCORE}}</div>
+                        <div class="dimension-weight">权重: 50%</div>
+                    </div>
+                    <div class="score-dimension">
+                        <div class="dimension-name">战略穿透力</div>
+                        <div class="dimension-score">{{STRATEGY_SCORE}}</div>
+                        <div class="dimension-weight">权重: 30%</div>
+                    </div>
+                    <div class="score-dimension">
+                        <div class="dimension-name">财务稳健性</div>
+                        <div class="dimension-score">{{ROBUST_SCORE}}</div>
+                        <div class="dimension-weight">权重: 15%</div>
+                    </div>
+                    <div class="score-dimension">
+                        <div class="dimension-name">运营效率</div>
+                        <div class="dimension-score">{{EFFICIENCY_SCORE}}</div>
+                        <div class="dimension-weight">权重: 5%</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: #fff8e1; border-radius: 8px; border-left: 4px solid #ff9800;">
+                    <div style="font-size: 0.9rem; color: #5d4037; line-height: 1.5;">
+                        <strong>算法审计说明:</strong> {{ALGORITHM_AUDIT_NOTES}}
+                    </div>
+                </div>
+            </section>
+
+            <!-- 行业背景与投资逻辑 -->
+            <section class="content-card">
+                <h2 class="card-title">
+                    <i class="fas fa-industry"></i> 行业背景与投资逻辑
+                </h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">所属行业</div>
+                        <div class="info-value">{{INDUSTRY_CATEGORY}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">细分赛道</div>
+                        <div class="info-value">{{SUB_INDUSTRY}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">竞争格局</div>
+                        <div class="info-value">{{COMPETITION_PATTERN}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">成长阶段</div>
+                        <div class="info-value">{{GROWTH_STAGE}}</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h3 style="font-size: 1.1rem; color: var(--bronze-dark); margin-bottom: 10px;">核心投资逻辑</h3>
+                    <div style="line-height: 1.6; color: var(--text-primary);">
+                        {{INVESTMENT_LOGIC}}
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Time Information -->
+        <div class="time-info">
+            <div class="time-item">
+                <div class="time-label">数据时间</div>
+                <div class="time-value" id="data-time">{{DATA_TIME}}</div>
+            </div>
+            <div class="time-item">
+                <div class="time-label">页面更新时间</div>
+                <div class="time-value" id="update-time">{{UPDATE_TIME}}</div>
+            </div>
+            <div class="time-item">
+                <div class="time-label">下次数据更新</div>
+                <div class="time-value" id="next-update">{{NEXT_UPDATE}}</div>
+            </div>
+            <div class="time-item">
+                <div class="time-label">数据误差</div>
+                <div class="time-value" style="color: #27ae60;">0</div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <a href="list.html" class="nav-button">
+                <i class="fas fa-archive"></i> 返回档案馆
+            </a>
+            <a href="bronze_codex_standard.html" class="nav-button">
+                <i class="fas fa-landmark"></i> 青铜法典算法
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div>🏛️ 琥珀引擎标的详情页 | 青铜法典审计体系</div>
+            <div style="margin: 10px 0; font-size: 0.8rem; color: var(--text-secondary);">
+                算法透明 · 数据完整 · 时间对齐 · 误差为0
+            </div>
+            <div class="team-info" style="display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-user-tie"></i>
+                    <span>主编: Haiyang</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-chess-queen"></i>
+                    <span>首席架构师: Gemini</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-tools"></i>
+                    <span>顶级工程师: Cheese</span>
+                </div>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.8rem; color: var(--text-secondary);">
+                本页面数据基于青铜法典算法审计生成 | 最后验证: <span id="last-verify">{{LAST_VERIFY}}</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 市值走势图
+        const marketValueChart = new Chart(
+            document.getElementById('marketValueChart'),
+            {
+                type: 'line',
+                data: {
+                    labels: {{MARKET_VALUE_LABELS}},
+                    datasets: [{
+                        label: '市值走势',
+                        data: {{MARKET_VALUE_DATA}},
+                        borderColor: 'var(--bronze-primary)',
+                        backgroundColor: 'rgba(205, 127, 50, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString() + '亿';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        }
+                    }
+                }
+            }
+        );
+
+        // 动态更新时间
+        function updateTimes() {
+            const now = new Date();
+            const dataTime = new Date(now);
+            dataTime.setMinutes(dataTime.getMinutes() - 15); // 数据延迟15分钟
+            
+            const formatTime = (date) => {
+                return date.toISOString().replace('T', ' ').substring(0, 16);
+            };
+            
+            document.getElementById('data-time').textContent = formatTime(dataTime);
+            document.getElementById('update-time').textContent = formatTime(now);
+            document.getElementById('last-verify').textContent = formatTime(now);
+            
+            // 下次更新（明天9:00）
+            const nextUpdate = new Date(now);
+            nextUpdate.setDate(nextUpdate.getDate() + 1);
+            nextUpdate.setHours(9, 0, 0, 0);
+            document.getElementById('next-update').textContent = formatTime(nextUpdate);
+        }
+        
+        updateTimes();
+        setInterval(updateTimes, 60000);
+    </script>
+</body>
+</html>

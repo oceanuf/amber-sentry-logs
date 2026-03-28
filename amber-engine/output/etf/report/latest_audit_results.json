@@ -1,0 +1,114 @@
+[
+  {
+    "code": "512480",
+    "name": "国联安半导体",
+    "final_score": 76.75,
+    "audit_hash": "3d88686226e7fe5ce59d6a99adc24256",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "518880",
+    "name": "华安黄金ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "510300",
+    "name": "沪深300ETF",
+    "final_score": 95.12,
+    "audit_hash": "50b36045a8e841671154272ec5ce02ba",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "516160",
+    "name": "南方新能源ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "512170",
+    "name": "华宝医疗ETF",
+    "final_score": 65.25,
+    "audit_hash": "af0718cbe096ee0d8ff02a78d67bb69a",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "513100",
+    "name": "纳指100ETF",
+    "final_score": 75.75,
+    "audit_hash": "e939038d53eaf2123f545cc55cd2797e",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "159915",
+    "name": "创业板ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "510050",
+    "name": "上证50ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "515050",
+    "name": "华夏5G通信ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "512660",
+    "name": "国泰军工ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "512010",
+    "name": "易方达医药ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "512880",
+    "name": "证券ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "510500",
+    "name": "中证500ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  },
+  {
+    "code": "159941",
+    "name": "纳指ETF",
+    "final_score": 0.0,
+    "audit_hash": "fcfdf71c926699038dd88648d1e8abe1",
+    "formula": "V4.1-AUDIT-FIXED",
+    "status": "AUDITED_BY_CHIEF"
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-03-18T19:59:55.634079",
+  "token_preview": "9e32ef28ea...",
+  "total_apis": 7,
+  "success_count": 7,
+  "results": {
+    "index_daily": {
+      "status": "SUCCESS",
+      "row_count": 2,
+      "elapsed_time": 0.1148834228515625
+    },
+    "index_dailybasic": {
+      "status": "SUCCESS",
+      "row_count": 1,
+      "elapsed_time": 0.09376025199890137
+    },
+    "fund_daily": {
+      "status": "SUCCESS",
+      "row_count": 2,
+      "elapsed_time": 0.09506034851074219
+    },
+    "fund_portfolio": {
+      "status": "SUCCESS",
+      "row_count": 8000,
+      "elapsed_time": 0.31408047676086426
+    },
+    "fina_indicator": {
+      "status": "SUCCESS",
+      "row_count": 0,
+      "elapsed_time": 0.09588456153869629
+    },
+    "moneyflow_hsgt": {
+      "status": "SUCCESS",
+      "row_count": 2,
+      "elapsed_time": 0.10404562950134277
+    },
+    "stk_holdernumber": {
+      "status": "SUCCESS",
+      "row_count": 107,
+      "elapsed_time": 0.10020184516906738
+    }
+  }
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琥珀引擎 - V3.2.2视觉对齐验证</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 40px; }
+        .architect-command { background: #2C3E50; color: #FFB347; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .success { color: #2ECC71; font-size: 20px; margin: 20px 0; }
+        .patch-item { margin: 15px 0; padding: 15px; border-left: 4px solid #3498DB; background: #F8F9FA; }
+        .debug-info { background: #FEF9E7; padding: 15px; border-radius: 8px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🎯 V3.2.2视觉对齐专项行动验证</h1>
+    
+    <div class="success">✅ 架构师直写模式执行完成</div>
+    
+    <div class="architect-command">
+        <h3>🔧 架构师诊断与指令</h3>
+        <p><strong>诊断时间:</strong> 2026-03-19 14:58 CST</p>
+        <p><strong>执行权限:</strong> ARCH-DIRECT-WRITE</p>
+        <p><strong>问题根源:</strong> 容器嵌套塌陷 + HTML标签未闭合 + 样式权重竞争</p>
+    </div>
+    
+    <div class="patch-item">
+        <h4>步骤1：强制物理隔离 (The Sandboxing)</h4>
+        <p>修复: .amber-macro-anchors, .gold-hedge-section, .amber-pan-container, .valuation-cloud-section</p>
+        <p>效果: display: block !important; width: 100% !important; clear: both !important;</p>
+    </div>
+    
+    <div class="patch-item">
+        <h4>步骤2：统一容器宽度 (The Alignment)</h4>
+        <p>修复: .anchors-container, .gold-hedge-banner, .valuation-cloud-v2, .container</p>
+        <p>效果: max-width: 1200px !important; padding: 0 20px !important;</p>
+    </div>
+    
+    <div class="patch-item">
+        <h4>步骤3：修复"全景看板"内部溢出</h4>
+        <p>修复: .index-intelligence-card</p>
+        <p>效果: width: 100% !important; max-width: 100% !important; overflow: hidden;</p>
+    </div>
+    
+    <div class="debug-info">
+        <h4>📊 调试信息</h4>
+        <p><strong>版本:</strong> v3.2.2 (视觉对齐专项行动版)</p>
+        <p><strong>修复时间:</strong> 2026-03-19 14:58 CST</p>
+        <p><strong>缓存标识:</strong> Cache Buster: 20260319145800</p>
+        <p><strong>验证方法:</strong> 添加 ?v=3.2.2 绕过浏览器缓存</p>
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <a href="/?v=3.2.2" style="background: #FFB347; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+            🚀 访问V3.2.2首页 (带缓存绕过)
+        </a>
+        <a href="/" style="background: #2C3E50; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin-left: 15px;">
+            🔄 访问标准首页
+        </a>
+    </div>
+    
+    <div style="margin-top: 30px; font-size: 14px; color: #7F8C8D;">
+        <p><strong>架构师诊断精准度:</strong> 容器嵌套塌陷 ✓ HTML标签未闭合 ✓ 样式权重竞争 ✓</p>
+        <p><strong>工程师执行速度:</strong> 2分钟完成架构师直写指令</p>
+        <p><strong>团队协作效率:</strong> 诊断→指令→执行→验证完整闭环</p>
+    </div>
+    
+    <script>
+        // 记录架构师直写模式执行
+        const architectPatch = {
+            version: 'v3.2.2',
+            timestamp: new Date().toISOString(),
+            architect: 'Gemini',
+            engineer: 'Cheese',
+            patchType: 'ARCH-DIRECT-WRITE',
+            diagnostics: ['容器嵌套塌陷', 'HTML标签未闭合', '样式权重竞争']
+        };
+        
+        console.log('🎯 V3.2.2架构师直写补丁已加载');
+        console.log('📊 补丁信息:', architectPatch);
+        
+        // 添加版本标记
+        localStorage.setItem('amber_version', 'v3.2.2');
+        localStorage.setItem('architect_direct_write', 'executed');
+        localStorage.setItem('patch_timestamp', new Date().toISOString());
+        
+        // 自动添加缓存绕过参数
+        if (!window.location.search.includes('v=3.2.2')) {
+            const links = document.querySelectorAll('a[href="/"]');
+            links.forEach(link => {
+                if (link.href.endsWith('/')) {
+                    link.href = '/?v=3.2.2';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

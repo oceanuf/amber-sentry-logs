@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>159915 - 易方达创业板ETF - 青铜法典详情</title>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 4px solid #3949ab;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .metadata {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 10px;
+            min-width: 180px;
+        }
+        
+        .meta-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .meta-value {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .section {
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #1a237e;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3949ab;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: "■";
+            color: #3949ab;
+            font-size: 1.2rem;
+        }
+        
+        .chart-container {
+            height: 400px;
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .data-table th {
+            background: #1a237e;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .data-table tr:hover {
+            background: #e3f2fd;
+            transition: background 0.2s;
+        }
+        
+        .positive {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        
+        .negative {
+            color: #c62828;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: #f5f5f5;
+            padding: 20px 40px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #3949ab;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .back-link:hover {
+            background: #283593;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 12px;
+            }
+            
+            .header, .section {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .metadata {
+                gap: 15px;
+            }
+            
+            .meta-item {
+                min-width: 140px;
+                padding: 10px 15px;
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 身份区 -->
+        <div class="header">
+            <h1>159915 - 易方达创业板ETF</h1>
+            <div class="subtitle">青铜法典 · 标的详情页面</div>
+            <div class="subtitle">基于 [2613-094] 号逻辑布局 · [2613-095] 号生产指令</div>
+            
+            <div class="metadata">
+                <div class="meta-item">
+                    <div class="meta-label">标的代码</div>
+                    <div class="meta-value">159915</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">所属赛道</div>
+                    <div class="meta-value">战略宽基</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">数据周期</div>
+                    <div class="meta-value">30个交易日</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">最新净值</div>
+                    <div class="meta-value">3.2380</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">累计涨跌</div>
+                    <div class="meta-value negative">
+                        -0.77%
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 趋势区 -->
+        <div class="section">
+            <div class="section-title">📈 净值趋势分析</div>
+            <div class="chart-container">
+                <canvas id="navChart"></canvas>
+            </div>
+            
+            <div style="margin-top: 20px; color: #666; font-size: 0.95rem;">
+                <p>📊 图表说明：展示最近30个交易日的单位净值变化趋势。绿色表示上涨，红色表示下跌。</p>
+                <p>🔄 数据来源：Tushare Pro fund_nav接口 · 单位净值(unit_nav)字段</p>
+            </div>
+        </div>
+        
+        <!-- 存证表 -->
+        <div class="section">
+            <div class="section-title">📋 数据存证表</div>
+            <p style="margin-bottom: 20px; color: #666;">原始数据存证，确保数据透明可追溯。</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>交易日</th>
+                        <th>单位净值</th>
+                        <th>日涨跌</th>
+                        <th>数据状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>20260326</td>
+                        <td>3.2630</td>
+                        <td class="negative">
+                            -1.33%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260325</td>
+                        <td>3.3070</td>
+                        <td class="positive">
+                            +2.16%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260324</td>
+                        <td>3.2370</td>
+                        <td class="positive">
+                            +0.28%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260323</td>
+                        <td>3.2280</td>
+                        <td class="negative">
+                            -3.38%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260320</td>
+                        <td>3.3410</td>
+                        <td class="positive">
+                            +1.15%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260319</td>
+                        <td>3.3030</td>
+                        <td class="negative">
+                            -1.05%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260318</td>
+                        <td>3.3380</td>
+                        <td class="positive">
+                            +1.99%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260317</td>
+                        <td>3.2730</td>
+                        <td class="negative">
+                            -2.27%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260316</td>
+                        <td>3.3490</td>
+                        <td class="positive">
+                            +1.48%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260313</td>
+                        <td>3.3000</td>
+                        <td class="negative">
+                            -0.24%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260312</td>
+                        <td>3.3080</td>
+                        <td class="negative">
+                            -0.81%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260311</td>
+                        <td>3.3350</td>
+                        <td class="positive">
+                            +1.18%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260310</td>
+                        <td>3.2960</td>
+                        <td class="positive">
+                            +2.97%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260309</td>
+                        <td>3.2010</td>
+                        <td class="negative">
+                            -0.74%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260306</td>
+                        <td>3.2250</td>
+                        <td class="positive">
+                            +0.59%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260305</td>
+                        <td>3.2060</td>
+                        <td class="positive">
+                            +1.65%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260304</td>
+                        <td>3.1540</td>
+                        <td class="negative">
+                            -1.59%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260303</td>
+                        <td>3.2050</td>
+                        <td class="negative">
+                            -2.35%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260302</td>
+                        <td>3.2820</td>
+                        <td class="negative">
+                            -0.58%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260227</td>
+                        <td>3.3010</td>
+                        <td class="negative">
+                            -1.05%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260226</td>
+                        <td>3.3360</td>
+                        <td class="negative">
+                            -0.24%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260225</td>
+                        <td>3.3440</td>
+                        <td class="positive">
+                            +1.49%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260224</td>
+                        <td>3.2950</td>
+                        <td class="positive">
+                            +0.92%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260213</td>
+                        <td>3.2650</td>
+                        <td class="negative">
+                            -1.63%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260212</td>
+                        <td>3.3190</td>
+                        <td class="positive">
+                            +1.41%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260211</td>
+                        <td>3.2730</td>
+                        <td class="negative">
+                            -1.15%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260210</td>
+                        <td>3.3110</td>
+                        <td class="negative">
+                            -0.30%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260209</td>
+                        <td>3.3210</td>
+                        <td class="positive">
+                            +2.85%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260206</td>
+                        <td>3.2290</td>
+                        <td class="negative">
+                            -0.28%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>20260205</td>
+                        <td>3.2380</td>
+                        <td class="negative">
+                            -1.79%
+                        </td>
+                        <td>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                ✅ 已验证
+                            </span>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            
+            <div style="margin-top: 30px; text-align: center;">
+                <a href="../bronze_etf_details.html" class="back-link">← 返回标的列表</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>青铜法典 · 琥珀引擎生产系统</p>
+            <p>生成时间: 2026-03-27 11:22:46 · 指令编号: [2613-095] · 执行人: 工程师 Cheese</p>
+            <p>数据质量: TUSHARE_PRO · 算法版本: V1.1.1-ELITE · 访问端口: 10168</p>
+        </div>
+    </div>
+    
+    <script>
+        // 图表数据
+        const navData = {"dates": ["20260326", "20260325", "20260324", "20260323", "20260320", "20260319", "20260318", "20260317", "20260316", "20260313", "20260312", "20260311", "20260310", "20260309", "20260306", "20260305", "20260304", "20260303", "20260302", "20260227", "20260226", "20260225", "20260224", "20260213", "20260212", "20260211", "20260210", "20260209", "20260206", "20260205"], "values": [3.263, 3.307, 3.237, 3.228, 3.341, 3.303, 3.338, 3.273, 3.349, 3.3, 3.308, 3.335, 3.296, 3.201, 3.225, 3.206, 3.154, 3.205, 3.282, 3.301, 3.336, 3.344, 3.295, 3.265, 3.319, 3.273, 3.311, 3.321, 3.229, 3.238]};
+        
+        // 创建图表
+        const ctx = document.getElementById('navChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: navData.dates,
+                datasets: [{
+                    label: '单位净值',
+                    data: navData.values,
+                    borderColor: '#3949ab',
+                    backgroundColor: 'rgba(57, 73, 171, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: function(context) {
+                        const index = context.dataIndex;
+                        const value = navData.values[index];
+                        const prevValue = index > 0 ? navData.values[index-1] : value;
+                        return value >= prevValue ? '#2e7d32' : '#c62828';
+                    },
+                    pointRadius: 5,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14,
+                                family: "'Segoe UI', sans-serif"
+                            },
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        titleFont: { size: 14 },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        callbacks: {
+                            label: function(context) {
+                                return `净值: ${context.parsed.y.toFixed(4)}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        },
+                        ticks: {
+                            font: {
+                                size: 12
+                            },
+                            maxRotation: 45
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        },
+                        ticks: {
+                            font: {
+                                size: 12
+                            },
+                            callback: function(value) {
+                                return value.toFixed(3);
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: '单位净值',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'nearest'
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+        
+        // 添加窗口调整监听
+        window.addEventListener('resize', function() {
+            chart.resize();
+        });
+    </script>
+</body>
+</html>

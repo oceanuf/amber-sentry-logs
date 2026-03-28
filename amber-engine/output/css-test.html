@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS加载测试 - 创业板指</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <link rel="stylesheet" href="/static/css/amber-intelligence.css">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 40px; }
+        .test-container { max-width: 1200px; margin: 0 auto; }
+        .test-item { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .css-status { padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .loaded { background: #D4EDDA; color: #155724; }
+        .missing { background: #F8D7DA; color: #721C24; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎨 CSS加载测试 - 创业板指区域</h1>
+        
+        <div class="test-item">
+            <h3>测试1: 标准创业板指卡片</h3>
+            <div class="index-item">
+                <div class="index-header">
+                    <span class="index-name">创业板指</span>
+                    <span class="index-market">A股</span>
+                </div>
+                <div class="index-value">2152.03</div>
+                <div class="index-change price-up">+0.09%</div>
+                <div class="data-source-tag">真实数据</div>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>测试2: CSS文件加载状态</h3>
+            <div id="css-status"></div>
+        </div>
+        
+        <div class="test-item">
+            <h3>测试3: 计算样式检查</h3>
+            <div id="computed-styles"></div>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <a href="/?v=3.2.2" style="background: #FFB347; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none;">
+                🚀 返回琥珀引擎首页
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // 检查CSS文件加载状态
+        function checkCSSLoaded() {
+            const stylesheets = document.styleSheets;
+            let statusHTML = '';
+            
+            for (let i = 0; i < stylesheets.length; i++) {
+                const sheet = stylesheets[i];
+                const href = sheet.href || '内联样式';
+                const rules = sheet.cssRules ? sheet.cssRules.length : 'N/A';
+                
+                statusHTML += `
+                    <div class="css-status ${rules > 0 ? 'loaded' : 'missing'}">
+                        <strong>${href.split('/').pop()}</strong>
+                        <br>规则数量: ${rules}
+                        <br>状态: ${rules > 0 ? '✅ 已加载' : '❌ 未加载'}
+                    </div>
+                `;
+            }
+            
+            document.getElementById('css-status').innerHTML = statusHTML;
+        }
+        
+        // 检查创业板指卡片的计算样式
+        function checkComputedStyles() {
+            const indexItem = document.querySelector('.index-item');
+            if (indexItem) {
+                const computed = window.getComputedStyle(indexItem);
+                const styles = [
+                    'display', 'width', 'height', 'padding', 'margin',
+                    'background-color', 'border', 'border-radius', 'box-shadow'
+                ];
+                
+                let styleHTML = '<h4>.index-item 计算样式:</h4>';
+                styles.forEach(prop => {
+                    styleHTML += `<div><strong>${prop}:</strong> ${computed.getPropertyValue(prop)}</div>`;
+                });
+                
+                document.getElementById('computed-styles').innerHTML = styleHTML;
+            }
+        }
+        
+        // 页面加载完成后执行检查
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                checkCSSLoaded();
+                checkComputedStyles();
+                
+                // 记录测试结果
+                console.log('🎨 CSS加载测试完成');
+                console.log('📊 样式表数量:', document.styleSheets.length);
+                
+                const indexItem = document.querySelector('.index-item');
+                if (indexItem) {
+                    console.log('✅ 创业板指卡片找到');
+                    console.log('🎯 计算样式:', window.getComputedStyle(indexItem));
+                } else {
+                    console.log('❌ 创业板指卡片未找到');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
