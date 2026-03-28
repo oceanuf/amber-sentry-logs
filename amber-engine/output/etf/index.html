@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETF专区 - 琥珀引擎</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        /* 排序功能样式 */
+        .sortable-header {
+            cursor: pointer;
+            position: relative;
+            padding-right: 20px;
+            user-select: none;
+        }
+        
+        .sortable-header:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .sortable-header::after {
+            content: "↕";
+            position: absolute;
+            right: 5px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .sortable-header.asc::after {
+            content: "↑";
+            color: #4caf50;
+        }
+        
+        .sortable-header.desc::after {
+            content: "↓";
+            color: #f44336;
+        }
+        
+        /* 净值日期样式 */
+        .nav-date {
+            font-size: 0.8em;
+            color: #666;
+            margin-left: 5px;
+        }
+        
+        /* 表格响应式 */
+        @media (max-width: 768px) {
+            .nav-date {
+                display: block;
+                margin-left: 0;
+                margin-top: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 琥珀全局导航条 - V3.2.9 -->
+        <nav class="amber-nav-bar">
+            <a href="/etf/" class="nav-item active">ETF 专区</a>
+            <a href="/etf/report/" class="nav-item">ETF 报告</a>
+            <a href="/etf/strategy/" class="nav-item">投资策略</a>
+            <a href="/" class="nav-item" style="margin-left:auto; font-size:14px; color:#757575;">← 返回首页</a>
+        </nav>
+        
+        <header class="site-header">
+            <h1>ETF专区</h1>
+            <p>交易所交易基金 - 支持多维度排序</p>
+        </header>
+        
+        <div class="mt-4">
+            <span class="ml-3">数据更新时间: 2026-03-27 15:00 (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间) (北京时间)</span>
+        </div>
+        
+        <h2 class="section-title mt-5">📊 ETF列表 (支持点击表头排序)</h2>
+        <p class="mb-4">点击表头可进行升序/降序排序，支持多维度数据比较</p>
+        
+        <table class="price-table" id="etf-table">
+            <thead>
+                <tr>
+                    <th class="sortable-header" data-sort="name">ETF名称</th>
+                    <th class="sortable-header" data-sort="symbol">代码</th>
+                    <th class="sortable-header" data-sort="industry">行业</th>
+                    <th class="sortable-header" data-sort="net_value">最新净值</th>
+                    <th class="sortable-header" data-sort="daily_change">日涨跌幅</th>
+                    <th class="sortable-header" data-sort="rich_score">RICH评分</th>
+                    <th class="sortable-header" data-sort="volume">成交额(亿)</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="etf-table-body">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="510300" 
+                    data-name="沪深300ETF" 
+                    data-industry="宽基指数"
+                    data-net_value="4.488"
+                    data-nav_date="20260326"
+                    data-daily_change="-1.23"
+                    data-rich_score="8.6"
+                    data-volume="0.2"
+                    data-aum="2.1">
+                    <td>沪深300ETF</td>
+                    <td>510300</td>
+                    <td>宽基指数</td>
+                    <td class="nav-cell">4.488 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-down">-1.23%</td>
+                    <td>8.6</td>
+                    <td>0.2</td>
+                    <td><a href="/etf/510300.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="510500" 
+                    data-name="中证500ETF" 
+                    data-industry="宽基指数"
+                    data-net_value="7.700"
+                    data-nav_date="20260326"
+                    data-daily_change="-1.61"
+                    data-rich_score="8.8"
+                    data-volume="0.2"
+                    data-aum="2.5">
+                    <td>中证500ETF</td>
+                    <td>510500</td>
+                    <td>宽基指数</td>
+                    <td class="nav-cell">7.700 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-down">-1.61%</td>
+                    <td>8.8</td>
+                    <td>0.2</td>
+                    <td><a href="/etf/510500.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="159915" 
+                    data-name="创业板ETF" 
+                    data-industry="宽基指数"
+                    data-net_value="3.263"
+                    data-nav_date="20260326"
+                    data-daily_change="-1.33"
+                    data-rich_score="8.3"
+                    data-volume="0.3"
+                    data-aum="3.1">
+                    <td>创业板ETF</td>
+                    <td>159915</td>
+                    <td>宽基指数</td>
+                    <td class="nav-cell">3.263 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-down">-1.33%</td>
+                    <td>8.3</td>
+                    <td>0.3</td>
+                    <td><a href="/etf/159915.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="512760" 
+                    data-name="芯片ETF" 
+                    data-industry="半导体"
+                    data-net_value="1.588"
+                    data-nav_date="20260326"
+                    data-daily_change="-2.46"
+                    data-rich_score="9.2"
+                    data-volume="0.0"
+                    data-aum="0.2">
+                    <td>芯片ETF</td>
+                    <td>512760</td>
+                    <td>半导体</td>
+                    <td class="nav-cell">1.588 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-down">-2.46%</td>
+                    <td>9.2</td>
+                    <td>0.0</td>
+                    <td><a href="/etf/512760.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="512880" 
+                    data-name="证券ETF" 
+                    data-industry="金融"
+                    data-net_value="1.035"
+                    data-nav_date="20260326"
+                    data-daily_change="-2.27"
+                    data-rich_score="9.4"
+                    data-volume="0.1"
+                    data-aum="1.4">
+                    <td>证券ETF</td>
+                    <td>512880</td>
+                    <td>金融</td>
+                    <td class="nav-cell">1.035 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-down">-2.27%</td>
+                    <td>9.4</td>
+                    <td>0.1</td>
+                    <td><a href="/etf/512880.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="510050" 
+                    data-name="上证50ETF" 
+                    data-industry="宽基指数"
+                    data-net_value="2.897"
+                    data-nav_date="20260326"
+                    data-daily_change="-1.13"
+                    data-rich_score="9.4"
+                    data-volume="0.1"
+                    data-aum="1.2">
+                    <td>上证50ETF</td>
+                    <td>510050</td>
+                    <td>宽基指数</td>
+                    <td class="nav-cell">2.897 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-down">-1.13%</td>
+                    <td>9.4</td>
+                    <td>0.1</td>
+                    <td><a href="/etf/510050.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="512480" 
+                    data-name="半导体ETF" 
+                    data-industry="半导体"
+                    data-net_value="1.453"
+                    data-nav_date="20260326"
+                    data-daily_change="-2.48"
+                    data-rich_score="10.0"
+                    data-volume="0.1"
+                    data-aum="1.0">
+                    <td>半导体ETF</td>
+                    <td>512480</td>
+                    <td>半导体</td>
+                    <td class="nav-cell">1.453 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-down">-2.48%</td>
+                    <td>10.0</td>
+                    <td>0.1</td>
+                    <td><a href="/etf/512480.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="512000" 
+                    data-name="券商ETF" 
+                    data-industry="金融"
+                    data-net_value="0.495"
+                    data-nav_date="20260326"
+                    data-daily_change="-2.17"
+                    data-rich_score="8.1"
+                    data-volume="0.1"
+                    data-aum="0.9">
+                    <td>券商ETF</td>
+                    <td>512000</td>
+                    <td>金融</td>
+                    <td class="nav-cell">0.495 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-down">-2.17%</td>
+                    <td>8.1</td>
+                    <td>0.1</td>
+                    <td><a href="/etf/512000.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="510880" 
+                    data-name="红利ETF" 
+                    data-industry="红利策略"
+                    data-net_value="3.268"
+                    data-nav_date="20260326"
+                    data-daily_change="0.37"
+                    data-rich_score="9.7"
+                    data-volume="0.0"
+                    data-aum="0.4">
+                    <td>红利ETF</td>
+                    <td>510880</td>
+                    <td>红利策略</td>
+                    <td class="nav-cell">3.268 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-up">+0.37%</td>
+                    <td>9.7</td>
+                    <td>0.0</td>
+                    <td><a href="/etf/510880.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <tr data-symbol="512010" 
+                    data-name="医药ETF" 
+                    data-industry="医药"
+                    data-net_value="0.353"
+                    data-nav_date="20260326"
+                    data-daily_change="-1.67"
+                    data-rich_score="9.4"
+                    data-volume="0.0"
+                    data-aum="0.4">
+                    <td>医药ETF</td>
+                    <td>512010</td>
+                    <td>医药</td>
+                    <td class="nav-cell">0.353 <span class="nav-date">(20260326)</span></td>
+                    <td class="price-down">-1.67%</td>
+                    <td>9.4</td>
+                    <td>0.0</td>
+                    <td><a href="/etf/512010.html" class="source-tag">查看详情</a></td>
+                </tr>
+        
+            </tbody>
+        </table>
+        
+        <div class="mt-4">
+            <h4>排序说明</h4>
+            <div class="grid-3">
+                <div class="point-card">
+                    <h5>净值排序</h5>
+                    <p>点击"最新净值"表头，按净值从高到低或从低到高排序</p>
+                </div>
+                <div class="point-card">
+                    <h5>涨跌幅排序</h5>
+                    <p>点击"日涨跌幅"表头，查看表现最佳/最差的ETF</p>
+                </div>
+                <div class="point-card">
+                    <h5>评分排序</h5>
+                    <p>点击"RICH评分"表头，按投资价值排序</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="/" class="source-tag p-3">返回首页</a>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="container text-center">
+            <p>© 2026 Cheese Intelligence Team | ETF数据来源: 模拟数据</p>
+            <p>净值日期: 2026年03月18日 (北京时间)</p>
+        </div>
+    </footer>
+    
+    <script>
+        // ETF数据
+        const etfData = [[
+    {
+        "symbol": "510300",
+        "name": "沪深300ETF",
+        "industry": "宽基指数",
+        "net_value": 4.488,
+        "nav_date": "20260326",
+        "daily_change": -1.2324,
+        "rich_score": 8.6,
+        "volume": 0.21,
+        "aum": 2.1
+    },
+    {
+        "symbol": "510500",
+        "name": "中证500ETF",
+        "industry": "宽基指数",
+        "net_value": 7.7,
+        "nav_date": "20260326",
+        "daily_change": -1.61,
+        "rich_score": 8.8,
+        "volume": 0.25,
+        "aum": 2.5
+    },
+    {
+        "symbol": "510050",
+        "name": "上证50ETF",
+        "industry": "宽基指数",
+        "net_value": 2.897,
+        "nav_date": "20260326",
+        "daily_change": -1.1263,
+        "rich_score": 9.4,
+        "volume": 0.12,
+        "aum": 1.2
+    },
+    {
+        "symbol": "159915",
+        "name": "创业板ETF",
+        "industry": "宽基指数",
+        "net_value": 3.263,
+        "nav_date": "20260326",
+        "daily_change": -1.3305,
+        "rich_score": 8.3,
+        "volume": 0.31,
+        "aum": 3.1
+    },
+    {
+        "symbol": "512760",
+        "name": "芯片ETF",
+        "industry": "半导体",
+        "net_value": 1.588,
+        "nav_date": "20260326",
+        "daily_change": -2.457,
+        "rich_score": 9.2,
+        "volume": 0.02,
+        "aum": 0.2
+    },
+    {
+        "symbol": "512880",
+        "name": "证券ETF",
+        "industry": "金融",
+        "net_value": 1.035,
+        "nav_date": "20260326",
+        "daily_change": -2.2663,
+        "rich_score": 9.4,
+        "volume": 0.14,
+        "aum": 1.4000000000000001
+    },
+    {
+        "symbol": "512000",
+        "name": "券商ETF",
+        "industry": "金融",
+        "net_value": 0.495,
+        "nav_date": "20260326",
+        "daily_change": -2.1739,
+        "rich_score": 8.1,
+        "volume": 0.09,
+        "aum": 0.8999999999999999
+    },
+    {
+        "symbol": "510880",
+        "name": "红利ETF",
+        "industry": "红利策略",
+        "net_value": 3.268,
+        "nav_date": "20260326",
+        "daily_change": 0.3686,
+        "rich_score": 9.7,
+        "volume": 0.04,
+        "aum": 0.4
+    },
+    {
+        "symbol": "512660",
+        "name": "军工ETF",
+        "industry": "军工",
+        "net_value": 1.288,
+        "nav_date": "20260326",
+        "daily_change": -1.904,
+        "rich_score": 9.0,
+        "volume": 0.03,
+        "aum": 0.3
+    },
+    {
+        "symbol": "512010",
+        "name": "医药ETF",
+        "industry": "医药",
+        "net_value": 0.353,
+        "nav_date": "20260326",
+        "daily_change": -1.6713,
+        "rich_score": 9.4,
+        "volume": 0.04,
+        "aum": 0.4
+    },
+    {
+        "symbol": "512800",
+        "name": "银行ETF",
+        "industry": "银行",
+        "net_value": 0.796,
+        "nav_date": "20260326",
+        "daily_change": 0.2519,
+        "rich_score": 9.6,
+        "volume": 0.07,
+        "aum": 0.7000000000000001
+    },
+    {
+        "symbol": "159928",
+        "name": "消费ETF",
+        "industry": "消费",
+        "net_value": 0.739,
+        "nav_date": "20260326",
+        "daily_change": -1.071,
+        "rich_score": 10.0,
+        "volume": 0.05,
+        "aum": 0.5
+    },
+    {
+        "symbol": "159995",
+        "name": "芯片ETF",
+        "industry": "半导体",
+        "net_value": 1.683,
+        "nav_date": "20260326",
+        "daily_change": -2.2648,
+        "rich_score": 8.7,
+        "volume": 0.04,
+        "aum": 0.4
+    },
+    {
+        "symbol": "512480",
+        "name": "半导体ETF",
+        "industry": "半导体",
+        "net_value": 1.453,
+        "nav_date": "20260326",
+        "daily_change": -2.4832,
+        "rich_score": 10.0,
+        "volume": 0.1,
+        "aum": 1.0
+    },
+    {
+        "symbol": "512170",
+        "name": "医疗ETF",
+        "industry": "医疗",
+        "net_value": 0.319,
+        "nav_date": "20260326",
+        "daily_change": -1.5432,
+        "rich_score": 8.8,
+        "volume": 0.05,
+        "aum": 0.5
+    }
+]];
+        
+        // 排序功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const headers = document.querySelectorAll('.sortable-header');
+            const tableBody = document.getElementById('etf-table-body');
+            
+            let currentSort = {
+                column: 'rich_score',
+                direction: 'desc'
+            };
+            
+            // 初始排序
+            sortTable(currentSort.column, currentSort.direction);
+            
+            headers.forEach(header => {
+                header.addEventListener('click', function() {
+                    const column = this.dataset.sort;
+                    
+                    // 切换排序方向
+                    if (currentSort.column === column) {
+                        currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        currentSort.column = column;
+                        currentSort.direction = 'desc';
+                    }
+                    
+                    // 更新表头样式
+                    headers.forEach(h => {
+                        h.classList.remove('asc', 'desc');
+                        if (h.dataset.sort === currentSort.column) {
+                            h.classList.add(currentSort.direction);
+                        }
+                    });
+                    
+                    // 执行排序
+                    sortTable(currentSort.column, currentSort.direction);
+                });
+            });
+            
+            function sortTable(column, direction) {
+                const rows = Array.from(tableBody.querySelectorAll('tr'));
+                
+                rows.sort((a, b) => {
+                    let aValue, bValue;
+                    
+                    if (column === 'name' || column === 'symbol' || column === 'industry') {
+                        aValue = a.dataset[column];
+                        bValue = b.dataset[column];
+                        return direction === 'asc' 
+                            ? aValue.localeCompare(bValue)
+                            : bValue.localeCompare(aValue);
+                    } else {
+                        aValue = parseFloat(a.dataset[column]);
+                        bValue = parseFloat(b.dataset[column]);
+                        return direction === 'asc' 
+                            ? aValue - bValue
+                            : bValue - aValue;
+                    }
+                });
+                
+                // 重新插入排序后的行
+                rows.forEach(row => tableBody.appendChild(row));
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琥珀引擎 - 健康检查</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        .status-item { padding: 10px; margin: 5px 0; border-radius: 5px; }
+        .status-200 { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-404 { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .status-other { background-color: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>琥珀引擎健康检查</h1>
+        <p>检查时间: <span id="check-time"></span></p>
+        
+        <h2>核心页面</h2>
+        <div id="core-pages"></div>
+        
+        <h2>静态资源</h2>
+        <div id="static-resources"></div>
+        
+        <h2>证书文件</h2>
+        <div id="cert-files"></div>
+        
+        <h2>ETF页面</h2>
+        <div id="etf-pages"></div>
+        
+        <h2>股票页面</h2>
+        <div id="stock-pages"></div>
+        
+        <div class="mt-5">
+            <a href="/" class="btn">返回首页</a>
+            <button onclick="runAllChecks()" class="btn">重新检查</button>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('check-time').textContent = new Date().toLocaleString('zh-CN');
+        
+        const urlsToCheck = {
+            'core-pages': [
+                { name: '首页', url: '/' },
+                { name: '证书安装页面', url: '/cert-download.html' },
+                { name: '健康检查页面', url: '/health-check.html' }
+            ],
+            'static-resources': [
+                { name: 'CSS文件', url: '/static/css/amber-v2.2.min.css' },
+                { name: 'JavaScript文件', url: '/static/js/amber-engine.min.js' }
+            ],
+            'cert-files': [
+                { name: '一键安装工具', url: '/static/cert/install-certificates.bat' },
+                { name: '根CA证书', url: '/static/cert/amber-root-ca.crt' },
+                { name: '服务器证书', url: '/static/cert/amber-server.crt' },
+                { name: '完整证书链', url: '/static/cert/amber-fullchain.crt' },
+                { name: '安装说明', url: '/static/cert/README.txt' }
+            ],
+            'etf-pages': [
+                { name: '沪深300ETF', url: '/etf/510300.html' },
+                { name: '中证500ETF', url: '/etf/510500.html' },
+                { name: '创业板ETF', url: '/etf/159915.html' }
+            ],
+            'stock-pages': [
+                { name: '中国平安', url: '/stock/601318.html' },
+                { name: '贵州茅台', url: '/stock/600519.html' },
+                { name: '宁德时代', url: '/stock/300750.html' }
+            ]
+        };
+        
+        async function checkUrl(name, url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                const status = response.status;
+                let statusClass = 'status-other';
+                if (status === 200) statusClass = 'status-200';
+                else if (status === 404) statusClass = 'status-404';
+                
+                return `<div class="status-item ${statusClass}">
+                    <strong>${name}</strong>: ${url} 
+                    <span class="float-right">HTTP ${status}</span>
+                </div>`;
+            } catch (error) {
+                return `<div class="status-item status-other">
+                    <strong>${name}</strong>: ${url} 
+                    <span class="float-right">错误: ${error.message}</span>
+                </div>`;
+            }
+        }
+        
+        async function runAllChecks() {
+            for (const [sectionId, urls] of Object.entries(urlsToCheck)) {
+                const container = document.getElementById(sectionId);
+                container.innerHTML = '<div class="status-item">检查中...</div>';
+                
+                let html = '';
+                for (const item of urls) {
+                    html += await checkUrl(item.name, item.url);
+                }
+                container.innerHTML = html;
+            }
+            
+            document.getElementById('check-time').textContent = new Date().toLocaleString('zh-CN');
+        }
+        
+        // 页面加载时自动运行检查
+        window.onload = runAllChecks;
+    </script>
+</body>
+</html>

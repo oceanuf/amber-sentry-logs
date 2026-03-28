@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创业板指CSS修复验证</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 40px; }
+        .success { color: #2ECC71; font-size: 20px; margin: 20px 0; }
+        .problem { background: #FDEDEC; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .solution { background: #D4EDDA; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .test-card { background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🎯 创业板指CSS修复验证</h1>
+    
+    <div class="success">✅ V3.2.3创业板指修复补丁已应用</div>
+    
+    <div class="problem">
+        <h3>🔍 问题描述 (主编截图反馈)</h3>
+        <p><strong>现象:</strong> 创业板指A股显示都好像没有加载任何CSS，直接贴着屏幕</p>
+        <p><strong>截图位置:</strong> /home/luckyelite/Downloads/amber1.png</p>
+        <p><strong>诊断时间:</strong> 2026-03-19 15:14 CST</p>
+    </div>
+    
+    <div class="solution">
+        <h3>🔧 修复方案</h3>
+        <p><strong>根本原因:</strong> CSS样式未正确应用到创业板指卡片</p>
+        <p><strong>修复措施:</strong> 添加创业板指专用CSS修复补丁</p>
+        <p><strong>关键修复:</strong></p>
+        <ul>
+            <li>强制.indices-row正确显示 (flex布局)</li>
+            <li>强制.index-item应用所有样式 (!important)</li>
+            <li>确保.index-header和.index-value正确显示</li>
+            <li>添加移动端适配</li>
+        </ul>
+    </div>
+    
+    <div class="test-card">
+        <h3>🧪 修复效果测试 - 创业板指卡片</h3>
+        <div class="index-item">
+            <div class="index-header">
+                <span class="index-name">创业板指</span>
+                <span class="index-market">A股</span>
+            </div>
+            <div class="index-value">2152.03</div>
+            <div class="index-change price-up">+0.09%</div>
+            <div class="data-source-tag">真实数据</div>
+        </div>
+        <p style="margin-top: 15px; font-size: 14px; color: #666;">
+            如果这个卡片显示正常（有背景色、圆角、阴影），说明修复成功。
+        </p>
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <a href="/?v=3.2.3" style="background: #FFB347; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+            🚀 访问V3.2.3首页验证修复
+        </a>
+        <a href="/css-test.html" style="background: #2C3E50; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin-left: 15px;">
+            🧪 更多CSS测试
+        </a>
+    </div>
+    
+    <script>
+        // 验证创业板指卡片样式
+        const gemCard = document.querySelector('.index-item');
+        if (gemCard) {
+            const computed = window.getComputedStyle(gemCard);
+            console.log('🎯 创业板指卡片计算样式:');
+            console.log('背景色:', computed.backgroundColor);
+            console.log('圆角:', computed.borderRadius);
+            console.log('阴影:', computed.boxShadow);
+            console.log('内边距:', computed.padding);
+            
+            // 检查关键样式是否应用
+            const hasBackground = computed.backgroundColor !== 'rgba(0, 0, 0, 0)';
+            const hasBorderRadius = computed.borderRadius !== '0px';
+            const hasPadding = computed.padding !== '0px';
+            
+            if (hasBackground && hasBorderRadius && hasPadding) {
+                console.log('✅ 创业板指CSS修复成功');
+            } else {
+                console.log('❌ 创业板指CSS修复可能有问题');
+            }
+        }
+        
+        // 添加版本标记
+        localStorage.setItem('gem_fix_v3.2.3', 'applied');
+        localStorage.setItem('fix_timestamp', new Date().toISOString());
+    </script>
+</body>
+</html>

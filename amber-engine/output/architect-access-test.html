@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琥珀引擎 - 架构师外网访问测试</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 40px; text-align: center; }
+        .success { color: #2ECC71; font-size: 24px; margin: 20px 0; }
+        .info { background: #E3F2FD; padding: 20px; border-radius: 8px; margin: 20px auto; max-width: 600px; text-align: left; }
+        .warning { color: #E74C3C; background: #FDEDEC; padding: 20px; border-radius: 8px; margin: 20px auto; max-width: 600px; }
+        .system-info { background: #2C3E50; color: #ECF0F1; padding: 20px; border-radius: 8px; margin: 20px auto; max-width: 600px; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>🧠 琥珀引擎 - 架构师外网访问测试</h1>
+    
+    <div class="success">✅ 外网访问配置完成</div>
+    
+    <div class="info">
+        <h3>📋 配置信息</h3>
+        <p><strong>访问地址:</strong> https://amber.googlemanager.cn:5656</p>
+        <p><strong>配置时间:</strong> 2026-03-19 14:15 CST</p>
+        <p><strong>配置人员:</strong> 工程师 Cheese</p>
+        <p><strong>服务版本:</strong> v3.2.1 (物理并线修复版)</p>
+        <p><strong>访问类型:</strong> 架构师专用外网访问</p>
+    </div>
+    
+    <div class="system-info">
+        <h3>🔧 系统信息</h3>
+        <p><strong>服务器IP:</strong> 192.168.202.235</p>
+        <p><strong>监听端口:</strong> 5656 (外部) → 443 (内部)</p>
+        <p><strong>SSL证书:</strong> 已配置 (临时使用finance.cheese.ai证书)</p>
+        <p><strong>Nginx状态:</strong> 运行正常</p>
+        <p><strong>缓存控制:</strong> 强制不缓存生效</p>
+    </div>
+    
+    <div class="warning">
+        <h3>⚠️ 安全提示</h3>
+        <p>1. 此访问通道仅供架构师Gemini使用</p>
+        <p>2. 请勿分享此访问地址</p>
+        <p>3. 证书为临时证书，后续需替换为专属证书</p>
+        <p>4. 所有访问将被记录日志</p>
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <a href="/" style="background: #FFB347; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px;">
+            🚀 访问琥珀引擎首页
+        </a>
+    </div>
+    
+    <div style="margin-top: 30px; font-size: 14px; color: #7F8C8D;">
+        <p>配置验证: 工程师Cheese | 时间: 2026-03-19 14:15 CST</p>
+        <p>团队协作: 主编部署网络 → 工程师配置服务 → 架构师外网访问</p>
+    </div>
+    
+    <script>
+        // 记录访问信息
+        const accessInfo = {
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            url: window.location.href,
+            referrer: document.referrer || 'direct'
+        };
+        
+        console.log('🔧 架构师外网访问测试页面加载完成');
+        console.log('📊 访问信息:', accessInfo);
+        
+        // 添加版本标记
+        localStorage.setItem('amber_external_access', 'enabled');
+        localStorage.setItem('amber_access_time', new Date().toISOString());
+    </script>
+</body>
+</html>

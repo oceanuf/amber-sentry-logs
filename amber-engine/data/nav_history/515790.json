@@ -1,0 +1,13 @@
+{
+  "code": "515790",
+  "name": "光伏ETF",
+  "bias": 7.8,
+  "ma20": 0.98,
+  "alpha": 7.2,
+  "strategy_score": 82,
+  "robust_score": 75,
+  "efficiency_score": 88,
+  "total_score": 79.1,
+  "data_source": "TUSHARE",
+  "update_time": "2026-03-27T18:46:02.612453"
+}

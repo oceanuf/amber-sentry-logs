@@ -1,0 +1,19 @@
+{
+  "analysis_date": "2026-03-22 14:34:12",
+  "period": "20260227 至 20260319",
+  "hs300_performance": {
+    "start": 4710.65,
+    "end": 4583.25,
+    "change_pct": -2.7
+  },
+  "etfs": [
+    {
+      "ts_code": "159149.OF",
+      "name": "工银创业板新能源ETF",
+      "start_price": 1.3837,
+      "end_price": 1.5046,
+      "change_pct": 8.74,
+      "latest_nav": 1.5046,
+      "hs300_change": -2.7,
+      "alpha": 11.44,
+      "outperforms": 

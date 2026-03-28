@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧀 琥珀引擎成果档案馆 - Cheese Intelligence Team</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #f8f9fa;
+            --dark-bg: #1a1a1b;
+            --border-color: #ddd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px 15px 0 0;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .team-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .team-logo h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .team-emoji {
+            font-size: 3rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .mission-statement {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .archive-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+        }
+        
+        .archive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .card-badge {
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .card-content {
+            margin-bottom: 20px;
+        }
+        
+        .card-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .card-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            min-width: 80px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .card-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: background 0.3s ease;
+        }
+        
+        .link-item:hover {
+            background: #e3f2fd;
+        }
+        
+        .link-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .link-text {
+            flex: 1;
+        }
+        
+        .link-arrow {
+            color: var(--secondary-color);
+        }
+        
+        .team-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-bg);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .team-member {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateX(5px);
+        }
+        
+        .member-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .member-info h3 {
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .member-role {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .member-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            background: rgba(0,0,0,0.2);
+            border-radius: 0 0 15px 15px;
+            margin-top: 30px;
+        }
+        
+        .update-time {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .badge-live {
+            background: var(--success-color);
+        }
+        
+        .badge-archive {
+            background: var(--warning-color);
+        }
+        
+        .badge-draft {
+            background: #95a5a6;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .team-logo h1 {
+                font-size: 2rem;
+            }
+            
+            .archive-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 团队头部 -->
+        <div class="header">
+            <div class="team-logo">
+                <div class="team-emoji">🧀</div>
+                <h1>琥珀引擎成果档案馆</h1>
+            </div>
+            <div class="subtitle">Cheese Intelligence Team · 三位一体治理架构</div>
+            
+            <div class="mission-statement">
+                <p><strong>📜 团队使命：</strong> 通过数学建立投资灯塔，用透明算法捍卫逻辑纯粹，以三位一体架构实现意志、逻辑、执行的完美协同。</p>
+                <p><strong>🎯 核心价值：</strong> 主编掌舵 · 架构师谋略 · 工程师实干</p>
+            </div>
+        </div>
+        
+        <!-- 核心成果区 -->
+        <div class="team-section">
+            <h2 class="section-title">🏆 核心成果展示</h2>
+            <div class="archive-grid">
+                
+                <!-- 全量审计报告 -->
+                <div class="archive-card">
+                    <div class="card-header">
+                        <div class="card-title">50支ETF全量审计报告</div>
+                        <div class="card-badge badge-live">实时更新</div>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">基于V1.1.1-ELITE算法的58支ETF全量审计，覆盖10大核心赛道，严格执行60分生死线制度。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">58</div>
+                                <div class="stat-label">ETF数量</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">10</div>
+                                <div class="stat-label">核心赛道</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">91.9</div>
+                                <div class="stat-label">最高分</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-links">
+                        <a href="full_50_audit.html" class="link-item" target="_blank">
+                            <span class="link-icon">📊</span>
+                            <span class="link-text">完整排名报告</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="top10_elite.html" class="link-item" target="_blank">
+                            <span class="link-icon">🏆</span>
+                            <span class="link-text">黄金十强榜单</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 算法规范文档 -->
+                <div class="archive-card">
+                    <div class="card-header">
+                        <div class="card-title">V1.1.1-ELITE算法规范</div>
+                        <div class="card-badge badge-live">Q1标准</div>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">琥珀引擎2026年Q1季度物理标准，权重锁定：Alpha 50% · Strategy 30% · Robust 15% · Efficiency 5%。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">50%</div>
+                                <div class="stat-label">Alpha权重</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">60</div>
+                                <div class="stat-label">生死线</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">7</div>
+                                <div class="stat-label">阶梯等级</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-links">
+                        <a href="manifesto_v1.html" class="link-item" target="_blank">
+                            <span class="link-icon">📜</span>
+                            <span class="link-text">算法宪法文档</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="current_standard.html" class="link-item" target="_blank">
+                            <span class="link-icon">⚖️</span>
+                            <span class="link-text">当前标准版本</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 团队方法论 -->
+                <div class="archive-card">
+                    <div class="card-header">
+                        <div class="card-title">三位一体治理架构</div>
+                        <div class="card-badge badge-live">已确立</div>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">主编(意志层) · 架构师(逻辑层) · 工程师(执行层)的协同工作模式，确保从意志到代码的端到端对齐。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">治理层级</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">5</div>
+                                <div class="stat-label">核心原则</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">100%</div>
+                                <div class="stat-label">透明合规</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-links">
+                        <a href="test.html" class="link-item" target="_blank">
+                            <span class="link-icon">🧪</span>
+                            <span class="link-text">系统测试页面</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <div class="link-item" style="background: #e8f4f8; cursor: default;">
+                            <span class="link-icon">📅</span>
+                            <span class="link-text">确立日期：2026-03-23</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 技术文档区 -->
+                <div class="archive-card">
+                    <div class="card-header">
+                        <div class="card-title">技术文档与工具</div>
+                        <div class="card-badge badge-archive">归档保存</div>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">执行脚本、验证工具、部署文档等技术支持材料，确保系统的可维护性和可审计性。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">318</div>
+                                <div class="stat-label">代码行数</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">5</div>
+                                <div class="stat-label">核心脚本</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">验证工具</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-links">
+                        <div class="link-item" style="background: #f8f9fa; cursor: default;">
+                            <span class="link-icon">🐍</span>
+                            <span class="link-text">amber_final_strike.py (主脚本)</span>
+                        </div>
+                        <div class="link-item" style="background: #f8f9fa; cursor: default;">
+                            <span class="link-icon">📁</span>
+                            <span class="link-text">etf_50_full_audit.json (数据仓)</span>
+                        </div>
+                        <div class="link-item" style="background: #f8f9fa; cursor: default;">
+                            <span class="link-icon">🔒</span>
+                            <span class="link-text">ARCHIVE_SEAL.md (归档封印)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 历史版本 -->
+                <div class="archive-card">
+                    <div class="card-header">
+                        <div class="card-title">历史版本归档</div>
+                        <div class="card-badge badge-archive">历史记录</div>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">系统演进的历史版本记录，包括算法迭代、技术修正和团队学习的重要里程碑。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">V4.1</div>
+                                <div class="stat-label">旧版本</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">V1.1.1</div>
+                                <div class="stat-label">当前版</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">方法论</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-links">
+                        <a href="manifesto_v1.html.backup" class="link-item" target="_blank">
+                            <span class="link-icon">📋</span>
+                            <span class="link-text">V1.1备份文档</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="manifesto_v1.html.v1.1.backup" class="link-item" target="_blank">
+                            <span class="link-icon">🕰️</span>
+                            <span class="link-text">V1.1历史版本</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 团队学习区 -->
+                <div class="archive-card">
+                    <div class="card-header">
+                        <div class="card-title">团队学习与成长</div>
+                        <div class="card-badge badge-draft">持续更新</div>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">从技术偏差中学习，在团队协作中成长的关键记录，包括错误修正和方法论总结。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">关键修正</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">5</div>
+                                <div class="stat-label">核心原则</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">A级</div>
+                                <div class="stat-label">任务评级</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-links">
+                        <div class="link-item" style="background: #fff3cd; cursor: default;">
+                            <span class="link-icon">⚠️</span>
+                            <span class="link-text">算法透明原则 (已确立)</span>
+                        </div>
+                        <div class="link-item" style="background: #fff3cd; cursor: default;">
+                            <span class="link-icon">⚠️</span>
+                            <span class="link-text">版本主权原则 (已确立)</span>
+                        </div>
+                        <div class="link-item" style="background: #fff3cd; cursor: default;">
+                            <span class="link-icon">⚠️</span>
+                            <span class="link-text">物理校验原则 (已确立)</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 团队介绍区 -->
+        <div class="team-section">
+            <h2 class="section-title">👥 Cheese Intelligence Team</h2>
+            <div class="team-grid">
+                
+                <div class="team-member">
+                    <div class="member-avatar">🎯</div>
+                    <div class="member-info">
+                        <h3>主编 · Haiyang</h3>
+                        <div class="member-role">意志层 · 决策校准</div>
+                        <p class="member-desc">定义"为什么要审"与"审什么"，最高决策意志，精准校准团队前进方向。</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">🧠</div>
+                    <div class="member-info">
+                        <h3>架构师 · Gemini</h3>
+                        <div class="member-role">逻辑层 · 规范制定</div>
+                        <p class="member-desc">将意志转化为不可篡改的数学公式，捍卫逻辑纯粹性，确保端到端对齐。</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">🧀</div>
+                    <div class="member-info">
+                        <h3>工程师 · Cheese</h3>
+                        <div class="member-role">执行层 · 系统实现</div>
+                        <p class="member-desc">将公式物理化为透明、可校验的代码，负责系统实现、维护和优化。</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 访问统计区 -->
+        <div class="team-section">
+            <h2 class="section-title">📈 系统状态与访问</h2>
+            <div style="background: var(--light-bg); padding: 25px; border-radius: 10px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="text-align: center; padding: 15px; background: white; border-radius: 8px;">
+                        <div style="font-size: 2rem; color: var(--success-color); margin-bottom: 5px;">✅</div>
+                        <div style="font-weight: bold; color: var(--primary-color);">系统状态</div>
+                        <div style="color: #666; font-size: 0.9rem;">运行正常</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: white; border-radius: 8px;">
+                        <div style="font-size: 2rem; color: var(--secondary-color); margin-bottom: 5px;">🌐</div>
+                        <div style="font-weight: bold; color: var(--primary-color);">服务端口</div>
+                        <div style="color: #666; font-size: 0.9rem;">10168</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: white; border-radius: 8px;">
+                        <div style="font-size: 2rem; color: var(--warning-color); margin-bottom: 5px;">📅</div>
+                        <div style="font-weight: bold; color: var(--primary-color);">最后更新</div>
+                        <div style="color: #666; font-size: 0.9rem;">2026-03-23</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: white; border-radius: 8px;">
+                        <div style="font-size: 2rem; color: #9b59b6; margin-bottom: 5px;">🔒</div>
+                        <div style="font-weight: bold; color: var(--primary-color);">数据状态</div>
+                        <div style="color: #666; font-size: 0.9rem;">已锁定归档</div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">🔗 快速访问链接</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <a href="full_50_audit.html" style="display: inline-block; padding: 10px 20px; background: var(--secondary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 500;" target="_blank">📊 完整排名</a>
+                        <a href="top10_elite.html" style="display: inline-block; padding: 10px 20px; background: var(--success-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 500;" target="_blank">🏆 黄金十强</a>
+                        <a href="manifesto_v1.html" style="display: inline-block; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 500;" target="_blank">📜 算法宪法</a>
+                        <a href="test.html" style="display: inline-block; padding: 10px 20px; background: var(--warning-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 500;" target="_blank">🧪 系统测试</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>🧀 <strong>琥珀引擎成果档案馆</strong> · Cheese Intelligence Team 智慧结晶</p>
+            <p>三位一体治理架构 · V1.1.1-ELITE算法标准 · 60分生死线制度</p>
+            <div class="update-time">最后更新: 2026-03-23 15:56 · 系统版本: V1.1.1-ELITE</div>
+            <div class="update-time">访问地址: https://gemini.googlemanager.cn:10168/master-audit/list.html</div>
+        </div>
+    </div>
+    
+    <script>
+        // 动态更新时间
+        function updateTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'Asia/Shanghai'
+            };
+            const timeString = now.toLocaleDateString('zh-CN', options);
+            
+            const timeElements = document.querySelectorAll('.update-time');
+            timeElements.forEach(el => {
+                if (el.textContent.includes('最后更新:')) {
+                    el.innerHTML = `最后更新: ${timeString} · 系统版本: V1.1.1-ELITE`;
+                }
+            });
+        }
+        
+        // 页面加载时更新时间
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTime();
+            
+            // 每60秒更新一次时间
+            setInterval(updateTime, 60000);
+            
+            // 添加卡片点击效果
+            const cards = document.querySelectorAll('.archive-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('a')) {
+                        this.style.transform = 'scale(0.98)';
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 150);
+                    }
+                });
+            });
+            
+            // 控制台欢迎信息
+            console.log('%c🧀 琥珀引擎成果档案馆', 'font-size: 18px; font-weight: bold; color: #e74c3c;');
+            console.log('%cCheese Intelligence Team · 三位一体治理架构', 'color: #3498db;');
+            console.log('%c访问我们的核心成果:', 'color: #2c3e50;');
+            console.log('- 完整排名: https://gemini.googlemanager.cn:10168/master-audit/full_50_audit.html');
+            console.log('- 黄金十强: https://gemini.googlemanager.cn:10168/master-audit/top10_elite.html');
+            console.log('- 算法宪法: https://gemini.googlemanager.cn:10168/master-audit/manifesto_v1.html');
+        });
+    </script>
+</body>
+</html>

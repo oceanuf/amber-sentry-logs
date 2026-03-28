@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投资策略 - ETF专区 - 琥珀引擎</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        .strategy-header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 2rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .strategy-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #FFF; /* 琥珀引擎指令 [001] - 动作C */
+        }
+        .strategy-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .strategy-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .strategy-card h3 {
+            color: #1a237e;
+            margin-top: 0;
+            border-bottom: 2px solid #ff9800;
+            padding-bottom: 0.5rem;
+        }
+        .strategy-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .strategy-description {
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        .strategy-link {
+            display: inline-block;
+            background: #1a237e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        .strategy-link:hover {
+            background: #283593;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: #f5f5f5;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        .empty-state h3 {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+            .strategy-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 琥珀全局导航条 - V3.2.9 -->
+        <nav class="amber-nav-bar">
+            <a href="/etf/" class="nav-item">ETF 专区</a>
+            <a href="/etf/report/" class="nav-item">ETF 报告</a>
+            <a href="/etf/strategy/" class="nav-item active">投资策略</a>
+            <a href="/" class="nav-item" style="margin-left:auto; font-size:14px; color:#757575;">← 返回首页</a>
+        </nav>
+        
+        <div class="strategy-header">
+            <h1 class="strategy-title">投资策略</h1>
+            <p class="strategy-subtitle">基于十五五规划的ETF资产配置策略</p>
+        </div>
+        
+        <div class="strategy-grid">
+            <div class="strategy-card">
+                <h3>2026年Q2投资策略</h3>
+                <div class="strategy-meta">
+                    <span>发布日期: 2026-03-21</span>
+                    <span>策略周期: Q2 2026</span>
+                </div>
+                <p class="strategy-description">
+                    本策略报告基于十五五规划核心产业赛道，结合宏观经济数据、政策导向和市场趋势，为投资者提供2026年第二季度的ETF资产配置建议。
+                </p>
+                <a href="strategy_2026_q2.html" class="strategy-link">查看完整策略 →</a>
+            </div>
+            
+            <!-- 预留更多策略卡片 -->
+            <div class="strategy-card">
+                <h3>十五五规划联动策略</h3>
+                <div class="strategy-meta">
+                    <span>状态: 规划中</span>
+                    <span>预计发布: 2026-Q3</span>
+                </div>
+                <p class="strategy-description">
+                    深入分析十五五规划对各产业的影响，提供基于政策红利的长期投资策略。
+                </p>
+                <span class="strategy-link" style="background: #9e9e9e; cursor: not-allowed;">即将发布</span>
+            </div>
+            
+            <div class="strategy-card">
+                <h3>行业轮动策略</h3>
+                <div class="strategy-meta">
+                    <span>状态: 规划中</span>
+                    <span>预计发布: 2026-Q3</span>
+                </div>
+                <p class="strategy-description">
+                    基于宏观经济周期和行业景气度，提供动态的行业轮动投资建议。
+                </p>
+                <span class="strategy-link" style="background: #9e9e9e; cursor: not-allowed;">即将发布</span>
+            </div>
+        </div>
+        
+        <div class="empty-state">
+            <h3>更多策略正在准备中</h3>
+            <p>我们正在基于最新市场数据和研究，准备更多专业的投资策略报告。</p>
+            <p>请关注琥珀引擎的定期更新。</p>
+        </div>
+        
+        <div class="footer">
+            <p>© 2026 琥珀引擎 - ETF投资策略研究中心</p>
+            <p>数据来源: Tushare Pro、公开市场数据、政策文件分析</p>
+            <p>更新时间: 2026-03-22 12:59 (北京时间)</p>
+        </div>
+    </div>
+</body>
+</html>

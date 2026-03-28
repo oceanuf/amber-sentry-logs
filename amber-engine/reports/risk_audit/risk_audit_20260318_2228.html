@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>架构师风险审计报告</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        .risk-report {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .risk-header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .risk-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid;
+        }
+        
+        .risk-high {
+            border-left-color: #f44336;
+        }
+        
+        .risk-medium {
+            border-left-color: #ff9800;
+        }
+        
+        .risk-low {
+            border-left-color: #4caf50;
+        }
+        
+        .severity-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        .severity-high {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .severity-medium {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+        
+        .severity-low {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .recommendation-card {
+            background: #e3f2fd;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="risk-report">
+        <div class="risk-header">
+            <h1>🛡️ 架构师风险审计报告</h1>
+            <p>审计时间: 2026-03-18 22:28:31</p>
+            <p>总资产规模: 504,000 元 (50.4万元)</p>
+        </div>
+        
+        <h2>📊 风险发现</h2>
+        <div class="risk-card risk-中">
+            <div class="risk-title">
+                <span class="severity-badge severity-中">中风险</span>
+                <strong>创业板依赖症 (Gem-Dependency)</strong>
+            </div>
+            <p>前10大重仓股中，4只为创业板股票</p>
+        </div>
+        <div class="risk-card risk-中">
+            <div class="risk-title">
+                <span class="severity-badge severity-中">中风险</span>
+                <strong>算力与半导体集中 (Cpm-Concentration)</strong>
+            </div>
+            <p>底层持仓过于拥挤在AI算力赛道</p>
+        </div>
+        <div class="report-footer">
+            <p>💡 数据来源: Tushare Pro Verified | 琥珀引擎风险审计系统</p>
+            <p>📅 报告生成: 2026-03-18 22:28:31</p>
+            <p>🔗 访问地址: https://finance.cheese.ai/my-wealth/risk-audit</p>
+        </div>
+    </div>
+</body>
+</html>

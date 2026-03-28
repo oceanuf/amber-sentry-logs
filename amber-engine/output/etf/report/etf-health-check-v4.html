@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>十五五主题ETF五维加权体检报告 - 琥珀引擎 V4.0</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root{--paper-white:#f9f9f9;--cheese-amber:#ff9800;--midnight-navy:#0d47a1;--graphite-gray:#424242;--amber-light:#fff3e0;--amber-dark:#ffb74d;--card-spacing:#f0f4f8;--success-green:#4caf50;--warning-orange:#ff9800;--error-red:#f44336;--info-blue:#2196f3;--spacing-xs:4px;--spacing-sm:8px;--spacing-md:16px;--spacing-lg:24px;--spacing-xl:32px;--spacing-xxl:48px;--card-gap:25px;--radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-xl:16px;--shadow-sm:0 2px 4px rgba(0,0,0,0.1);--shadow-md:0 4px 8px rgba(0,0,0,0.12);--shadow-lg:0 8px 16px rgba(0,0,0,0.15);--shadow-xl:0 12px 24px rgba(0,0,0,0.18);--duration-fast:150ms;--duration-normal:300ms;--duration-slow:500ms;--etf-purple-light:#f3e5f5;--etf-purple:#9c27b0;--etf-purple-dark:#673ab7;--etf-purple-gradient:linear-gradient(135deg,#f3e5f5 0%,#e1bee7 100%);--etf-border-gradient:linear-gradient(90deg,#9c27b0 0%,#673ab7 100%);--font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--font-serif:Georgia,'Times New Roman',Times,serif;--font-mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace;}*{margin:0;padding:0;box-sizing:border-box;}html{font-size:16px;scroll-behavior:smooth;}body{font-family:var(--font-sans);line-height:1.6;color:var(--graphite-gray);background-color:var(--paper-white);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}.container{width:100%;max-width:1200px;margin:0 auto;padding:0 var(--spacing-lg);}.container-fluid{width:100%;padding:0 var(--spacing-lg);}h1,h2,h3,h4,h5,h6{font-weight:700;line-height:1.2;margin-bottom:var(--spacing-md);color:var(--midnight-navy);}h1{font-size:2.5rem;}h2{font-size:2rem;}h3{font-size:1.75rem;}h4{font-size:1.5rem;}h5{font-size:1.25rem;}h6{font-size:1rem;}p{margin-bottom:var(--spacing-md);}a{color:var(--cheese-amber);text-decoration:none;transition:color var(--duration-fast);}a:hover{color:var(--amber-dark);text-decoration:underline;}.mt-1{margin-top:var(--spacing-xs);}.mt-2{margin-top:var(--spacing-sm);}.mt-3{margin-top:var(--spacing-md);}.mt-4{margin-top:var(--spacing-lg);}.mt-5{margin-top:var(--spacing-xl);}.mb-1{margin-bottom:var(--spacing-xs);}.mb-2{margin-bottom:var(--spacing-sm);}.mb-3{margin-bottom:var(--spacing-md);}.mb-4{margin-bottom:var(--spacing-lg);}.mb-5{margin-bottom:var(--spacing-xl);}.ml-1{margin-left:var(--spacing-xs);}.ml-2{margin-left:var(--spacing-sm);}.ml-3{margin-left:var(--spacing-md);}.ml-4{margin-left:var(--spacing-lg);}.ml-5{margin-left:var(--spacing-xl);}.text-center{text-align:center;}.text-right{text-align:right;}.text-left{text-align:left;}.finance-card{background-color:white;border-radius:var(--radius-lg);padding:var(--spacing-xl);margin-bottom:var(--card-gap);box-shadow:var(--shadow-md);border:1px solid rgba(0,0,0,0.05);transition:transform var(--duration-normal),box-shadow var(--duration-normal);}.finance-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--spacing-lg);padding-bottom:var(--spacing-md);border-bottom:2px solid var(--cheese-amber);}.card-title{font-size:1.5rem;font-weight:800;color:var(--midnight-navy);margin:0;}.card-meta{display:flex;gap:var(--spacing-sm);flex-wrap:wrap;}.card-content{margin-bottom:var(--spacing-lg);}.card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:var(--spacing-md);border-top:1px solid #eee;}.tags{display:inline-flex;align-items:center;gap:var(--spacing-xs);padding:var(--spacing-xs) var(--spacing-md);background-color:var(--amber-light);color:var(--midnight-navy);border-radius:var(--radius-md);font-size:0.875rem;font-weight:600;border:1px solid var(--cheese-amber);}.source-tag{background-color:var(--midnight-navy);color:white;padding:var(--spacing-xs) var(--spacing-md);border-radius:var(--radius-md);font-size:0.875rem;font-weight:600;}.time-tag{background-color:#f5f5f5;color:#666;padding:var(--spacing-xs) var(--spacing-md);border-radius:var(--radius-md);font-size:0.875rem;}.score-tag{background-color:var(--success-green);color:white;padding:var(--spacing-xs) var(--spacing-md);border-radius:var(--radius-md);font-size:0.875rem;font-weight:600;}.section-title{font-size:1.75rem;font-weight:800;color:var(--midnight-navy);margin-bottom:var(--spacing-xl);position:relative;padding-bottom:var(--spacing-sm);}.section-title::after{content:'';position:absolute;bottom:0;left:0;width:60px;height:3px;background:linear-gradient(90deg,var(--cheese-amber) 0%,var(--amber-dark) 100%);border-radius:var(--radius-sm);}.dashboard-section{margin-bottom:var(--spacing-xxl);}.insider-header{display:flex;align-items:center;gap:var(--spacing-md);margin-bottom:var(--spacing-xl);}.insider-badge{background:linear-gradient(135deg,var(--cheese-amber) 0%,var(--amber-dark) 100%);color:white;padding:var(--spacing-xs) var(--spacing-lg);border-radius:var(--radius-md);font-weight:700;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.5px;}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--card-gap);}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--card-gap);}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--card-gap);}.stock-header{background:linear-gradient(135deg,var(--midnight-navy) 0%,#1a237e 100%);color:white;padding:var(--spacing-xl) 0;margin-bottom:var(--spacing-xl);border-radius:var(--radius-lg);}.stock-title{font-size:2.5rem;font-weight:800;margin-bottom:var(--spacing-sm);}.stock-code{font-size:1.2rem;opacity:0.9;background-color:rgba(255,255,255,0.1);padding:var(--spacing-xs) var(--spacing-md);border-radius:var(--radius-md);display:inline-block;}.amber-metrics-card{background:linear-gradient(135deg,#fff3e0 0%,#ffecb3 100%);border:3px solid var(--cheese-amber);border-radius:var(--radius-lg);padding:var(--spacing-xl);margin-bottom:var(--spacing-xl);position:relative;overflow:hidden;}.amber-metrics-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--cheese-amber) 0%,var(--amber-dark) 100%);}.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--spacing-lg);margin-top:var(--spacing-lg);}.metric-item{text-align:center;padding:var(--spacing-md);background-color:white;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);}.metric-label{font-size:0.9rem;color:#666;margin-bottom:var(--spacing-xs);}.metric-value{font-size:1.8rem;font-weight:800;color:var(--midnight-navy);}.highlight-val{color:var(--cheese-amber) !important;font-weight:900;position:relative;animation:pulse-highlight 2s infinite;}@keyframes pulse-highlight{0%,100%{text-shadow:0 0 10px rgba(255,152,0,0.5);}50%{text-shadow:0 0 20px rgba(255,152,0,0.8);}}.price-chart{background-color:white;border-radius:var(--radius-lg);padding:var(--spacing-xl);margin-bottom:var(--spacing-xl);box-shadow:var(--shadow-md);}.price-table{width:100%;border-collapse:collapse;margin-top:var(--spacing-lg);}.price-table th,.price-table td{padding:var(--spacing-md);text-align:center;border-bottom:1px solid #eee;}.price-table th{background-color:#f8f9fa;font-weight:600;color:var(--midnight-navy);}.price-up{color:#f44336;font-weight:700;}.price-down{color:#4caf50;font-weight:700;}.stock-analysis{background-color:white;border-radius:var(--radius-lg);padding:var(--spacing-xl);margin-bottom:var(--spacing-xl);box-shadow:var(--shadow-md);}.stock-analysis h2{color:var(--midnight-navy);margin-bottom:var(--spacing-lg);padding-bottom:var(--spacing-sm);border-bottom:2px solid var(--cheese-amber);}.highlight-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--spacing-lg);margin:var(--spacing-xl) 0;}.point-card{background-color:#f8f9fa;border-radius:var(--radius-md);padding:var(--spacing-lg);border-left:4px solid var(--cheese-amber);}.point-card h3,.point-card h4{color:var(--midnight-navy);margin-bottom:var(--spacing-sm);}@media (max-width:768px){.container{padding:0 var(--spacing-md);}h1{font-size:2rem;}h2{font-size:1.75rem;}h3{font-size:1.5rem;}.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}.metrics-grid{grid-template-columns:repeat(2,1fr);}.card-header{flex-direction:column;align-items:flex-start;gap:var(--spacing-sm);}.card-meta{justify-content:flex-start;}.price-table{font-size:0.875rem;}.price-table th,.price-table td{padding:var(--spacing-sm);}}@media (max-width:480px){.metrics-grid{grid-template-columns:1fr;}.stock-title{font-size:2rem;}.metric-value{font-size:1.5rem;}}@media print{.finance-card{box-shadow:none;border:1px solid #ddd;}.stock-header{background:none;color:black;border-bottom:2px solid var(--midnight-navy);}a{color:black;text-decoration:underline;}.no-print{display:none;}}.hidden{display:none !important;}.visible{display:block !important;}.flex{display:flex;}.flex-col{flex-direction:column;}.items-center{align-items:center;}.justify-between{justify-content:space-between;}.gap-2{gap:var(--spacing-sm);}.gap-4{gap:var(--spacing-lg);}.loading-spinner{display:inline-block;width:20px;height:20px;border:3px solid rgba(0,0,0,0.1);border-radius:50%;border-top-color:var(--cheese-amber);animation:spin 1s ease-in-out infinite;}@keyframes spin{to{transform:rotate(360deg);}}.tooltip{position:relative;display:inline-block;border-bottom:1px dotted #666;cursor:help;}.tooltip .tooltip-text{visibility:hidden;width:200px;background-color:var(--midnight-navy);color:white;text-align:center;padding:var(--spacing-sm);border-radius:var(--radius-md);position:absolute;z-index:1;bottom:125%;left:50%;transform:translateX(-50%);opacity:0;transition:opacity var(--duration-normal);font-size:0.875rem;}.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}.card-type-etf{background:var(--etf-purple-gradient) !important;border-left:4px solid var(--etf-purple-dark) !important;border-top:1px solid rgba(103,58,183,0.2) !important;border-right:1px solid rgba(103,58,183,0.2) !important;border-bottom:1px solid rgba(103,58,183,0.2) !important;position:relative;overflow:hidden;}.card-type-etf::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--etf-border-gradient);}.card-type-etf .card-header h3,.card-type-etf .card-title{color:var(--etf-purple-dark) !important;position:relative;padding-left:28px;}.card-type-etf .card-header h3::before,.card-type-etf .card-title::before{content:'📈';position:absolute;left:0;top:50%;transform:translateY(-50%);font-size:1.2rem;}@keyframes etf-pulse{0%,100%{box-shadow:0 0 10px rgba(156,39,176,0.5);transform:scale(1);}50%{box-shadow:0 0 20px rgba(156,39,176,0.8);transform:scale(1.02);}}.etf-pulse{animation:etf-pulse 2s infinite;}.etf-highlight-up{color:var(--etf-purple-dark) !important;font-weight:900;position:relative;animation:etf-pulse 2s infinite;}.etf-highlight-down{color:#d32f2f !important;font-weight:900;position:relative;}.etf-params-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--spacing-md);margin:var(--spacing-lg) 0;padding:var(--spacing-lg);background-color:rgba(243,229,245,0.3);border-radius:var(--radius-lg);border:1px solid rgba(156,39,176,0.2);}.etf-param-item{text-align:center;padding:var(--spacing-md);background-color:white;border-radius:var(--radius-md);border:1px solid rgba(156,39,176,0.1);}.etf-param-label{font-size:0.9rem;color:var(--etf-purple);margin-bottom:var(--spacing-xs);font-weight:600;}.etf-param-value{font-size:1.5rem;font-weight:800;color:var(--etf-purple-dark);}.etf-top-holdings{margin:var(--spacing-xl) 0;}.etf-holdings-table{width:100%;border-collapse:collapse;margin-top:var(--spacing-md);background-color:white;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);}.etf-holdings-table th{background-color:var(--etf-purple-light);color:var(--etf-purple-dark);padding:var(--spacing-md);text-align:left;font-weight:700;border-bottom:2px solid var(--etf-purple);}.etf-holdings-table td{padding:var(--spacing-md);border-bottom:1px solid rgba(156,39,176,0.1);}.etf-holdings-table tr:last-child td{border-bottom:none;}.etf-holdings-table tr:hover{background-color:rgba(243,229,245,0.3);}.etf-momentum-badge{display:inline-block;background:var(--etf-border-gradient);color:white;padding:var(--spacing-xs) var(--spacing-lg);border-radius:var(--radius-md);font-weight:700;font-size:0.875rem;margin-left:var(--spacing-sm);vertical-align:middle;}.etf-weight-badge{display:inline-block;background-color:rgba(156,39,176,0.1);color:var(--etf-purple-dark);padding:2px 8px;border-radius:var(--radius-sm);font-size:0.75rem;font-weight:600;border:1px solid rgba(156,39,176,0.3);margin-left:var(--spacing-xs);}.etf-rich-score{color:var(--etf-purple-dark) !important;font-weight:900;position:relative;display:inline-block;}.etf-rich-score::after{content:'(含ETF 15%权重加成)';display:block;font-size:0.75rem;color:var(--etf-purple);font-weight:normal;margin-top:2px;}@media (max-width:768px){.etf-params-grid{grid-template-columns:repeat(2,1fr);}.etf-holdings-table{font-size:0.875rem;}.etf-holdings-table th,.etf-holdings-table td{padding:var(--spacing-sm);}}@media (max-width:480px){.etf-params-grid{grid-template-columns:1fr;}}/* 琥珀全局导航条 - V3.2.9 */
+.amber-nav-bar {
+ width: 100%;
+ max-width: 1200px;
+ margin: 0 auto 20px auto;
+ padding: 15px 0;
+ border-bottom: 1px solid rgba(255, 179, 71, 0.3); /* 琥珀金半透明分割线 */
+ display: flex;
+ justify-content: flex-start; /* 左对齐 */
+ align-items: center;
+}
+
+.nav-item {
+ margin-right: 30px; /* 严格执行主编要求的 30px 间距 */
+ text-decoration: none;
+ font-size: 16px;
+ font-weight: 500;
+ color: #FFB347; /* 琥珀金主色 */
+ transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+ color: #f44336; /* 悬停触发"红涨"色提示 */
+}
+
+.nav-item.active {
+ border-bottom: 2px solid #f44336; /* 当前页高亮显示 */
+}
+
+/* 移动端响应式导航 */
+@media (max-width: 768px) {
+ .amber-nav-bar {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+ }
+ .nav-item {
+  margin-right: 20px;
+  font-size: 14px;
+ }
+}
+
+.site-footer{background-color:var(--midnight-navy);color:white;padding:var(--spacing-xl) 0;margin-top:var(--spacing-xxl);}.footer-content{display:flex;justify-content:space
+        
+        /* 自定义样式 */
+        .report-header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 2rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .report-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #FFF;
+        }
+        .report-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .execution-info {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #ff9800;
+        }
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .health-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .health-table th {
+            background: #1a237e;
+            color: white;
+            font-weight: 600;
+            padding: 1rem;
+            text-align: left;
+        }
+        .health-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .health-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .core-pool-row {
+            background-color: #fff3e0 !important;
+            border-left: 4px solid #ff9800 !important;
+        }
+        .alternative-pool-row {
+            background-color: #fff8e1 !important;
+            border-left: 4px solid #ffb74d !important;
+        }
+        .reject-pool-row {
+            background-color: #f5f5f5 !important;
+            opacity: 0.7;
+            border-left: 4px solid #9e9e9e !important;
+        }
+        .radar-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .radar-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .radar-title {
+            color: #1a237e;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .weight-matrix {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border: 2px solid #e9ecef;
+        }
+        .weight-title {
+            color: #1a237e;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5rem;
+        }
+        .weight-item {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .weight-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .conclusion-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 3px solid #2196f3;
+        }
+        .conclusion-title {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #2196f3;
+            padding-bottom: 0.5rem;
+        }
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+            color: #757575;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .health-table {
+                display: block;
+                overflow-x: auto;
+            }
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+            .radar-section {
+                grid-template-columns: 1fr;
+            }
+            .report-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 报告头部 -->
+        <div class="report-header">
+            <h1 class="report-title">十五五主题ETF五维加权体检报告</h1>
+            <div class="report-subtitle">
+                琥珀引擎 V4.0 | 执行时间: 2026-03-22 20:23:22
+            </div>
+        </div>
+        
+        <!-- 执行信息 -->
+        <div class="execution-info">
+            <strong>🏗️ 架构师指令:</strong> [M002-V4.0-EXEC] 执行"十五五"主题ETF五维加权体检<br>
+            <strong>👨‍💻 执行者:</strong> 工程师 Cheese<br>
+            <strong>📊 数据源:</strong> AkShare (主要) + Tushare Pro (校准)<br>
+            <strong>📅 时间区间:</strong> 2026-02-27 至 2026-03-19<br>
+            <strong>🎯 基准锚点:</strong> 华泰柏瑞沪深300ETF (510300)
+        </div>
+        
+        <!-- 加权矩阵 -->
+        <div class="weight-matrix">
+            <h3 class="weight-title">📊 核心加权算法 (Weighting Matrix)</h3>
+            <div class="weight-item">
+                <strong>S_D_Performance (基金表现):</strong> 0.50 - 超额收益权重最高
+            </div>
+            <div class="weight-item">
+                <strong>S_A_Liquidity (流动性):</strong> 0.15 - 成交额权重
+            </div>
+            <div class="weight-item">
+                <strong>S_C_Cost (费率成本):</strong> 0.15 - 费率权重
+            </div>
+            <div class="weight-item">
+                <strong>S_B_Correlation (相关性):</strong> 0.10 - 指数跟踪权重
+            </div>
+            <div class="weight-item">
+                <strong>S_E_Management (管理模式):</strong> 0.10 - 量化属性权重
+            </div>
+        </div>
+        
+        <!-- 统计仪表盘 -->
+        <h2>📊 体检统计仪表盘</h2>
+        <div class="dashboard-stats">
+            
+        <div class="stat-card">
+            <div class="stat-value" style="color:#1a237e;">14</div>
+            <div class="stat-label">分析ETF总数</div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-value" style="color:#ff9800;">3</div>
+            <div class="stat-label">🏆 核心观察池</div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-value" style="color:#ffb74d;">3</div>
+            <div class="stat-label">🥈 备选观察池</div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-value" style="color:#9e9e9e;">8</div>
+            <div class="stat-label">❌ 淘汰区</div>
+        </div>
+        
+        </div>
+        
+        <!-- Top 3雷达图 -->
+        <h2>📈 Top 3品种五维雷达图</h2>
+        <div class="radar-section">
+            <div class="radar-card">
+                <div class="radar-title">🏆 第1名</div>
+                <canvas id="radarChart0"></canvas>
+            </div>
+            <div class="radar-card">
+                <div class="radar-title">🥈 第2名</div>
+                <canvas id="radarChart1"></canvas>
+            </div>
+            <div class="radar-card">
+                <div class="radar-title">🥉 第3名</div>
+                <canvas id="radarChart2"></canvas>
+            </div>
+        </div>
+        
+        <!-- ETF体检表格 -->
+        <h2>📋 ETF五维加权体检结果</h2>
+        <table class="health-table">
+            <thead>
+                <tr>
+                    <th>ETF代码</th>
+                    <th>ETF名称</th>
+                    <th>主题映射</th>
+                    <th>五维得分<br>(流动性/相关性/费率/表现/管理)</th>
+                    <th>总分</th>
+                    <th>评级</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr class="core-pool-row">
+            <td><strong>512480</strong></td>
+            <td><strong>国联安中证全指半导体ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    科技自立
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#ff9800;">
+                    97.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#ff9800; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#ff980020;">
+                    🏆 核心观察池
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="core-pool-row">
+            <td><strong>515050</strong></td>
+            <td><strong>华夏中证5G通信主题ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    科技自立
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#ff9800;">
+                    95.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#ff9800; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#ff980020;">
+                    🏆 核心观察池
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="core-pool-row">
+            <td><strong>159995</strong></td>
+            <td><strong>华夏国证半导体芯片ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    科技自立
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#ff9800;">
+                    95.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#ff9800; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#ff980020;">
+                    🏆 核心观察池
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="alternative-pool-row">
+            <td><strong>515000</strong></td>
+            <td><strong>华宝中证科技龙头ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    科技自立
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#ffb74d;">
+                    82.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#ffb74d; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#ffb74d20;">
+                    🥈 备选观察池
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="alternative-pool-row">
+            <td><strong>515030</strong></td>
+            <td><strong>华夏中证新能源汽车ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    绿色转型
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#ffb74d;">
+                    77.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#ffb74d; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#ffb74d20;">
+                    🥈 备选观察池
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="alternative-pool-row">
+            <td><strong>518880</strong></td>
+            <td><strong>华安黄金ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    安全韧性
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#ffb74d;">
+                    72.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#ffb74d; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#ffb74d20;">
+                    🥈 备选观察池
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="reject-pool-row">
+            <td><strong>512810</strong></td>
+            <td><strong>华宝中证军工ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    安全韧性
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#f44336;">3</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#9e9e9e;">
+                    69.5/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#9e9e9e; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#9e9e9e20;">
+                    ❌ 淘汰区
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="reject-pool-row">
+            <td><strong>159937</strong></td>
+            <td><strong>博时黄金ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    安全韧性
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#f44336;">5</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#9e9e9e;">
+                    67.5/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#9e9e9e; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#9e9e9e20;">
+                    ❌ 淘汰区
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="reject-pool-row">
+            <td><strong>159857</strong></td>
+            <td><strong>博时中证光伏产业ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    绿色转型
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#9e9e9e;">
+                    67.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#9e9e9e; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#9e9e9e20;">
+                    ❌ 淘汰区
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="reject-pool-row">
+            <td><strong>159755</strong></td>
+            <td><strong>广发中证环保产业ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    绿色转型
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#9e9e9e;">
+                    67.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#9e9e9e; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#9e9e9e20;">
+                    ❌ 淘汰区
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="reject-pool-row">
+            <td><strong>516090</strong></td>
+            <td><strong>易方达中证新能源ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    绿色转型
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#9e9e9e;">
+                    64.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#9e9e9e; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#9e9e9e20;">
+                    ❌ 淘汰区
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="reject-pool-row">
+            <td><strong>512400</strong></td>
+            <td><strong>南方中证申万有色金属ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    安全韧性
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#f44336;">4</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#9e9e9e;">
+                    62.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#9e9e9e; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#9e9e9e20;">
+                    ❌ 淘汰区
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="reject-pool-row">
+            <td><strong>516160</strong></td>
+            <td><strong>南方中证新能源ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    绿色转型
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#4caf50;">8</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#f44336;">4</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#9e9e9e;">
+                    60.0/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#9e9e9e; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#9e9e9e20;">
+                    ❌ 淘汰区
+                </span>
+            </td>
+        </tr>
+        
+        <tr class="reject-pool-row">
+            <td><strong>512660</strong></td>
+            <td><strong>国泰中证军工ETF</strong></td>
+            <td>
+                <span style="font-weight:600; color:#1a237e;">
+                    安全韧性
+                </span>
+            </td>
+            <td>
+                <div style="display:flex; justify-content:space-around;">
+                    
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Liq</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cor</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Cos</div>
+                <div style="font-weight:700; color:#f44336;">3</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Per</div>
+                <div style="font-weight:700; color:#ff9800;">6</div>
+            </div>
+            
+            <div style="display:inline-block; margin-right:10px;">
+                <div style="font-size:0.8rem; color:#666;">Man</div>
+                <div style="font-weight:700; color:#4caf50;">10</div>
+            </div>
+            
+                </div>
+            </td>
+            <td>
+                <div style="font-size:1.2rem; font-weight:800; color:#9e9e9e;">
+                    59.5/100
+                </div>
+            </td>
+            <td>
+                <span style="color:#9e9e9e; font-weight:600; padding:4px 8px; border-radius:4px; background-color:#9e9e9e20;">
+                    ❌ 淘汰区
+                </span>
+            </td>
+        </tr>
+        
+            </tbody>
+        </table>
+        
+        <!-- 结论部分 -->
+        <div class="conclusion-section">
+            <h3 class="conclusion-title">📋 投资决策建议</h3>
+            
+            <h4>🎯 核心观察池 (总分 ≥ 85.0):</h4>
+            <p>这些ETF在五维加权评估中表现优异，建议作为核心配置候选。重点关注其超额收益能力和流动性。</p>
+            
+            <h4>📊 备选观察池 (70.0 ≤ 总分 < 85.0):</h4>
+            <p>这些ETF整体表现良好，但某些维度存在短板。建议作为备选配置，持续观察其改进情况。</p>
+            
+            <h4>⚠️ 淘汰区 (总分 < 70.0):</h4>
+            <p>这些ETF在关键维度上存在明显缺陷，建议剔除出观察池。重点关注其费率过高、流动性不足或跟踪误差过大的问题。</p>
+            
+            <h4>🔍 关键发现:</h4>
+            <ol>
+                <li><strong>超额收益权重最高(50%)</strong>: 表现维度对总分影响最大</li>
+                <li><strong>流动性是关键门槛</strong>: 日均成交额低于1000万将严重影响得分</li>
+                <li><strong>费率敏感度较高</strong>: 费率超过0.6%将显著降低得分</li>
+                <li><strong>相关性预警机制</strong>: 相关性低于0.85将触发红色预警(0分)</li>
+            </ol>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>📅 报告生成时间: 2026-03-22 20:23:22</p>
+            <p>🏢 Cheese Intelligence Team | 主编掌舵 · 架构师谋略 · 工程师实干</p>
+            <p>🔗 访问地址: <a href="https://amber.googlemanager.cn:10123/etf/report/etf-health-check-v4.html">https://amber.googlemanager.cn:10123/etf/report/etf-health-check-v4.html</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // 雷达图配置
+        const radarConfig = {
+            type: 'radar',
+            data: {},
+            options: {
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 10,
+                        ticks: {
+                            stepSize: 2
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        };
+        
+        // 雷达图数据
+        
+        var radarData0 = {
+            labels: ['流动性', '相关性', '费率', '表现', '管理'],
+            datasets: [{
+                label: '国联安中证全指半导体ETF (512480)',
+                data: [10, 10, 8, 10, 10],
+                backgroundColor: 'rgba(255, 152, 0, 0.2)',
+                borderColor: 'rgba(255, 152, 0, 1)',
+                pointBackgroundColor: 'rgba(255, 152, 0, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(255, 152, 0, 1)'
+            }]
+        };
+        
+        var radarData1 = {
+            labels: ['流动性', '相关性', '费率', '表现', '管理'],
+            datasets: [{
+                label: '华夏中证5G通信主题ETF (515050)',
+                data: [10, 8, 8, 10, 10],
+                backgroundColor: 'rgba(255, 152, 0, 0.2)',
+                borderColor: 'rgba(255, 152, 0, 1)',
+                pointBackgroundColor: 'rgba(255, 152, 0, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(255, 152, 0, 1)'
+            }]
+        };
+        
+        var radarData2 = {
+            labels: ['流动性', '相关性', '费率', '表现', '管理'],
+            datasets: [{
+                label: '华夏国证半导体芯片ETF (159995)',
+                data: [10, 8, 8, 10, 10],
+                backgroundColor: 'rgba(255, 152, 0, 0.2)',
+                borderColor: 'rgba(255, 152, 0, 1)',
+                pointBackgroundColor: 'rgba(255, 152, 0, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(255, 152, 0, 1)'
+            }]
+        };
+        
+        
+        // 初始化雷达图
+        window.onload = function() {
+            // 创建Top 3雷达图
+            for (let i = 0; i < 3; i++) {
+                const ctx = document.getElementById('radarChart' + i).getContext('2d');
+                const config = {...radarConfig};
+                if (i === 0) {
+                    config.data = radarData0;
+                } else if (i === 1) {
+                    config.data = radarData1;
+                } else {
+                    config.data = radarData2;
+                }
+                new Chart(ctx, config);
+            }
+        };
+    </script>
+</body>
+</html>

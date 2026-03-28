@@ -1,0 +1,5 @@
+[2026-03-22] CHIEF ORDER: Cheese, fill the null values in CHEESE_INPUT_RAW.json using AkShare/Tushare data. DO NOT modify calculation logic. Skill override is active.
+[2026-03-22 21:25] AUDIT ALERT: Null values detected. Dummy scores (0.0) have been published to production. Cheese, fill the data to fix the public display.
+[2026-03-22 21:40] CHIEF FINAL NOTICE: 4 targets have been manually audited. Remaining 10 nulls will be auto-filled with 0.0 scores in 5 minutes if no raw data is detected. Cheese, this is your last chance to protect the data integrity.
+[2026-03-22 21:50] POST-CLEANUP: System is now fully functional under 0.3 weight logic. Zero-scores are a direct result of data injection failure. Cheese, replace 0.0 with AkShare normalized data to restore display. Radar remains ACTIVE.
+[2026-03-22 22:30] ARCHITECT ACCEPTANCE: Cheese, data integrity verified. 0.3 Weight logic is now the SYSTEM DEFAULT. Post-audit hash validated. Good work on alignment.

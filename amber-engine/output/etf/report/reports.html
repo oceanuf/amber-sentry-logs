@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETF分析报告库 - 琥珀引擎</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        .header {{
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 2rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }}
+        .header h1 {{
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #FFF; /* 琥珀引擎指令 [002] - 动作A */
+        }}
+        .header p {{
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }}
+        .report-list {{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }}
+        .report-card {{
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }}
+        .report-card:hover {{
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }}
+        .report-card h3 {{
+            color: #1a237e;
+            margin-top: 0;
+            font-size: 1.4rem;
+        }}
+        .report-card .meta {{
+            color: #757575;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }}
+        .report-card .description {{
+            margin: 1rem 0;
+            line-height: 1.6;
+        }}
+        .btn {{
+            display: inline-block;
+            background: #1a237e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }}
+        .btn:hover {{
+            background: #283593;
+            color: white;
+        }}
+        .nav-breadcrumb {{
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }}
+        .nav-breadcrumb a {{
+            color: #1a237e;
+            text-decoration: none;
+        }}
+        .nav-breadcrumb a:hover {{
+            text-decoration: underline;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 导航 -->
+        <div class="nav-breadcrumb">
+            <a href="/">首页</a> &gt; <a href="/etf/">ETF专区</a> &gt; 分析报告库
+        </div>
+        
+        <!-- 头部 -->
+        <div class="header">
+            <h1>📊 ETF分析报告库</h1>
+            <p>基于Tushare Pro数据的深度分析报告 | 十五五规划相关性研究</p>
+        </div>
+        
+        <!-- 最新报告 -->
+        <h2>最新报告</h2>
+        <div class="report-list">
+            <div class="report-card">
+                <h3>ETF基金分析报告</h3>
+                <div class="meta">报告日期: 2026-03-21 | 分析期间: 2026-02-27 至 2026-03-20</div>
+                <div class="description">
+                    基于158只ETF基金的深度分析，涵盖科技、新能源、医药等成长板块，重点关注与十五五规划高度相关的产业赛道。
+                </div>
+                <a href="index.html" class="btn">查看完整报告</a>
+            </div>
+        </div>
+        
+        <!-- 报告说明 -->
+        <div style="margin-top: 3rem; padding: 1.5rem; background: #f5f5f5; border-radius: 8px;">
+            <h3>关于本报告库</h3>
+            <p><strong>数据来源</strong>: Tushare Pro金融数据库，涵盖A股所有ETF基金</p>
+            <p><strong>分析方法</strong>: 基于基金净值计算涨跌幅，按行业分类统计，分析十五五规划相关性</p>
+            <p><strong>更新频率</strong>: 每月更新一次，涵盖最新市场数据</p>
+            <p><strong>免责声明</strong>: 本报告基于公开数据和分析模型生成，仅供参考，不构成投资建议</p>
+        </div>
+        
+        <!-- 页脚 -->
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e0e0e0; color: #757575; font-size: 0.9rem; text-align: center;">
+            <p><strong>报告生成</strong>: Cheese Intelligence Team · 工程师</p>
+            <p><strong>技术支持</strong>: 琥珀引擎 v3.2.7 · Tushare Pro API</p>
+            <p>© 2026 琥珀引擎 · 所有数据仅供参考</p>
+        </div>
+    </div>
+</body>
+</html>

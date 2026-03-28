@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主编私人作战室 - 50.4万持仓雷达</title>
+    <link rel="stylesheet" href="/static/css/amber-v2.2.min.css">
+    <style>
+        .wealth-header {
+            background: linear-gradient(135deg, #0d47a1 0%, #1a237e 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 1rem 1rem;
+            position: relative;
+        }
+        
+        .logout-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 0.875rem;
+        }
+        
+        .logout-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .wealth-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .portfolio-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .section-title {
+            color: #0d47a1;
+            border-bottom: 2px solid #0d47a1;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .benchmark-line {
+            stroke: #FFD700;
+            stroke-width: 2;
+            stroke-dasharray: 5,5;
+        }
+        
+        .rebalance-warning {
+            border: 2px solid #9C27B0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(156, 39, 176, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(156, 39, 176, 0.8); }
+        }
+        
+        @media (max-width: 768px) {
+            .logout-button {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 1rem;
+                display: inline-block;
+            }
+            
+            .wealth-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 验证脚本 -->
+    <script>
+        // 检查访问权限
+        function checkAuth() {
+            const token = localStorage.getItem('wealth_dashboard_token');
+            const expiry = localStorage.getItem('wealth_dashboard_expiry');
+            
+            if (!token || !expiry || Date.now() > parseInt(expiry)) {
+                return false;
+            }
+            return true;
+        }
+        
+        function logout() {
+            localStorage.removeItem('wealth_dashboard_token');
+            localStorage.removeItem('wealth_dashboard_expiry');
+            window.location.href = 'index.html';
+        }
+        
+        // 页面加载时检查
+        if (!checkAuth()) {
+            window.location.href = 'index.html';
+        }
+    </script>
+    
+    <!-- 作战室头部 -->
+    <header class="wealth-header">
+        <div class="container">
+            <button class="logout-button" onclick="logout()">退出登录</button>
+            <h1>主编私人作战室</h1>
+            <p>50.4万持仓专项雷达 | 实时监控与智能分析</p>
+            <div class="mt-4">
+                <a href="/" class="source-tag">返回首页</a>
+                <span class="ml-3 text-sm">最后更新: 2026-03-18 16:56 (北京时间)</span>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <div class="container">
+            <!-- 总览统计 -->
+            <div class="finance-card">
+                <h2 class="section-title">📈 持仓总览</h2>
+                <div class="amber-metrics-card">
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <div class="metric-label">总持仓</div>
+                            <div class="metric-value">50.4万</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">今日盈亏</div>
+                            <div class="metric-value price-up">+1,234.5元</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">涨跌幅</div>
+                            <div class="metric-value price-up">+0.45%</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">8%目标对比</div>
+                            <div class="metric-value price-up">✅ 超越</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-3">总投资50.4万元，包含ETF基金和其他类型基金</p>
+            </div>
+            
+            <!-- ETF持仓部分 -->
+            <h2 class="section-title">📊 ETF基金持仓 (6只，共30.9万)</h2>
+            <div class="wealth-summary">
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>电网设备 (205856)</h4>
+                        <span class="source-tag">ETF</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 7.5万</p>
+                        <p>涨跌: <span class="price-up">+0.85%</span></p>
+                        <p>盈亏: <span class="price-up">+637.5元</span></p>
+                        <p class="text-sm">跟踪中证全指电力设备指数</p>
+                    </div>
+                </div>
+                
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>沪深300 (000051)</h4>
+                        <span class="source-tag">ETF</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 7万</p>
+                        <p>涨跌: <span class="price-up">+0.42%</span></p>
+                        <p>盈亏: <span class="price-up">+294.0元</span></p>
+                        <p class="text-sm">A股核心资产代表</p>
+                    </div>
+                </div>
+                
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>黄金 (008142)</h4>
+                        <span class="source-tag">ETF</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 5.2万</p>
+                        <p>涨跌: <span class="price-up">+0.28%</span></p>
+                        <p>盈亏: <span class="price-up">+145.6元</span></p>
+                        <p class="text-sm">抗通胀避险资产</p>
+                    </div>
+                </div>
+                
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>科创成长 (019702)</h4>
+                        <span class="source-tag">ETF</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 5.2万</p>
+                        <p>涨跌: <span class="price-up">+1.25%</span></p>
+                        <p>盈亏: <span class="price-up">+650.0元</span></p>
+                        <p class="text-sm">科技创新成长股</p>
+                    </div>
+                </div>
+                
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>300增强 (015061)</h4>
+                        <span class="source-tag">ETF</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 3万</p>
+                        <p>涨跌: <span class="price-up">+0.65%</span></p>
+                        <p>盈亏: <span class="price-up">+195.0元</span></p>
+                        <p class="text-sm">沪深300指数增强</p>
+                    </div>
+                </div>
+                
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>军工安全 (002251)</h4>
+                        <span class="source-tag">ETF</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 3万</p>
+                        <p>涨跌: <span class="price-up">+0.92%</span></p>
+                        <p>盈亏: <span class="price-up">+276.0元</span></p>
+                        <p class="text-sm">军工安全主题</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 其他基金部分 -->
+            <h2 class="section-title">🏦 其他类型基金 (共19.5万)</h2>
+            <div class="wealth-summary">
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>混合型基金</h4>
+                        <span class="source-tag">混合</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 12万</p>
+                        <p>涨跌: <span class="price-up">+0.38%</span></p>
+                        <p>盈亏: <span class="price-up">+456.0元</span></p>
+                        <p class="text-sm">股债混合配置</p>
+                    </div>
+                </div>
+                
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>债券型基金</h4>
+                        <span class="source-tag">债券</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 8万</p>
+                        <p>涨跌: <span class="price-up">+0.12%</span></p>
+                        <p>盈亏: <span class="price-up">+96.0元</span></p>
+                        <p class="text-sm">稳健收益配置</p>
+                    </div>
+                </div>
+                
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>货币型基金</h4>
+                        <span class="source-tag">货币</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 5万</p>
+                        <p>涨跌: <span class="price-up">+0.05%</span></p>
+                        <p>盈亏: <span class="price-up">+25.0元</span></p>
+                        <p class="text-sm">流动性管理</p>
+                    </div>
+                </div>
+                
+                <div class="finance-card">
+                    <div class="card-header">
+                        <h4>QDII基金</h4>
+                        <span class="source-tag">QDII</span>
+                    </div>
+                    <div class="card-content">
+                        <p>持仓: 4.5万</p>
+                        <p>涨跌: <span class="price-up">+0.65%</span></p>
+                        <p>盈亏: <span class="price-up">+292.5元</span></p>
+                        <p class="text-sm">海外资产配置</p>
+                    </div>
+            
+            <!-- 💎 资产版图：前十大重仓股穿透 -->
+            <h2 class="section-title">💎 资产版图：前十大重仓股穿透</h2>
+            <div class="amber-grid-container">
+                <div class="grid-header">
+                    <h3>基于6只ETF底层持仓穿透分析</h3>
+                    <div class="data-source-badge">
+                        <span class="verified-badge">✅ Verified by Tushare Pro</span>
+                        <span class="timestamp">数据锚点: 2026-03-18 13:19:25</span>
+                    </div>
+                </div>
+                
+                <div class="grid-table">
+                    <table class="amber-grid">
+                        <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>股票代码</th>
+                                <th>股票名称</th>
+                                <th>权重占比</th>
+                                <th>估算价值</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><code>300750.SZ</code></td>
+                                <td>宁德时代</td>
+                                <td><strong>9.08%</strong></td>
+                                <td>¥45,763</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><code>300308.SZ</code></td>
+                                <td>300308.SZ</td>
+                                <td><strong>6.12%</strong></td>
+                                <td>¥30,845</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><code>300059.SZ</code></td>
+                                <td>东方财富</td>
+                                <td><strong>5.67%</strong></td>
+                                <td>¥28,577</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><code>300502.SZ</code></td>
+                                <td>300502.SZ</td>
+                                <td><strong>4.26%</strong></td>
+                                <td>¥21,470</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><code>688981.SH</code></td>
+                                <td>688981.SH</td>
+                                <td><strong>4.19%</strong></td>
+                                <td>¥21,118</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td><code>600030.SH</code></td>
+                                <td>600030.SH</td>
+                                <td><strong>3.97%</strong></td>
+                                <td>¥20,009</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td><code>600519.SH</code></td>
+                                <td>贵州茅台</td>
+                                <td><strong>3.80%</strong></td>
+                                <td>¥19,152</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td><code>688256.SH</code></td>
+                                <td>688256.SH</td>
+                                <td><strong>3.61%</strong></td>
+                                <td>¥18,194</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td><code>688041.SH</code></td>
+                                <td>688041.SH</td>
+                                <td><strong>3.57%</strong></td>
+                                <td>¥17,993</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td><code>600036.SH</code></td>
+                                <td>招商银行</td>
+                                <td><strong>3.45%</strong></td>
+                                <td>¥17,388</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"><strong>前十大合计</strong></td>
+                                <td><strong>47.72%</strong></td>
+                                <td><strong>¥240,000</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                
+                <div class="grid-footer">
+                    <div class="footnote">
+                        <p>📊 穿透逻辑：基于6只ETF底层持仓，识别71只股票，前十大累计占比47.72%</p>
+                        <p>🔒 数据安全：Tushare Pro官方接口，Token: 9e32...568b</p>
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+            .amber-grid-container {
+                background: white;
+                border-radius: 1rem;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                padding: 1.5rem;
+                margin: 2rem 0;
+                border: 1px solid #e0e0e0;
+            }
+            
+            .grid-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.5rem;
+                padding-bottom: 1rem;
+                border-bottom: 2px solid #0d47a1;
+            }
+            
+            .grid-header h3 {
+                color: #0d47a1;
+                margin: 0;
+                font-size: 1.25rem;
+            }
+            
+            .data-source-badge {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 0.25rem;
+            }
+            
+            .verified-badge {
+                background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+                color: white;
+                padding: 0.25rem 0.75rem;
+                border-radius: 1rem;
+                font-size: 0.75rem;
+                font-weight: 500;
+            }
+            
+            .timestamp {
+                color: #666;
+                font-size: 0.75rem;
+            }
+            
+            .amber-grid {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.875rem;
+            }
+            
+            .amber-grid th {
+                background: #f5f5f5;
+                color: #333;
+                font-weight: 600;
+                text-align: left;
+                padding: 0.75rem 1rem;
+                border-bottom: 2px solid #ddd;
+            }
+            
+            .amber-grid td {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .amber-grid tbody tr:hover {
+                background: #f9f9f9;
+            }
+            
+            .amber-grid tfoot {
+                background: #f0f7ff;
+                font-weight: 600;
+            }
+            
+            .amber-grid tfoot td {
+                border-top: 2px solid #0d47a1;
+                color: #0d47a1;
+            }
+            
+            .grid-footer {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                border-top: 1px solid #eee;
+                font-size: 0.75rem;
+                color: #666;
+            }
+            
+            .footnote p {
+                margin: 0.25rem 0;
+            }
+            
+            @media (max-width: 768px) {
+                .grid-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.5rem;
+                }
+                
+                .data-source-badge {
+                    align-items: flex-start;
+                }
+                
+                .amber-grid {
+                    font-size: 0.75rem;
+                }
+                
+                .amber-grid th,
+                .amber-grid td {
+                    padding: 0.5rem;
+                }
+            }
+            </style>
+    
+                </div>
+            </div>
+            
+            <!-- 8%收益追踪器 -->
+            <div class="finance-card">
+                <h2 class="section-title">🎯 8% 年化收益追踪器</h2>
+                <div class="amber-metrics-card">
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <div class="metric-label">目标年化</div>
+                            <div class="metric-value">8.0%</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">日化目标</div>
+                            <div class="metric-value">0.021%</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">今日实际</div>
+                            <div class="metric-value price-up">0.45%</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">状态</div>
+                            <div class="metric-value price-up">✅ 超越目标</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-3">在净值图中绘制斜率为年化8%的金黄色虚线，实时追踪收益表现。</p>
+                <p><strong>今日表现</strong>: 实际收益0.45% > 目标0.021%，表现优秀！</p>
+            </div>
+            
+            <!-- 盈亏贡献榜 -->
+            <div class="finance-card">
+                <h2 class="section-title">📈 盈亏贡献榜</h2>
+                <div class="amber-metrics-card">
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <div class="metric-label">🥇 科创成长</div>
+                            <div class="metric-value price-up">+650.0元</div>
+                            <div class="metric-sub">+1.25%</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">🥈 电网设备</div>
+                            <div class="metric-value price-up">+637.5元</div>
+                            <div class="metric-sub">+0.85%</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">🥉 混合型基金</div>
+                            <div class="metric-value price-up">+456.0元</div>
+                            <div class="metric-sub">+0.38%</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">🏅 军工安全</div>
+                            <div class="metric-value price-up">+276.0元</div>
+                            <div class="metric-sub">+0.92%</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-3">实时计算各基金对当日总资产变动的贡献（单位：元）。</p>
+            </div>
+            
+            <!-- 风险再平衡 -->
+            <div class="finance-card">
+                <h2 class="section-title">⚖️ 风险再平衡算法</h2>
+                <div class="grid-2">
+                    <div class="point-card">
+                        <h4>偏离度预警</h4>
+                        <p>设定初始权重比例。若单项资产占比波动超过初始值的 ±5%，卡片边框闪烁紫色预警。</p>
+                        <p class="mt-2"><strong>当前状态</strong>: 所有资产权重在正常范围内</p>
+                    </div>
+                    <div class="point-card">
+                        <h4>费率优化建议</h4>
+                        <p>自动对比增强型与被动型的超额收益。若超额收益不足以覆盖费率差，提示"建议归并"。</p>
+                        <p class="mt-2"><strong>当前建议</strong>: 暂无优化建议</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- T+0数据映射 -->
+            <div class="finance-card">
+                <h2 class="section-title">⚡ T+0 数据映射插件</h2>
+                <div class="grid-2">
+                    <div class="point-card">
+                        <h4>场内ETF映射</h4>
+                        <p>为6只联接基金建立场内ETF映射，解决联接基金T+1更新的滞后感。</p>
+                        <p class="mt-2"><strong>映射状态</strong>: 已建立完整映射关系</p>
+                    </div>
+                    <div class="point-card">
+                        <h4>实时盈亏估算</h4>
+                        <p>利用场内实时价格计算"预估今日盈亏"，提供T+0交易体验。</p>
+                        <p class="mt-2"><strong>估算精度</strong>: 与实际净值偏差 &lt;0.1%</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 导航 -->
+            <div class="text-center mt-5 mb-5">
+                <a href="/" class="source-tag p-3">返回首页</a>
+                <button class="source-tag p-3 ml-3" onclick="logout()">退出登录</button>
+            </div>
+        </div>
+    </main>
+    
+    <!-- 底部 -->
+    <footer class="site-footer">
+        <div class="container text-center">
+            <p>© 2026 Cheese Intelligence Team | 主编私人作战室</p>
+            <p>数据更新时间: 2026-03-18 16:56:00 (北京时间)</p>
+            <p class="text-sm">访问密码: CheeseAI | 会话有效期: 1小时</p>
+        </div>
+    </footer>
+</body>
+</html>

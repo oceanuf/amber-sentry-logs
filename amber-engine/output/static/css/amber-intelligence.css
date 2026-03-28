@@ -1,0 +1,227 @@
+/* Index-Intelligence 智能指数组件样式 - V2.2标准 */
+
+.index-intelligence-card {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.index-intelligence-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff9800, #ff5722);
+    border-radius: 1rem 1rem 0 0;
+}
+
+.intelligence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.intelligence-header h4 {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.intelligence-header .data-source-tag {
+    background: rgba(255, 255, 255, 0.1);
+    color: #bbdefb;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(187, 222, 251, 0.3);
+}
+
+.intelligence-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.intelligence-module {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.intelligence-module:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.module-label {
+    color: #bbdefb;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.module-value {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    line-height: 1;
+}
+
+.point-module .module-value {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.valuation-module .module-value {
+    color: #4caf50;
+}
+
+.moneyflow-module .module-value.money-inflow {
+    color: #4caf50;
+    animation: pulse-green 2s infinite;
+}
+
+.moneyflow-module .module-value.money-outflow {
+    color: #f44336;
+}
+
+.module-change {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.module-change.price-up {
+    color: #4caf50;
+}
+
+.module-change.price-down {
+    color: #f44336;
+}
+
+.module-detail {
+    color: #e3f2fd;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.module-meta {
+    color: #90a4ae;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.intelligence-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bbdefb;
+    font-size: 0.875rem;
+}
+
+.update-time {
+    opacity: 0.8;
+}
+
+.data-quality {
+    color: #4caf50;
+    font-weight: 500;
+}
+
+/* 动画效果 */
+@keyframes pulse-green {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .intelligence-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .intelligence-module {
+        padding: 0.75rem;
+    }
+    
+    .module-value {
+        font-size: 1.5rem;
+    }
+    
+    .point-module .module-value {
+        font-size: 1.75rem;
+    }
+    
+    .intelligence-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+}
+
+/* 暗色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .index-intelligence-card {
+        background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+    }
+    
+    .intelligence-module {
+        background: rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* 架构师指令：布局硬化 - 文本溢出保护 */
+.intelligence-module .module-label,
+.intelligence-module .module-detail,
+.intelligence-module .module-meta {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* 智能卡片高度与溢出保护 */
+.index-intelligence-card {
+    min-height: 250px;
+    max-height: 280px;
+    overflow: hidden;
+}
+
+.intelligence-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .intelligence-grid {
+        grid-template-columns: 1fr;
+    }
+    .index-intelligence-card {
+        min-height: 300px;
+    }
+}
