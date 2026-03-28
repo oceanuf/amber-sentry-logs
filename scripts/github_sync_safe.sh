@@ -113,7 +113,7 @@ fi
 
 # ==================== 拉取最新更改 ====================
 log_message "📥 拉取最新更改..."
-if git -c http.extraHeader="Authorization: Bearer $GITHUB_TOKEN" pull origin main --rebase --autostash 2>/dev/null; then
+if git pull origin main --rebase --autostash 2>/dev/null; then
     log_message "✅ 拉取成功"
 else
     log_message "⚠️  拉取失败或无需拉取，继续推送"
@@ -121,7 +121,7 @@ fi
 
 # ==================== 推送到GitHub ====================
 log_message "🚀 推送到GitHub..."
-if git -c http.extraHeader="Authorization: Bearer $GITHUB_TOKEN" push -u origin main; then
+if git push -u origin main; then
     log_message "✅ GitHub同步成功！"
     
     # 获取最新提交信息
