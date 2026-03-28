@@ -181,13 +181,13 @@ if (strpos($change_pct, '-') === 0) {
 ### 2. 自动化更新
 ```bash
 # 每15分钟自动更新演武场和ETF数据
-*/15 * * * * cd /home/luckyelite/.openclaw/workspace/amber-engine/scripts && python3 rebuild_minimalist.py
+*/15 * * * * cd ./scripts && python3 rebuild_minimalist.py
 ```
 
 ### 3. 数据验证
 ```bash
 # 手动触发数据更新
-cd /home/luckyelite/.openclaw/workspace/amber-engine/scripts
+cd ./scripts
 python3 -c "from rebuild_minimalist import update_all_assets_json, load_portfolio; portfolio = load_portfolio(); update_all_assets_json(portfolio)"
 ```
 

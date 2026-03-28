@@ -1,0 +1,58 @@
+{
+  "system_config": {
+    "project_name": "琥珀引擎 (Amber Engine)",
+    "version": "V5.0",
+    "deployment_env": "development",
+    "data_sources": {
+      "tushare": {
+        "token": "YOUR_TUSHARE_TOKEN_HERE",
+        "enabled": true
+      },
+      "akshare": {
+        "enabled": true
+      },
+      "crawler": {
+        "enabled": false
+      }
+    },
+    "trading_settings": {
+      "default_currency": "CNY",
+      "commission_rate": 0.0002,
+      "tax_rate": 0.001,
+      "min_trade_amount": 10000.0,
+      "max_position_percent": 40,
+      "single_etf_limit": 100000.0
+    },
+    "monitoring": {
+      "health_check_interval_minutes": 60,
+      "data_refresh_interval_hours": 1,
+      "report_generation_time": "18:00"
+    }
+  },
+  "web_deployment": {
+    "server_port": 10168,
+    "ssl_enabled": true,
+    "domain": "gemini.googlemanager.cn",
+    "root_directory": "/var/www/gemini_master/master-audit/",
+    "index_file": "index.php"
+  },
+  "github_sync": {
+    "repository": "username/amber-engine",
+    "branch": "main",
+    "sync_script": "scripts/github/sync_clean.sh",
+    "security_checks": [
+      "no_hardcoded_tokens",
+      "no_absolute_paths",
+      "no_sensitive_data"
+    ]
+  },
+  "module_paths": {
+    "web_root": "./web/",
+    "vaults_root": "./vaults/",
+    "scripts_root": "./scripts/",
+    "docs_root": "./docs/",
+    "database_root": "./database/",
+    "reports_root": "./docs/reports/"
+  },
+  "template_notes": "这是一个配置模板文件，实际部署时请替换为真实配置值。敏感信息必须通过环境变量管理。"
+}

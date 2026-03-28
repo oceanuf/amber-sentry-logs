@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 import random
 
 # 路径配置
-BASE_DIR = "/home/luckyelite/.openclaw/workspace/amber-engine"
+BASE_DIR = "."
 DATABASE_DIR = os.path.join(BASE_DIR, "database")
 VAULTS_DIR = os.path.join(BASE_DIR, "vaults")
 ASSETS_DIR = os.path.join(VAULTS_DIR, "Assets")

@@ -1,0 +1,204 @@
+{
+  "risk_assessment": {
+    "timestamp": "2026-03-28 16:14:00",
+    "assessment_period": "realtime",
+    "overall_risk_level": "low",
+    "overall_risk_score": 28,
+    
+    "risk_breakdown": {
+      "market_risk": {
+        "score": 32,
+        "level": "low",
+        "description": "市场波动处于正常范围",
+        "indicators": {
+          "vix_index": 15.2,
+          "market_volatility": 12.5,
+          "sector_correlation": 0.65
+        }
+      },
+      
+      "portfolio_risk": {
+        "score": 25,
+        "level": "low",
+        "description": "投资组合分散良好",
+        "indicators": {
+          "concentration_risk": 18,
+          "sector_exposure": 42,
+          "liquidity_risk": 15
+        }
+      },
+      
+      "systemic_risk": {
+        "score": 35,
+        "level": "low",
+        "description": "系统运行稳定",
+        "indicators": {
+          "data_quality": 95,
+          "execution_reliability": 98,
+          "system_uptime": 99.8
+        }
+      },
+      
+      "operational_risk": {
+        "score": 20,
+        "level": "low",
+        "description": "操作流程规范",
+        "indicators": {
+          "compliance_score": 96,
+          "error_rate": 0.2,
+          "response_time": 45
+        }
+      }
+    },
+    
+    "thresholds": {
+      "low_risk": {"max": 40, "color": "green", "action": "normal_operations"},
+      "medium_risk": {"min": 41, "max": 60, "color": "yellow", "action": "enhanced_monitoring"},
+      "high_risk": {"min": 61, "max": 80, "color": "orange", "action": "position_adjustment"},
+      "critical_risk": {"min": 81, "color": "red", "action": "emergency_protocol"}
+    }
+  },
+  
+  "position_risk": {
+    "total_positions": 2,
+    "total_exposure": 103750,
+    "cash_reserve": 363039.51,
+    "cash_ratio": 77.8,
+    
+    "position_details": [
+      {
+        "asset": "518880.SH",
+        "exposure": 74250,
+        "weight": 0.35,
+        "risk_score": 30,
+        "risk_level": "low",
+        "stop_loss_distance": 6.2
+      },
+      {
+        "asset": "512800.SH",
+        "exposure": 29500,
+        "weight": 0.65,
+        "risk_score": 35,
+        "risk_level": "low",
+        "stop_loss_distance": 7.8
+      }
+    ],
+    
+    "concentration_analysis": {
+      "top_holding_weight": 0.65,
+      "sector_concentration": 0.65,
+      "herfindahl_index": 0.55
+    }
+  },
+  
+  "market_conditions": {
+    "current_market": {
+      "shanghai_composite": 3250.42,
+      "change_today": 0.65,
+      "volatility_index": 18.2,
+      "advance_decline": 1250
+    },
+    
+    "sector_performance": {
+      "financials": 1.2,
+      "technology": 2.5,
+      "consumer": 0.8,
+      "energy": -0.5,
+      "healthcare": 1.5
+    },
+    
+    "liquidity_conditions": {
+      "market_turnover": 85000000000,
+      "bid_ask_spread": 0.12,
+      "depth_ratio": 2.5
+    }
+  },
+  
+  "alerts_warnings": {
+    "active_alerts": 0,
+    "recent_alerts": [
+      {
+        "timestamp": "2026-03-25 17:05:00",
+        "type": "time_window",
+        "severity": "info",
+        "message": "国内审计时间窗口已开启",
+        "resolved": true
+      },
+      {
+        "timestamp": "2026-03-24 20:00:00",
+        "type": "data_quality",
+        "severity": "warning",
+        "message": "AkShare数据验伪通过率95%",
+        "resolved": true
+      }
+    ],
+    
+    "warning_levels": {
+      "info": {"count": 2, "last_24h": 1},
+      "warning": {"count": 1, "last_24h": 0},
+      "critical": {"count": 0, "last_24h": 0}
+    }
+  },
+  
+  "compliance_status": {
+    "codex_compliance": {
+      "time_window": 100,
+      "data_quality": 95,
+      "position_limits": 100,
+      "algorithm_integrity": 100,
+      "overall_score": 98.8
+    },
+    
+    "violation_status": {
+      "current_violations": 0,
+      "last_violation": "2026-03-25",
+      "violation_free_days": 3
+    }
+  },
+  
+  "recommendations": {
+    "current_recommendations": [
+      {
+        "type": "monitoring",
+        "priority": "low",
+        "action": "继续正常监控",
+        "reason": "所有风险指标处于正常范围"
+      },
+      {
+        "type": "liquidity",
+        "priority": "low",
+        "action": "维持当前现金储备",
+        "reason": "现金比例77.8%高于最低要求20%"
+      }
+    ],
+    
+    "watchlist": [
+      {
+        "item": "市场波动率",
+        "current": 12.5,
+        "threshold": 25,
+        "status": "safe"
+      },
+      {
+        "item": "组合集中度",
+        "current": 0.55,
+        "threshold": 0.7,
+        "status": "safe"
+      },
+      {
+        "item": "数据质量",
+        "current": 95,
+        "threshold": 90,
+        "status": "safe"
+      }
+    ]
+  },
+  
+  "metadata": {
+    "assessment_method": "multi_factor_scoring",
+    "update_frequency": "15_minutes",
+    "data_sources": ["Tushare", "AkShare", "Internal_Metrics"],
+    "last_comprehensive_review": "2026-03-28 08:00:00",
+    "next_scheduled_review": "2026-03-29 08:00:00"
+  }
+}

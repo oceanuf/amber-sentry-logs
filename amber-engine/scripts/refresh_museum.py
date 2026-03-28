@@ -14,7 +14,7 @@ import time
 
 def load_amber_cmd():
     """加载amber_cmd.json"""
-    cmd_path = "/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/amber_cmd.json"
+    cmd_path = "./amber-sentry-logs/amber_cmd.json"
     
     try:
         with open(cmd_path, 'r', encoding='utf-8') as f:
@@ -25,7 +25,7 @@ def load_amber_cmd():
 
 def load_portfolio():
     """加载portfolio_v1.json"""
-    portfolio_path = "/home/luckyelite/.openclaw/workspace/amber-engine/portfolio_v1.json"
+    portfolio_path = "./portfolio_v1.json"
     
     try:
         with open(portfolio_path, 'r', encoding='utf-8') as f:
@@ -87,7 +87,7 @@ def simulate_market_movement(config, portfolio):
 
 def save_amber_cmd(config):
     """保存amber_cmd.json"""
-    cmd_path = "/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/amber_cmd.json"
+    cmd_path = "./amber-sentry-logs/amber_cmd.json"
     
     try:
         with open(cmd_path, 'w', encoding='utf-8') as f:
@@ -99,7 +99,7 @@ def save_amber_cmd(config):
 
 def save_portfolio(portfolio):
     """保存portfolio_v1.json"""
-    portfolio_path = "/home/luckyelite/.openclaw/workspace/amber-engine/portfolio_v1.json"
+    portfolio_path = "./portfolio_v1.json"
     
     try:
         with open(portfolio_path, 'w', encoding='utf-8') as f:

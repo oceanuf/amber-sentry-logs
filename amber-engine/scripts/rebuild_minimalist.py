@@ -13,11 +13,11 @@ from datetime import datetime, timedelta
 import random
 
 # 添加路径以便导入策略库
-sys.path.append('/home/luckyelite/.openclaw/workspace/amber-engine/scripts')
+sys.path.append('./scripts')
 from strategy_lib import StrategyLibrary
 
 # 路径配置
-BASE_DIR = "/home/luckyelite/.openclaw/workspace/amber-engine"
+BASE_DIR = "."
 ALGO_LOG_PATH = os.path.join(BASE_DIR, "data/algo_log/ALGO_LOG.json")
 PORTFOLIO_PATH = os.path.join(BASE_DIR, "portfolio_v1.json")
 WEB_DIR = os.path.join(BASE_DIR, "output/arena")  # 改为本地目录
@@ -1172,7 +1172,7 @@ def main():
 
 def setup_cron_job():
     """设置定时任务 (每15分钟执行)"""
-    cron_command = f"*/15 * * * * cd /home/luckyelite/.openclaw/workspace/amber-engine/scripts && python3 rebuild_minimalist.py >> /home/luckyelite/.openclaw/workspace/amber-engine/logs/rebuild_minimalist.log 2>&1"
+    cron_command = f"*/15 * * * * cd ./scripts && python3 rebuild_minimalist.py >> ./logs/rebuild_minimalist.log 2>&1"
     
     print(f"⏰ 建议Cron定时任务:")
     print(f"   {cron_command}")

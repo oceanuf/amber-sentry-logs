@@ -14,12 +14,12 @@ import pandas as pd
 import numpy as np
 
 # 添加路径以便导入策略库
-sys.path.append('/home/luckyelite/.openclaw/workspace/amber-engine/scripts')
+sys.path.append('./scripts')
 from strategy_lib import strategy_lib
 
 def load_algo_log():
     """加载ALGO_LOG.json进化账本"""
-    log_path = "/home/luckyelite/.openclaw/workspace/amber-engine/data/algo_log/ALGO_LOG.json"
+    log_path = "./data/algo_log/ALGO_LOG.json"
     
     try:
         with open(log_path, 'r', encoding='utf-8') as f:
@@ -42,7 +42,7 @@ def load_algo_log():
 
 def load_portfolio():
     """加载投资组合"""
-    portfolio_path = "/home/luckyelite/.openclaw/workspace/amber-engine/portfolio_v1.json"
+    portfolio_path = "./portfolio_v1.json"
     
     try:
         with open(portfolio_path, 'r', encoding='utf-8') as f:
@@ -305,7 +305,7 @@ def generate_audit_report(algo_log, portfolio, opportunities, strategy_performan
 
 def save_report(report):
     """保存报告文件"""
-    reports_dir = "/home/luckyelite/.openclaw/workspace/amber-engine/reports/algo_audit"
+    reports_dir = "./reports/algo_audit"
     os.makedirs(reports_dir, exist_ok=True)
     
     filename = f"algo_audit_{datetime.now().strftime('%Y%m%d_%H%M')}.json"
@@ -546,7 +546,7 @@ def main():
 
 def setup_cron_job():
     """设置定时任务 (每周五收盘后执行)"""
-    cron_command = f"5 17 * * 5 cd /home/luckyelite/.openclaw/workspace/amber-engine/scripts && python3 algo_self_audit.py >> /home/luckyelite/.openclaw/workspace/amber-engine/logs/algo_audit.log 2>&1"
+    cron_command = f"5 17 * * 5 cd ./scripts && python3 algo_self_audit.py >> ./logs/algo_audit.log 2>&1"
     
     print(f"⏰ 建议Cron定时任务:")
     print(f"   {cron_command}")

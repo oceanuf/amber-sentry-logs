@@ -13,11 +13,11 @@ from datetime import datetime
 import random
 
 # 添加路径以便导入策略库
-sys.path.append('/home/luckyelite/.openclaw/workspace/amber-engine/scripts')
+sys.path.append('./scripts')
 from strategy_lib import StrategyLibrary
 
 # 路径配置
-BASE_DIR = "/home/luckyelite/.openclaw/workspace/amber-engine"
+BASE_DIR = "."
 PORTFOLIO_PATH = os.path.join(BASE_DIR, "portfolio_v1.json")
 REPORT_DIR = "/var/www/gemini_master/master-audit"
 

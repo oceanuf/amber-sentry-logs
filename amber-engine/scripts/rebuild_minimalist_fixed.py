@@ -13,11 +13,11 @@ from datetime import datetime, timedelta
 import random
 
 # 添加路径以便导入策略库
-sys.path.append('/home/luckyelite/.openclaw/workspace/amber-engine/scripts')
+sys.path.append('./scripts')
 from strategy_lib import StrategyLibrary
 
 # 路径配置
-BASE_DIR = "/home/luckyelite/.openclaw/workspace/amber-engine"
+BASE_DIR = "."
 ALGO_LOG_PATH = os.path.join(BASE_DIR, "data/algo_log/ALGO_LOG.json")
 PORTFOLIO_PATH = os.path.join(BASE_DIR, "portfolio_v1.json")
 WEB_DIR = os.path.join(BASE_DIR, "output/arena")  # 改为本地目录

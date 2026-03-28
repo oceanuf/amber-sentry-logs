@@ -1,0 +1,90 @@
+# 🔐 琥珀引擎环境变量模板
+# 重要: 将此文件复制为 .env 并填写实际值
+# 警告: 不要将实际值提交到GitHub
+
+# ==================== GitHub配置 ====================
+# GitHub Personal Access Token (绝密!)
+# 生成地址: https://github.com/settings/tokens
+# 权限: repo (完全控制仓库)
+GITHUB_TOKEN=your_github_token_here
+
+# GitHub仓库信息
+GITHUB_USERNAME=oceanuf
+GITHUB_REPO=amber-sentry-logs
+GITHUB_BRANCH=main
+
+# ==================== 数据API配置 ====================
+# Tushare Pro Token (财经数据)
+# 注册地址: https://tushare.pro
+TUSHARE_TOKEN=your_tushare_token_here
+
+# AkShare配置 (备用数据源)
+AKSHARE_TIMEOUT=30
+AKSHARE_RETRY=3
+
+# ==================== 实战账户配置 ====================
+# 50万量化实验室
+INITIAL_CAPITAL=500000.00
+COMMISSION_RATE=0.0002
+TAX_RATE=0.001
+SINGLE_ETF_LIMIT=100000.00
+
+# 交易参数
+BIAS_THRESHOLD=-3.5
+BATCH_SIZE=20000.00
+STOP_LOSS=-5.0
+TAKE_PROFIT=10.0
+
+# ==================== 系统配置 ====================
+# 自动化任务间隔 (秒)
+TRADE_SCAN_INTERVAL=900      # 15分钟
+DATA_REFRESH_INTERVAL=30     # 30秒
+DAILY_REPORT_HOUR=20         # 20:00
+
+# 日志配置
+LOG_LEVEL=INFO
+LOG_RETENTION_DAYS=30
+
+# ==================== Web服务配置 ====================
+# 10169端口实战实验室
+WEB_PORT=10169
+WEB_HOST=0.0.0.0
+WEB_DEBUG=false
+
+# ==================== 备份配置 ====================
+BACKUP_DIR=/backup/amber-engine
+BACKUP_RETENTION_DAYS=7
+BACKUP_TIME=02:00  # 每天凌晨2点
+
+# ==================== 监控配置 ====================
+# 健康检查
+HEALTH_CHECK_INTERVAL=300  # 5分钟
+ALERT_EMAIL=your_email@example.com
+ALERT_PHONE=your_phone_number
+
+# ==================== 安全配置 ====================
+# 加密密钥 (用于敏感数据加密)
+ENCRYPTION_KEY=your_encryption_key_here
+
+# API速率限制
+RATE_LIMIT_REQUESTS=100
+RATE_LIMIT_PERIOD=60  # 每分钟
+
+# ==================== 测试配置 ====================
+# 测试模式
+TEST_MODE=false
+MOCK_DATA=true
+SIMULATE_TRADES=true
+
+# ==================== 使用说明 ====================
+# 1. 复制此文件: cp .env.template .env
+# 2. 填写实际值: nano .env
+# 3. 加载环境变量: source .env
+# 4. 确保.gitignore包含: .env
+# 5. 永远不要提交.env文件到GitHub
+
+# 安全警告:
+# - 所有以"your_"开头的值都需要替换为实际值
+# - Token和密钥是绝密信息，泄露会导致系统安全风险
+# - 定期轮换Token和密钥
+# - 使用不同的Token用于不同环境(开发/测试/生产)

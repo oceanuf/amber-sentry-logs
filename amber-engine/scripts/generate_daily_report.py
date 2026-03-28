@@ -13,7 +13,7 @@ import time
 
 def load_amber_cmd():
     """加载amber_cmd.json"""
-    cmd_path = "/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/amber_cmd.json"
+    cmd_path = "./amber-sentry-logs/amber_cmd.json"
     
     try:
         with open(cmd_path, 'r', encoding='utf-8') as f:
@@ -24,7 +24,7 @@ def load_amber_cmd():
 
 def load_portfolio():
     """加载portfolio_v1.json"""
-    portfolio_path = "/home/luckyelite/.openclaw/workspace/amber-engine/portfolio_v1.json"
+    portfolio_path = "./portfolio_v1.json"
     
     try:
         with open(portfolio_path, 'r', encoding='utf-8') as f:
@@ -196,7 +196,7 @@ def save_daily_report(report_content):
     """保存每日报告"""
     today = datetime.now().strftime("%Y-%m-%d")
     report_filename = f"50万实战盈亏结项报告_{today}.md"
-    report_path = f"/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/archive/reports/{report_filename}"
+    report_path = f"./amber-sentry-logs/archive/reports/{report_filename}"
     
     try:
         with open(report_path, 'w', encoding='utf-8') as f:
@@ -210,7 +210,7 @@ def save_daily_report(report_content):
 
 def update_reports_index(report_path):
     """更新报告索引"""
-    index_path = "/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/archive/reports/index.html"
+    index_path = "./amber-sentry-logs/archive/reports/index.html"
     
     try:
         # 读取现有索引

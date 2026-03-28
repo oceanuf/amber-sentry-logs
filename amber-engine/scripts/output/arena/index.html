@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧀 琥珀引擎演武场 - 静默入口</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .title {
+            color: #333;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .nav-item {
+            display: block;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .nav-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+        .nav-item.portfolio {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        .nav-item.radar {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+        .nav-item.memory {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: #666;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="title">🧀 琥珀引擎演武场</div>
+            <div class="subtitle">最简约的力量，最纯粹的博弈</div>
+            
+            <div class="nav-links">
+                <a href="portfolio_dashboard.html" class="nav-item portfolio">
+                    [实战演武：PORTFOLIO看板]
+                    <span class="badge">50万战场</span>
+                </a>
+                
+                <a href="md_viewer.html?file=RADAR.md" class="nav-item radar">
+                    [策略雷达：RADAR.md]
+                    <span class="badge">十大策略</span>
+                </a>
+                
+                <a href="md_viewer.html?file=SYSTEM_MEMORY.md" class="nav-item memory">
+                    [共同记忆：SYSTEM_MEMORY.md]
+                    <span class="badge">进化历程</span>
+                </a>
+            </div>
+            
+            <div class="footer">
+                <p>Cheese Intelligence Team · 工程师 Cheese 执行 [2613-192号] 指令</p>
+                <p>执行时间: 2026-03-28 20:45:01 GMT+8</p>
+                <p><a href="https://localhost:10168/">返回档案馆首页</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

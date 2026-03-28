@@ -13,7 +13,7 @@ import time
 
 def load_amber_cmd():
     """加载amber_cmd.json配置"""
-    cmd_path = "/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/amber_cmd.json"
+    cmd_path = "./amber-sentry-logs/amber_cmd.json"
     
     try:
         with open(cmd_path, 'r', encoding='utf-8') as f:
@@ -173,7 +173,7 @@ def update_automation_status(config):
 
 def save_amber_cmd(config):
     """保存更新后的amber_cmd.json"""
-    cmd_path = "/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/amber_cmd.json"
+    cmd_path = "./amber-sentry-logs/amber_cmd.json"
     
     # 备份原文件
     backup_path = f"{cmd_path}.backup.{datetime.now().strftime('%Y%m%d_%H%M%S')}"

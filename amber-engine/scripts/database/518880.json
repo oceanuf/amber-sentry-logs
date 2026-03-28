@@ -1,0 +1,186 @@
+{
+  "ticker": "518880",
+  "name": "华安黄金ETF",
+  "last_update": "2026-03-28 20:45",
+  "current_price": 5.03,
+  "change_pct": "+2.53%",
+  "nav_history": [
+    {
+      "date": "2026-02-27",
+      "price": 5.244,
+      "change": "+4.60%"
+    },
+    {
+      "date": "2026-02-28",
+      "price": 5.144,
+      "change": "-1.69%"
+    },
+    {
+      "date": "2026-03-01",
+      "price": 5.248,
+      "change": "+2.31%"
+    },
+    {
+      "date": "2026-03-02",
+      "price": 5.224,
+      "change": "+2.96%"
+    },
+    {
+      "date": "2026-03-03",
+      "price": 5.259,
+      "change": "+3.55%"
+    },
+    {
+      "date": "2026-03-04",
+      "price": 4.913,
+      "change": "-4.49%"
+    },
+    {
+      "date": "2026-03-05",
+      "price": 5.053,
+      "change": "+2.05%"
+    },
+    {
+      "date": "2026-03-06",
+      "price": 4.927,
+      "change": "+4.70%"
+    },
+    {
+      "date": "2026-03-07",
+      "price": 4.973,
+      "change": "-3.15%"
+    },
+    {
+      "date": "2026-03-08",
+      "price": 4.936,
+      "change": "+3.99%"
+    },
+    {
+      "date": "2026-03-09",
+      "price": 5.072,
+      "change": "-4.80%"
+    },
+    {
+      "date": "2026-03-10",
+      "price": 5.107,
+      "change": "-2.44%"
+    },
+    {
+      "date": "2026-03-11",
+      "price": 5.217,
+      "change": "+4.27%"
+    },
+    {
+      "date": "2026-03-12",
+      "price": 4.977,
+      "change": "+1.35%"
+    },
+    {
+      "date": "2026-03-13",
+      "price": 4.945,
+      "change": "-4.70%"
+    },
+    {
+      "date": "2026-03-14",
+      "price": 5.12,
+      "change": "-0.28%"
+    },
+    {
+      "date": "2026-03-15",
+      "price": 4.769,
+      "change": "-4.75%"
+    },
+    {
+      "date": "2026-03-16",
+      "price": 4.847,
+      "change": "-1.60%"
+    },
+    {
+      "date": "2026-03-17",
+      "price": 5.12,
+      "change": "-4.95%"
+    },
+    {
+      "date": "2026-03-18",
+      "price": 5.138,
+      "change": "+1.16%"
+    },
+    {
+      "date": "2026-03-19",
+      "price": 5.076,
+      "change": "-4.18%"
+    },
+    {
+      "date": "2026-03-20",
+      "price": 5.078,
+      "change": "-1.24%"
+    },
+    {
+      "date": "2026-03-21",
+      "price": 5.15,
+      "change": "+0.15%"
+    },
+    {
+      "date": "2026-03-22",
+      "price": 4.818,
+      "change": "-1.80%"
+    },
+    {
+      "date": "2026-03-23",
+      "price": 4.933,
+      "change": "+0.78%"
+    },
+    {
+      "date": "2026-03-24",
+      "price": 4.928,
+      "change": "+2.51%"
+    },
+    {
+      "date": "2026-03-25",
+      "price": 4.934,
+      "change": "-3.90%"
+    },
+    {
+      "date": "2026-03-26",
+      "price": 4.972,
+      "change": "+0.55%"
+    },
+    {
+      "date": "2026-03-27",
+      "price": 4.95,
+      "change": "-1.10%"
+    },
+    {
+      "date": "2026-03-28",
+      "price": 5.255,
+      "change": "+2.03%"
+    }
+  ],
+  "indicators": {
+    "pe_ratio": "N/A",
+    "premium_rate": "+0.03%",
+    "return_30d": "-2.40%",
+    "annual_volatility": "5.0%",
+    "sharpe_ratio": 1.55,
+    "max_drawdown": "12.4%",
+    "beta": 0.81,
+    "alpha": "-0.6"
+  },
+  "position_data": {
+    "holdings": 0,
+    "cost_price": 0,
+    "market_value": 0,
+    "floating_pnl": 0,
+    "floating_pnl_pct": "0.00%"
+  },
+  "metadata": {
+    "asset_class": "Commodity",
+    "strategy_tag": "Gravity-Dip",
+    "risk_level": "Medium",
+    "weight": 0.35,
+    "status": "Watching",
+    "data_source": "TUSHARE",
+    "data_quality": "verified",
+    "update_frequency": "hourly"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-03-27 20:55",
+  "last_updated": "2026-03-27 20:55",
+  "algorithm": "琥珀引擎长周期量化策略库",
+  "n_day_target": 60,
+  "win_rate_target": 0.78,
+  "transactions": [],
+  "strategy_performance": {},
+  "evolution_log": []
+}

@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-03-24T08:48:11.758346",
+  "system": "琥珀引擎健康检查",
+  "version": "1.0.0",
+  "checks": [
+    {
+      "name": "Web服务器",
+      "status": "🟢 正常",
+      "timestamp": "2026-03-24T08:48:11.765216",
+      "details": {
+        "status_code": 200,
+        "server": "Nginx/1.24.0",
+        "response": "页面可正常访问"
+      }
+    },
+    {
+      "name": "定时任务",
+      "status": "🟢 正常",
+      "timestamp": "2026-03-24T08:48:11.766310",
+      "details": {
+        "jobs": [
+          "龙虎榜任务 (工作日18:00)"
+        ],
+        "count": 1
+      }
+    },
+    {
+      "name": "核心文件",
+      "status": "🟢 正常",
+      "timestamp": "2026-03-24T08:48:11.766471",
+      "details": {
+        "files": [
+          "./amber_final_strike.py",
+          "./etf_50_seeds.json",
+          "./etf_50_full_audit.json",
+          "../scripts/amber_dragon_tiger.py",
+          "./memory/2026-03-24.md"
+        ],
+        "count": 5
+      }
+    },
+    {
+      "name": "网络连接",
+      "status": "🟢 正常",
+      "timestamp": "2026-03-24T08:48:11.963230",
+      "details": {
+        "api": "Tushare Pro",
+        "status": "连接正常",
+        "response_time": "正常"
+      }
+    },
+    {
+      "name": "龙虎榜日志",
+      "status": "🟡 警告",
+      "timestamp": "2026-03-24T08:48:11.963384",
+      "details": {
+        "status": "最近执行有错误",
+        "last_lines": "❌ 获取 159919 数据失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\n  正在处理 159949 (创业板50ETF)...\n❌ 获取 159949 数据失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\n  正在处理 512600 (嘉实医药健康ETF)...\n❌ 获取 512600 数据失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\n  正在处理 512980 (广发传媒ETF)...\n❌ 获取 512980 数据失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\n  正在处理 512100 (南方中证1000ETF)...\n❌ 获取 512100 数据失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\n❌ 未获取到任何ETF数据，程序退出\n",
+        "log_size": "11858 bytes"
+      }
+    }
+  ],
+  "summary": {
+    "total_checks": 5,
+    "ok": 4,
+    "warning": 1,
+    "error": 0,
+    "health_score": 80.0
+  },
+  "overall_status": "🟡 警告"
+}

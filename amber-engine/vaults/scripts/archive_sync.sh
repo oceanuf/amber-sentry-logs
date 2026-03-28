@@ -6,8 +6,8 @@
 set -e
 
 # ==================== 配置信息 ====================
-ARCHIVE_DIR="/home/luckyelite/.openclaw/workspace/amber-engine/vaults"
-GIT_REPO_DIR="/home/luckyelite/.openclaw/workspace/amber-engine"
+ARCHIVE_DIR="./vaults"
+GIT_REPO_DIR="."
 GIT_USER_NAME="Cheese Intelligence Team"
 GIT_USER_EMAIL="cheese@cheese.ai"
 LOG_FILE="$ARCHIVE_DIR/logs/sync_$(date +%Y%m%d_%H%M%S).log"

@@ -16,13 +16,13 @@ from datetime import datetime, timedelta
 import time
 import math
 import sys
-sys.path.append('/home/luckyelite/.openclaw/workspace/amber-engine/scripts')
+sys.path.append('./scripts')
 from strategy_lib import strategy_lib
 
 def load_config():
     """加载配置"""
-    cmd_path = "/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/amber_cmd.json"
-    portfolio_path = "/home/luckyelite/.openclaw/workspace/amber-engine/portfolio_v1.json"
+    cmd_path = "./amber-sentry-logs/amber_cmd.json"
+    portfolio_path = "./portfolio_v1.json"
     
     try:
         with open(cmd_path, 'r', encoding='utf-8') as f:
@@ -393,7 +393,7 @@ def update_amber_cmd_with_trade(config, trade_record, portfolio):
         config["automation_status"]["last_trade"] = trade_record["timestamp"]
         
         # 保存更新
-        cmd_path = "/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/amber_cmd.json"
+        cmd_path = "./amber-sentry-logs/amber_cmd.json"
         with open(cmd_path, 'w', encoding='utf-8') as f:
             json.dump(config, f, indent=2, ensure_ascii=False)
         
@@ -404,7 +404,7 @@ def update_amber_cmd_with_trade(config, trade_record, portfolio):
 
 def save_portfolio(portfolio):
     """保存投资组合"""
-    portfolio_path = "/home/luckyelite/.openclaw/workspace/amber-engine/portfolio_v1.json"
+    portfolio_path = "./portfolio_v1.json"
     
     try:
         with open(portfolio_path, 'w', encoding='utf-8') as f:

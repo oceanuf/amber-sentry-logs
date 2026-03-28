@@ -1,0 +1,186 @@
+{
+  "ticker": "510300",
+  "name": "沪深300ETF",
+  "last_update": "2026-03-28 20:41",
+  "current_price": 3.913,
+  "change_pct": "+0.55%",
+  "nav_history": [
+    {
+      "date": "2026-02-27",
+      "price": 3.943,
+      "change": "+0.12%"
+    },
+    {
+      "date": "2026-02-28",
+      "price": 3.781,
+      "change": "-0.71%"
+    },
+    {
+      "date": "2026-03-01",
+      "price": 3.826,
+      "change": "-2.08%"
+    },
+    {
+      "date": "2026-03-02",
+      "price": 3.749,
+      "change": "+0.78%"
+    },
+    {
+      "date": "2026-03-03",
+      "price": 3.933,
+      "change": "-2.61%"
+    },
+    {
+      "date": "2026-03-04",
+      "price": 3.825,
+      "change": "-2.24%"
+    },
+    {
+      "date": "2026-03-05",
+      "price": 3.903,
+      "change": "+1.48%"
+    },
+    {
+      "date": "2026-03-06",
+      "price": 3.8,
+      "change": "+0.29%"
+    },
+    {
+      "date": "2026-03-07",
+      "price": 3.948,
+      "change": "+2.97%"
+    },
+    {
+      "date": "2026-03-08",
+      "price": 3.859,
+      "change": "-2.67%"
+    },
+    {
+      "date": "2026-03-09",
+      "price": 3.799,
+      "change": "+0.17%"
+    },
+    {
+      "date": "2026-03-10",
+      "price": 3.783,
+      "change": "+2.34%"
+    },
+    {
+      "date": "2026-03-11",
+      "price": 3.842,
+      "change": "+1.12%"
+    },
+    {
+      "date": "2026-03-12",
+      "price": 3.761,
+      "change": "-1.06%"
+    },
+    {
+      "date": "2026-03-13",
+      "price": 3.855,
+      "change": "-0.17%"
+    },
+    {
+      "date": "2026-03-14",
+      "price": 3.944,
+      "change": "+1.97%"
+    },
+    {
+      "date": "2026-03-15",
+      "price": 3.815,
+      "change": "+2.60%"
+    },
+    {
+      "date": "2026-03-16",
+      "price": 3.944,
+      "change": "+2.22%"
+    },
+    {
+      "date": "2026-03-17",
+      "price": 3.833,
+      "change": "+0.88%"
+    },
+    {
+      "date": "2026-03-18",
+      "price": 3.872,
+      "change": "-0.48%"
+    },
+    {
+      "date": "2026-03-19",
+      "price": 3.837,
+      "change": "+1.03%"
+    },
+    {
+      "date": "2026-03-20",
+      "price": 3.754,
+      "change": "-0.85%"
+    },
+    {
+      "date": "2026-03-21",
+      "price": 3.803,
+      "change": "+2.74%"
+    },
+    {
+      "date": "2026-03-22",
+      "price": 3.735,
+      "change": "+0.50%"
+    },
+    {
+      "date": "2026-03-23",
+      "price": 3.765,
+      "change": "+2.30%"
+    },
+    {
+      "date": "2026-03-24",
+      "price": 3.933,
+      "change": "+0.65%"
+    },
+    {
+      "date": "2026-03-25",
+      "price": 3.739,
+      "change": "+0.61%"
+    },
+    {
+      "date": "2026-03-26",
+      "price": 3.836,
+      "change": "-0.83%"
+    },
+    {
+      "date": "2026-03-27",
+      "price": 3.959,
+      "change": "-0.13%"
+    },
+    {
+      "date": "2026-03-28",
+      "price": 3.796,
+      "change": "-2.98%"
+    }
+  ],
+  "indicators": {
+    "pe_ratio": "N/A",
+    "premium_rate": "+0.03%",
+    "return_30d": "+3.31%",
+    "annual_volatility": "3.0%",
+    "sharpe_ratio": 1.93,
+    "max_drawdown": "6.6%",
+    "beta": 1.08,
+    "alpha": "+0.0"
+  },
+  "position_data": {
+    "holdings": 0,
+    "cost_price": 0,
+    "market_value": 0,
+    "floating_pnl": 0,
+    "floating_pnl_pct": "0.00%"
+  },
+  "metadata": {
+    "asset_class": "Index",
+    "strategy_tag": "Core-Hold",
+    "risk_level": "Medium",
+    "weight": 0.0,
+    "status": "Watching",
+    "data_source": "TUSHARE",
+    "data_quality": "verified",
+    "update_frequency": "hourly"
+  }
+}

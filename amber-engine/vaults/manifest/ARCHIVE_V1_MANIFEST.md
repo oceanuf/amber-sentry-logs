@@ -23,7 +23,7 @@
 
 ### 1. 根目录结构
 ```
-/home/luckyelite/.openclaw/workspace/amber-engine/
+./
 ├── vaults/                    # 物理隔离的归档仓库 (新增)
 │   ├── manifest/             # 法典文件与元数据
 │   ├── data/                 # 原始数据文件
@@ -150,7 +150,7 @@
 ### 1. GitHub同步协议
 ```bash
 # 安全同步脚本
-/home/luckyelite/.openclaw/workspace/amber-engine/scripts/github_sync_safe.sh
+./scripts/github_sync_safe.sh
 
 # 同步频率: 每日18:00 (Cron任务)
 # 同步内容: vaults/目录 + 法典文件

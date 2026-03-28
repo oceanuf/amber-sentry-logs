@@ -275,7 +275,7 @@ def main():
     print("=" * 50)
     
     # 路径配置
-    workspace = "/home/luckyelite/.openclaw/workspace/amber-engine"
+    workspace = "."
     etf_dir = os.path.join(workspace, "data", "nav_history")
     output_dir = os.path.join(workspace, "amber-sentry-logs", "archive", "etf_details")
     output_path = os.path.join(output_dir, "index.html")
@@ -311,7 +311,7 @@ def main():
 def update_amber_cmd(etf_count):
     """更新amber_cmd.json状态"""
     try:
-        cmd_path = "/home/luckyelite/.openclaw/workspace/amber-engine/amber-sentry-logs/amber_cmd.json"
+        cmd_path = "./amber-sentry-logs/amber_cmd.json"
         
         with open(cmd_path, 'r', encoding='utf-8') as f:
             data = json.load(f)

@@ -14,7 +14,7 @@ import random
 import time
 
 # 路径配置
-BASE_DIR = "/home/luckyelite/.openclaw/workspace/amber-engine"
+BASE_DIR = "."
 PORTFOLIO_PATH = os.path.join(BASE_DIR, "portfolio_v1.json")
 HUNT_REPORT_PATH = "/var/www/gemini_master/master-audit/猎杀备选报告.md"
 WEB_DIR = "/var/www/gemini_master/master-audit"
@@ -314,7 +314,7 @@ def update_portfolio_md(portfolio, execution_type):
     
     try:
         # 导入rebuild_minimalist模块
-        sys.path.append('/home/luckyelite/.openclaw/workspace/amber-engine/scripts')
+        sys.path.append('./scripts')
         from rebuild_minimalist import generate_portfolio_md
         
         portfolio_content = generate_portfolio_md(portfolio)
