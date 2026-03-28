@@ -121,7 +121,7 @@ fi
 
 # ==================== 推送到GitHub ====================
 log_message "🚀 推送到GitHub..."
-if git push -u origin main; then
+if git -c http.extraHeader="Authorization: token $GITHUB_TOKEN" push -u origin main; then
     log_message "✅ GitHub同步成功！"
     
     # 获取最新提交信息
